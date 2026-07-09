@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日读书笔记 - Daily Book Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cream: #f5efe0;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --gold: #b8860b;
+  --border: #d8ccb6;
+  --serif: 'Noto Serif SC', serif;
+  --sans: 'Noto Sans SC', sans-serif;
+}
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.header h1 {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+}
+.header p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-faded);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+}
+.stats span strong {
+  color: var(--bookmark);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+}
+.empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--ink-faded);
+  font-family: var(--serif);
+  font-style: italic;
+}
+.empty::before {
+  content: '📚';
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+</style>
+</head>
+<body>
+  <header class="header">
+    <h1>每日读书笔记</h1>
+    <p>Daily Book Notes · AI-Powered Reading Journey</p>
+    <div class="stats">
+      <span>已读 <strong>0</strong> 本</span>
+      <span>始于 <strong>—</strong></span>
+    </div>
+  </header>
+  <main class="empty">
+    读书笔记即将开始...<br>
+    Reading notes coming soon...
+  </main>
+  <footer class="footer">
+    <p>Powered by Hermes AI · Updated 2026-07-09</p>
+  </footer>
+</body>
+</html>
