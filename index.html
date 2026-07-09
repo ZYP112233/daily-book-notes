@@ -57,18 +57,59 @@ body {
   font-family: var(--serif);
   font-size: 1.2rem;
 }
-.empty {
-  text-align: center;
-  padding: 4rem 1rem;
-  color: var(--ink-faded);
-  font-family: var(--serif);
-  font-style: italic;
+.grid {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
 }
-.empty::before {
-  content: '📚';
+.card {
   display: block;
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.3rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.12);
+  border-color: var(--gold);
+}
+.card-date {
+  font-size: 0.75rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+.card-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+.card-author {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.6rem;
+}
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.card-tags span {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  background: rgba(184,134,11,0.08);
+  border: 1px solid rgba(184,134,11,0.15);
+  border-radius: 100px;
+  color: var(--gold);
 }
 .footer {
   text-align: center;
@@ -78,6 +119,10 @@ body {
   border-top: 1px solid var(--border);
   margin-top: 2rem;
 }
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+  .header h1 { font-size: 1.6rem; }
+}
 </style>
 </head>
 <body>
@@ -85,13 +130,20 @@ body {
     <h1>每日读书笔记</h1>
     <p>Daily Book Notes · AI-Powered Reading Journey</p>
     <div class="stats">
-      <span>已读 <strong>0</strong> 本</span>
-      <span>始于 <strong>—</strong></span>
+      <span>已读 <strong>1</strong> 本</span>
+      <span>始于 <strong>2026-07-09</strong></span>
     </div>
   </header>
-  <main class="empty">
-    读书笔记即将开始...<br>
-    Reading notes coming soon...
+  <main class="grid">
+    
+        <a href="20260709/index.html" class="card">
+          <div class="card-date">2026-07-09</div>
+          <h3 class="card-title">刻意忽视</h3>
+          <p class="card-author">马克·曼森</p>
+          <div class="card-tags">
+            <span>价值排序</span><span>选择焦虑</span><span>反鸡汤</span>
+          </div>
+        </a>
   </main>
   <footer class="footer">
     <p>Powered by Hermes AI · Updated 2026-07-09</p>
