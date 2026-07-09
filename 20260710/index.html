@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《思考，快与慢》— 丹尼尔·卡尼曼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  width: 30px;
+  height: 65px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 15px solid var(--bookmark-deep);
+  border-right: 15px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.45) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 20px;
+  max-width: 430px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(0.85rem, 3vw, 1.1rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8em;
+  color: var(--gold-soft);
+}
+.hero-tags {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+.hero-tag {
+  font-family: var(--serif-cn);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(245,239,224,0.3);
+  border-radius: 20px;
+  color: rgba(245,239,224,0.8);
+  letter-spacing: 0.05em;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 2.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.2rem 1.4rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+.info-item:last-child { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 3rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+  padding: 1.5rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 1.5rem auto 0;
+}
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.4rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 1.8rem 0;
+  padding: 1.5rem 1.2rem 1.5rem 2.8rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.8rem;
+  font-family: var(--serif-en);
+  font-size: 3rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.7rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 2rem;
+  padding: 2rem 0 2.5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.78rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-07-10</div>
+    <h1 class="hero-title">思考，快与慢</h1>
+    <div class="hero-title-en">Thinking, Fast and Slow</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      丹尼尔 · 卡尼曼 Daniel Kahneman
+      <span class="subtitle">认知心理学 · 行为经济学</span>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">决策</span>
+      <span class="hero-tag">认知偏误</span>
+      <span class="hero-tag">前景理论</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">丹尼尔 · 卡尼曼
+          <span class="sub">Daniel Kahneman · 以色列裔美国心理学家，2002年诺贝尔经济学奖得主</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">认知心理学 · 行为经济学
+          <span class="sub">决策科学 / 认知偏误研究</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">2011 年
+          <span class="sub">全球销量超千万册，行为经济学奠基之作</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">人类思维存在两套系统，快思考主导日常决策，却常导致系统性偏误
+          <span class="sub">理解认知局限，才能做出更理性的判断</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      我们的大脑并非理性的计算器，而是充满偏误的直觉机器——认识自己的认知局限，是做出更好决策的第一步。
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">六个核心概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.9rem;">
+      卡尼曼通过数十年的实验研究，揭示了人类思维的系统性偏误，这些概念彻底改变了我们对"理性"的理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">系统1与系统2</h3>
+        <div class="concept-name-en">System 1 & System 2</div>
+        <p class="concept-desc">大脑有两套思维系统：系统1快速、自动、情绪化，负责日常直觉判断；系统2缓慢、费力、理性，负责复杂计算和逻辑推理。大多数时候系统1主导决策，系统2只在必要时才介入。</p>
+        <div class="concept-eg"><strong>例</strong> 看到 2+2 自动得出 4（系统1），计算 17×24 则需要刻意集中注意力（系统2）。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">锚定效应</h3>
+        <div class="concept-name-en">Anchoring Effect</div>
+        <p class="concept-desc">人们在做出数值估计时，会过度依赖最先接收到的信息（即"锚"）。即使锚值与问题无关，也会显著影响最终判断。</p>
+        <div class="concept-eg"><strong>例</strong> 先看到"甘地去世时超过9岁吗"的人，对甘地去世年龄的估计明显高于先看到"超过14岁吗"的人。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">可得性启发</h3>
+        <div class="concept-name-en">Availability Heuristic</div>
+        <p class="concept-desc">人们倾向于根据某件事在脑海中被想起的容易程度，来判断其发生的频率或概率。越容易想到的事，被认为越常见。</p>
+        <div class="concept-eg"><strong>例</strong> 空难新闻铺天盖地后，人们高估飞机失事的概率，尽管车祸死亡率远高于空难。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">损失厌恶</h3>
+        <div class="concept-name-en">Loss Aversion</div>
+        <p class="concept-desc">人们对损失的敏感程度远高于对同等收益的敏感程度。失去100元的痛苦，大约是得到100元快乐的两倍。</p>
+        <div class="concept-eg"><strong>例</strong> 投资者宁愿持有亏损股票也不愿"割肉"卖出，因为实现损失带来的痛苦大于继续持有的不确定性。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">前景理论</h3>
+        <div class="concept-name-en">Prospect Theory</div>
+        <p class="concept-desc">人们在面对风险决策时，并非根据最终财富状态，而是根据相对于参考点的得失来做判断。在收益区域倾向规避风险，在损失区域倾向追求风险。</p>
+        <div class="concept-eg"><strong>例</strong> 面对"确定获得800元"vs"85%概率获得1000元"，多数人选择前者；但面对"确定损失800元"vs"85%概率损失1000元"，多数人选择后者。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">峰终定律</h3>
+        <div class="concept-name-en">Peak-End Rule</div>
+        <p class="concept-desc">人们对一段经历的评价，主要取决于体验最强烈的时刻（峰值）和结束时的感受（终值），而非整体体验的平均值或总时长。</p>
+        <div class="concept-eg"><strong>例</strong> 一次漫长但结尾愉快的 vacation，比短暂但全程平淡的 vacation 留下更好的记忆。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">我们对自己认为自己知道的东西过于自信，而且我们显然无法承认自己的无知和这个世界的不确定性。</p>
+      <p class="quote-attr">— Daniel Kahneman</p>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">没有任何记忆性自我能够计算体验的时长加权平均值——这就是峰终定律存在的原因。</p>
+      <p class="quote-attr">— 论体验的记忆</p>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">损失带来的痛苦大约是同等收益带来的快乐的两倍，这一不对称性深植于我们的进化历史。</p>
+      <p class="quote-attr">— 论损失厌恶</p>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">系统1的运行方式是自动的、快速的、毫不费力的，而系统2则需要集中注意力，进行复杂的计算。</p>
+      <p class="quote-attr">— Daniel Kahneman</p>
+    </div>
+
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>投资与金融从业者</h4>
+        <p>理解市场非理性行为，避免认知偏误影响投资决策</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>产品与 UX 设计师</h4>
+        <p>利用认知规律设计更符合用户直觉的产品体验</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>管理者与决策者</h4>
+        <p>识别组织决策中的系统性偏误，提升判断质量</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>心理学与经济学学生</h4>
+        <p>行为经济学奠基之作，理解现代决策理论的必读经典</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>对自我认知感兴趣的人</h4>
+        <p>想知道"为什么我会做出这样的判断"，认识自己的思维盲区</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>营销与传播从业者</h4>
+        <p>理解消费者决策的心理机制，设计更有效的沟通策略</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>Thinking, Fast and Slow · Daniel Kahneman · 2011</p>
+  <p class="footer-cn">每日读书笔记 · 2026 年 7 月 10 日</p>
+</footer>
+
+</body>
+</html>
