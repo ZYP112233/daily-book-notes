@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读书笔记 ·《思考，快与慢》— 丹尼尔·卡尼曼</title>
+<title>读书笔记 ·《稀缺》— 穆来纳森 & 沙菲尔</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -39,8 +39,6 @@ body {
   line-height: 1.85;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  max-width: 430px;
-  margin: 0 auto;
 }
 
 /* Paper texture */
@@ -60,9 +58,9 @@ body::before {
 .bookmark-ribbon {
   position: fixed;
   top: 0;
-  right: 20px;
-  width: 30px;
-  height: 65px;
+  right: 48px;
+  width: 38px;
+  height: 85px;
   background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
   z-index: 100;
   box-shadow: -2px 0 6px rgba(0,0,0,0.15);
@@ -74,15 +72,15 @@ body::before {
   left: 0;
   width: 0;
   height: 0;
-  border-left: 15px solid var(--bookmark-deep);
-  border-right: 15px solid var(--bookmark-deep);
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
   border-bottom: 12px solid transparent;
 }
 
 /* ============ HERO ============ */
 .hero {
   position: relative;
-  min-height: 80vh;
+  min-height: 92vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,10 +89,10 @@ body::before {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=80');
+  background-image: url('https://images.unsplash.com/photo-1501139083538-0139583c060f?w=1920&q=80');
   background-size: cover;
-  background-position: center;
-  filter: brightness(0.45) saturate(0.7);
+  background-position: center 30%;
+  filter: brightness(0.4) saturate(0.6);
   z-index: 0;
 }
 .hero-overlay {
@@ -105,7 +103,7 @@ body::before {
       rgba(20,15,8,0.55) 0%, 
       rgba(20,15,8,0.3) 30%, 
       rgba(20,15,8,0.55) 70%, 
-      rgba(245,239,224,0.92) 100%);
+      rgba(245,239,224,0.95) 100%);
   z-index: 1;
 }
 .hero-content {
@@ -113,13 +111,13 @@ body::before {
   z-index: 2;
   text-align: center;
   color: #f5efe0;
-  padding: 0 20px;
-  max-width: 430px;
+  padding: 0 24px;
+  max-width: 860px;
 }
 .hero-label {
   font-family: var(--serif-en);
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold-soft);
@@ -130,7 +128,7 @@ body::before {
 .hero-title {
   font-family: var(--serif-cn);
   font-weight: 900;
-  font-size: clamp(2rem, 8vw, 2.8rem);
+  font-size: clamp(2.4rem, 7vw, 5rem);
   letter-spacing: 0.06em;
   line-height: 1.15;
   margin-bottom: 0.6rem;
@@ -141,9 +139,9 @@ body::before {
 .hero-title-en {
   font-family: var(--serif-en);
   font-style: italic;
-  font-size: clamp(0.85rem, 3vw, 1.1rem);
+  font-size: clamp(1rem, 3vw, 1.6rem);
   color: rgba(245,239,224,0.7);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   letter-spacing: 0.02em;
   opacity: 0;
   animation: fadeUp 0.8s 0.6s forwards;
@@ -152,44 +150,26 @@ body::before {
   width: 60px;
   height: 2px;
   background: var(--gold-soft);
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 2rem;
   opacity: 0;
   animation: fadeUp 0.8s 0.7s forwards;
 }
 .hero-author {
   font-family: var(--serif-cn);
   font-weight: 400;
-  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   color: rgba(245,239,224,0.85);
   letter-spacing: 0.1em;
   opacity: 0;
   animation: fadeUp 0.8s 0.8s forwards;
 }
-.hero-author .subtitle {
+.hero-author .affiliation {
   display: inline-block;
   margin-top: 0.5rem;
   font-family: var(--serif-en);
   font-style: italic;
-  font-size: 0.8em;
+  font-size: 0.85em;
   color: var(--gold-soft);
-}
-.hero-tags {
-  margin-top: 1.2rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.9s forwards;
-}
-.hero-tag {
-  font-family: var(--serif-cn);
-  font-size: 0.75rem;
-  padding: 0.3rem 0.8rem;
-  border: 1px solid rgba(245,239,224,0.3);
-  border-radius: 20px;
-  color: rgba(245,239,224,0.8);
-  letter-spacing: 0.05em;
 }
 .scroll-hint {
   position: absolute;
@@ -217,19 +197,19 @@ body::before {
 .content {
   position: relative;
   z-index: 2;
-  max-width: 430px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 28px;
 }
 
 /* ============ SECTION STYLES ============ */
 section {
-  padding: 2.5rem 0;
+  padding: 3.5rem 0;
 }
 .section-label {
   font-family: var(--serif-en);
   font-style: italic;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gold);
@@ -238,7 +218,7 @@ section {
 .section-title {
   font-family: var(--serif-cn);
   font-weight: 700;
-  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
   color: var(--ink);
   margin-bottom: 0.3rem;
   letter-spacing: 0.03em;
@@ -247,14 +227,14 @@ section {
   width: 48px;
   height: 3px;
   background: var(--bookmark);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   border-radius: 2px;
 }
 
 /* ============ BOOK INFO ============ */
 .book-info {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0;
   background: var(--paper);
   border: 1px solid var(--border);
@@ -263,28 +243,30 @@ section {
   box-shadow: 0 2px 20px rgba(92,79,62,0.08);
 }
 .info-item {
-  padding: 1.2rem 1.4rem;
+  padding: 1.5rem 1.8rem;
   border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
 }
-.info-item:last-child { border-bottom: none; }
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
 .info-label {
   font-family: var(--serif-en);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-faded);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 .info-value {
   font-family: var(--serif-cn);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--ink);
   line-height: 1.6;
 }
 .info-value .sub {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 400;
   color: var(--ink-soft);
   margin-top: 0.2rem;
@@ -293,23 +275,23 @@ section {
 /* ============ OVERVIEW ============ */
 .overview {
   text-align: center;
-  padding: 3rem 0;
+  padding: 4rem 0;
 }
 .overview-quote {
   font-family: var(--serif-cn);
   font-weight: 400;
-  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
   line-height: 1.7;
   color: var(--ink);
-  max-width: 400px;
+  max-width: 720px;
   margin: 0 auto;
   position: relative;
-  padding: 1.5rem 0;
+  padding: 2rem 0;
 }
 .overview-quote::before {
   content: '\201C';
   font-family: var(--serif-en);
-  font-size: 3.5rem;
+  font-size: 4rem;
   color: var(--bookmark);
   opacity: 0.25;
   position: absolute;
@@ -324,26 +306,109 @@ section {
   width: 80px;
   height: 1px;
   background: var(--border);
-  margin: 1.5rem auto 0;
+  margin: 2rem auto 0;
 }
 
-/* ============ KEY CONCEPTS ============ */
-.concept-grid {
+/* ============ DUAL SYSTEM ============ */
+.dual-system {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
   margin-top: 1rem;
 }
-.concept-card {
+.sys-card {
   background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 1.4rem 1.2rem;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.sys-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.sys-card.sys1 { border-top: 4px solid var(--accent-blue); }
+.sys-card.sys2 { border-top: 4px solid var(--bookmark); }
+.sys-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.sys-card.sys1 .sys-badge { color: var(--accent-blue); }
+.sys-card.sys2 .sys-badge { color: var(--bookmark); }
+.sys-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.sys-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.sys-traits {
+  list-style: none;
+  padding: 0;
+}
+.sys-traits li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.sys-traits li:last-child { border-bottom: none; }
+.sys-traits li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.sys-card.sys1 .sys-traits li::before { background: var(--accent-blue); }
+.sys-card.sys2 .sys-traits li::before { background: var(--bookmark); }
+.sys-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.sys-card.sys2 .sys-example { background: rgba(158,43,37,0.05); }
+
+/* ============ BIAS CARDS ============ */
+.bias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.bias-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
   position: relative;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.concept-card::before {
+.bias-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -352,47 +417,110 @@ section {
   height: 100%;
   background: var(--gold);
 }
-.concept-card:hover {
+.bias-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(92,79,62,0.1);
 }
-.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
-.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
-.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
-.concept-card:nth-child(4n+4)::before { background: var(--gold); }
-.concept-num {
+.bias-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.bias-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.bias-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.bias-card:nth-child(4n+4)::before { background: var(--gold); }
+.bias-num {
   font-family: var(--serif-en);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   color: var(--ink-faded);
   margin-bottom: 0.3rem;
 }
-.concept-name {
+.bias-name {
   font-family: var(--serif-cn);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 0.2rem;
 }
-.concept-name-en {
+.bias-name-en {
   font-family: var(--serif-en);
   font-style: italic;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--ink-faded);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.8rem;
 }
-.concept-desc {
+.bias-desc {
   font-size: 0.88rem;
   color: var(--ink-soft);
   line-height: 1.7;
 }
-.concept-eg {
+.bias-eg {
   margin-top: 0.7rem;
   padding-top: 0.7rem;
   border-top: 1px dashed var(--border-soft);
   font-size: 0.82rem;
   color: var(--ink-faded);
 }
-.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+.bias-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
 
 /* ============ QUOTES ============ */
 .quotes-section {
@@ -400,8 +528,8 @@ section {
 }
 .quote-block {
   position: relative;
-  margin: 1.8rem 0;
-  padding: 1.5rem 1.2rem 1.5rem 2.8rem;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
   background: var(--paper);
   border-left: 4px solid var(--bookmark);
   border-radius: 0 4px 4px 0;
@@ -411,33 +539,73 @@ section {
   content: '\201C';
   position: absolute;
   top: 0.5rem;
-  left: 0.8rem;
+  left: 1rem;
   font-family: var(--serif-en);
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: var(--bookmark);
   opacity: 0.2;
   line-height: 1;
 }
 .quote-text {
   font-family: var(--serif-cn);
-  font-size: 1rem;
+  font-size: 1.12rem;
   line-height: 1.8;
   color: var(--ink);
   font-weight: 500;
 }
 .quote-attr {
-  margin-top: 0.7rem;
+  margin-top: 0.8rem;
   font-family: var(--serif-en);
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--ink-faded);
   text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
 }
 
 /* ============ AUDIENCE ============ */
 .audience-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -445,7 +613,7 @@ section {
   background: var(--paper);
   border: 1px solid var(--border-soft);
   border-radius: 4px;
-  padding: 1.2rem 1rem;
+  padding: 1.3rem 1.2rem;
   text-align: center;
   transition: transform 0.3s, border-color 0.3s;
 }
@@ -455,27 +623,27 @@ section {
 }
 .audience-icon {
   font-family: var(--serif-en);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--gold);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   line-height: 1;
 }
 .audience-card h4 {
   font-family: var(--serif-cn);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   margin-bottom: 0.3rem;
 }
 .audience-card p {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--ink-soft);
   line-height: 1.6;
 }
 
 /* ============ FOOTER ============ */
 .footer {
-  margin-top: 2rem;
-  padding: 2rem 0 2.5rem;
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
   text-align: center;
   border-top: 1px solid var(--border);
   position: relative;
@@ -492,15 +660,54 @@ section {
 .footer p {
   font-family: var(--serif-en);
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--ink-faded);
   line-height: 1.8;
 }
 .footer .footer-cn {
   font-family: var(--serif-cn);
   font-style: normal;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .dual-system { grid-template-columns: 1fr; }
+  .bias-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .bias-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
 }
 
 /* ============ PRINT ============ */
@@ -522,18 +729,13 @@ section {
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-label">Reading Notes · 2026-07-10</div>
-    <h1 class="hero-title">思考，快与慢</h1>
-    <div class="hero-title-en">Thinking, Fast and Slow</div>
+    <div class="hero-label">Reading Notes</div>
+    <h1 class="hero-title">稀&nbsp;缺</h1>
+    <div class="hero-title-en">Scarcity: Why Having Too Little Means So Much</div>
     <div class="hero-divider"></div>
     <div class="hero-author">
-      丹尼尔 · 卡尼曼 Daniel Kahneman
-      <span class="subtitle">认知心理学 · 行为经济学</span>
-    </div>
-    <div class="hero-tags">
-      <span class="hero-tag">决策</span>
-      <span class="hero-tag">认知偏误</span>
-      <span class="hero-tag">前景理论</span>
+      塞德希尔 · 穆来纳森 &amp; 埃尔达 · 沙菲尔
+      <span class="affiliation">Harvard &amp; Princeton</span>
     </div>
   </div>
   <div class="scroll-hint">scroll ↓</div>
@@ -550,26 +752,26 @@ section {
     <div class="book-info">
       <div class="info-item">
         <div class="info-label">Author</div>
-        <div class="info-value">丹尼尔 · 卡尼曼
-          <span class="sub">Daniel Kahneman · 以色列裔美国心理学家，2002年诺贝尔经济学奖得主</span>
+        <div class="info-value">穆来纳森 & 沙菲尔
+          <span class="sub">Sendhil Mullainathan & Eldar Shafir</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Field</div>
-        <div class="info-value">认知心理学 · 行为经济学
-          <span class="sub">决策科学 / 认知偏误研究</span>
+        <div class="info-value">行为经济学 · 认知心理学
+          <span class="sub">发展经济学 / 决策科学</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Published</div>
-        <div class="info-value">2011 年
-          <span class="sub">全球销量超千万册，行为经济学奠基之作</span>
+        <div class="info-value">2013 年
+          <span class="sub">中文版由浙江人民出版社引进</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Core Thesis</div>
-        <div class="info-value">人类思维存在两套系统，快思考主导日常决策，却常导致系统性偏误
-          <span class="sub">理解认知局限，才能做出更理性的判断</span>
+        <div class="info-value">稀缺不只是资源不足
+          <span class="sub">它是一种会俘获大脑、改变思维方式的心态，最终制造更多稀缺</span>
         </div>
       </div>
     </div>
@@ -578,66 +780,169 @@ section {
   <!-- ONE-SENTENCE OVERVIEW -->
   <section class="overview">
     <div class="overview-quote">
-      我们的大脑并非理性的计算器，而是充满偏误的直觉机器——认识自己的认知局限，是做出更好决策的第一步。
+      稀缺不是一种客观状态，而是一种心态——它会俘获你的注意力，窄化你的视野，让你在忙碌中越忙越穷、越穷越忙，陷入一个自我强化的恶性循环。
+    </div>
+  </section>
+
+  <!-- CORE FRAMEWORK: SCARCITY vs SLACK -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">稀缺心态 vs 余闲心态</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      穆来纳森和沙菲尔揭示了一个反直觉的真相：贫穷和忙碌共享同一套心理机制。稀缺会俘获注意力、产生"管窥效应"、征收"带宽税"，让人在最需要智慧时做出最糟糕的决策。
+    </p>
+    <div class="dual-system">
+      <div class="sys-card sys1">
+        <div class="sys-badge">● Scarcity Mindset</div>
+        <h3 class="sys-name">稀缺心态</h3>
+        <p class="sys-tagline">被俘获的注意力，被窄化的视野</p>
+        <ul class="sys-traits">
+          <li>注意力被紧急事务强行锁定</li>
+          <li>认知带宽被大量占用，判断力下降</li>
+          <li>只看眼前，忽略重要但不紧急的事</li>
+          <li>不断"借用"未来资源救急</li>
+          <li>每解决一个问题，制造更多问题</li>
+          <li>陷入"稀缺陷阱"难以自拔</li>
+        </ul>
+        <div class="sys-example">
+          月底只剩 200 元 → 只想着怎么熬过这周<br> deadline 明天到期 → 其他工作全部瘫痪
+        </div>
+      </div>
+      <div class="sys-card sys2">
+        <div class="sys-badge">● Slack Mindset</div>
+        <h3 class="sys-name">余闲心态</h3>
+        <p class="sys-tagline">充裕的缓冲空间，从容的决策能力</p>
+        <ul class="sys-traits">
+          <li>有缓冲空间应对突发状况</li>
+          <li>认知带宽充裕，能进行长期规划</li>
+          <li>能兼顾紧急和重要的事</li>
+          <li>犯错成本低，允许试错和学习</li>
+          <li>决策质量更高，不被紧迫感绑架</li>
+          <li>形成正向循环：余闲→好决策→更多余闲</li>
+        </ul>
+        <div class="sys-example">
+          存款够活半年 → 敢于拒绝不合理的工作<br> 日程有留白 → 突发需求不会打乱全盘
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- KEY CONCEPTS -->
   <section>
-    <div class="section-label">Key Concepts</div>
-    <h2 class="section-title">六个核心概念</h2>
+    <div class="section-label">Core Concepts</div>
+    <h2 class="section-title">稀缺的关键机制</h2>
     <div class="section-rule"></div>
-    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.9rem;">
-      卡尼曼通过数十年的实验研究，揭示了人类思维的系统性偏误，这些概念彻底改变了我们对"理性"的理解。
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      稀缺不仅仅是一种"不够"的状态，它有一套完整的心理运作机制。理解这些机制，才能找到打破循环的切入点。
     </p>
-    <div class="concept-grid">
+    <div class="bias-grid">
 
-      <div class="concept-card">
-        <div class="concept-num">No. 01</div>
-        <h3 class="concept-name">系统1与系统2</h3>
-        <div class="concept-name-en">System 1 & System 2</div>
-        <p class="concept-desc">大脑有两套思维系统：系统1快速、自动、情绪化，负责日常直觉判断；系统2缓慢、费力、理性，负责复杂计算和逻辑推理。大多数时候系统1主导决策，系统2只在必要时才介入。</p>
-        <div class="concept-eg"><strong>例</strong> 看到 2+2 自动得出 4（系统1），计算 17×24 则需要刻意集中注意力（系统2）。</div>
+      <div class="bias-card">
+        <div class="bias-num">No. 01</div>
+        <h3 class="bias-name">带宽税</h3>
+        <div class="bias-name-en">Bandwidth Tax</div>
+        <p class="bias-desc">稀缺占用认知带宽（注意力和心智算力），让人在执行功能和自控力上显著下降——相当于智商临时掉了 13 分。</p>
+        <div class="bias-eg"><strong>例</strong> 印度蔗农在收获前（最穷时）的智商测试成绩，比收获后（有钱时）低了整整一个等级。</div>
       </div>
 
-      <div class="concept-card">
-        <div class="concept-num">No. 02</div>
-        <h3 class="concept-name">锚定效应</h3>
-        <div class="concept-name-en">Anchoring Effect</div>
-        <p class="concept-desc">人们在做出数值估计时，会过度依赖最先接收到的信息（即"锚"）。即使锚值与问题无关，也会显著影响最终判断。</p>
-        <div class="concept-eg"><strong>例</strong> 先看到"甘地去世时超过9岁吗"的人，对甘地去世年龄的估计明显高于先看到"超过14岁吗"的人。</div>
+      <div class="bias-card">
+        <div class="bias-num">No. 02</div>
+        <h3 class="bias-name">管窥效应</h3>
+        <div class="bias-name-en">Tunneling</div>
+        <p class="bias-desc">稀缺让人像通过管子看世界——只能看到管内的东西（眼前最紧迫的），完全忽略管外的重要事物。</p>
+        <div class="bias-eg"><strong>例</strong> 忙于赶 deadline 的人，会忽略锻炼、社交、甚至孩子的家长会——这些"不重要"的事正在悄悄摧毁生活。</div>
       </div>
 
-      <div class="concept-card">
-        <div class="concept-num">No. 03</div>
-        <h3 class="concept-name">可得性启发</h3>
-        <div class="concept-name-en">Availability Heuristic</div>
-        <p class="concept-desc">人们倾向于根据某件事在脑海中被想起的容易程度，来判断其发生的频率或概率。越容易想到的事，被认为越常见。</p>
-        <div class="concept-eg"><strong>例</strong> 空难新闻铺天盖地后，人们高估飞机失事的概率，尽管车祸死亡率远高于空难。</div>
+      <div class="bias-card">
+        <div class="bias-num">No. 03</div>
+        <h3 class="bias-name">借用与透支</h3>
+        <div class="bias-name-en">Borrowing</div>
+        <p class="bias-desc">为了解决眼前的稀缺，人们会从未来"借用"资源——借高利贷、熬夜赶工、透支信用卡——但代价是制造更大的未来稀缺。</p>
+        <div class="bias-eg"><strong>例</strong> 这个月刷信用卡度过难关，下个月要还的更多，于是更穷，于是继续借——雪球越滚越大。</div>
       </div>
 
-      <div class="concept-card">
-        <div class="concept-num">No. 04</div>
-        <h3 class="concept-name">损失厌恶</h3>
-        <div class="concept-name-en">Loss Aversion</div>
-        <p class="concept-desc">人们对损失的敏感程度远高于对同等收益的敏感程度。失去100元的痛苦，大约是得到100元快乐的两倍。</p>
-        <div class="concept-eg"><strong>例</strong> 投资者宁愿持有亏损股票也不愿"割肉"卖出，因为实现损失带来的痛苦大于继续持有的不确定性。</div>
+      <div class="bias-card">
+        <div class="bias-num">No. 04</div>
+        <h3 class="bias-name">余闲的价值</h3>
+        <div class="bias-name-en">Value of Slack</div>
+        <p class="bias-desc">余闲不是浪费，而是应对不确定性的缓冲。没有余闲的系统极其脆弱——任何一个意外都能引发连锁崩溃。</p>
+        <div class="bias-eg"><strong>例</strong> 日程排满的管理者，一个紧急电话就让整天计划崩盘；有留白的人则从容应对。</div>
       </div>
 
-      <div class="concept-card">
-        <div class="concept-num">No. 05</div>
-        <h3 class="concept-name">前景理论</h3>
-        <div class="concept-name-en">Prospect Theory</div>
-        <p class="concept-desc">人们在面对风险决策时，并非根据最终财富状态，而是根据相对于参考点的得失来做判断。在收益区域倾向规避风险，在损失区域倾向追求风险。</p>
-        <div class="concept-eg"><strong>例</strong> 面对"确定获得800元"vs"85%概率获得1000元"，多数人选择前者；但面对"确定损失800元"vs"85%概率损失1000元"，多数人选择后者。</div>
+      <div class="bias-card">
+        <div class="bias-num">No. 05</div>
+        <h3 class="bias-name">稀缺陷阱</h3>
+        <div class="bias-name-en">Scarcity Trap</div>
+        <p class="bias-desc">稀缺→短视决策→更多稀缺。这是一个自我强化的循环：越穷越做出让自己更穷的选择，越忙越陷入更深的忙碌。</p>
+        <div class="bias-eg"><strong>例</strong> 穷人因为带宽被占用，无法做出长期最优决策（如投资教育），于是持续贫穷——不是因为懒，是因为稀缺本身。</div>
       </div>
 
-      <div class="concept-card">
-        <div class="concept-num">No. 06</div>
-        <h3 class="concept-name">峰终定律</h3>
-        <div class="concept-name-en">Peak-End Rule</div>
-        <p class="concept-desc">人们对一段经历的评价，主要取决于体验最强烈的时刻（峰值）和结束时的感受（终值），而非整体体验的平均值或总时长。</p>
-        <div class="concept-eg"><strong>例</strong> 一次漫长但结尾愉快的 vacation，比短暂但全程平淡的 vacation 留下更好的记忆。</div>
+      <div class="bias-card">
+        <div class="bias-num">No. 06</div>
+        <h3 class="bias-name">时间稀缺</h3>
+        <div class="bias-name-en">Time Scarcity</div>
+        <p class="bias-desc">忙碌和贫穷共享同一套心理机制。时间稀缺的人同样会管窥、借用、被带宽税压垮——只是"货币"换成了时间。</p>
+        <div class="bias-eg"><strong>例</strong> 同时带 5 个项目的教授，每件事都在赶，没有一件事做得好，还忽略了健康和家庭。</div>
+      </div>
+
+      <div class="bias-card">
+        <div class="bias-num">No. 07</div>
+        <h3 class="bias-name">稀缺红利</h3>
+        <div class="bias-name-en">Scarcity Dividend</div>
+        <p class="bias-desc">稀缺也有短期好处——deadline 前的专注力惊人，资源匮乏时的创造力爆发。但这种红利代价巨大，不可持续。</p>
+        <div class="bias-eg"><strong>例</strong> 考前一晚通宵复习确实能提分，但如果每门课都这样，身体和长期学习效果都在崩塌。</div>
+      </div>
+
+      <div class="bias-card">
+        <div class="bias-num">No. 08</div>
+        <h3 class="bias-name">重构余闲</h3>
+        <div class="bias-name-en">Building Slack</div>
+        <p class="bias-desc">摆脱稀缺的关键不是"更努力"，而是主动创造余闲——在日程中留白、在预算中存缓冲、在系统中建冗余。</p>
+        <div class="bias-eg"><strong>例</strong> 每天留 2 小时空白不排任务，看似"浪费"，实则是防止一天被意外事件摧毁的保险。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书分为三大部分，从"稀缺的心理机制"出发，经"贫穷与忙碌的实证"，最终落脚于"如何设计脱离稀缺的制度与习惯"。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">心智模式</h3>
+          <div class="chapter-title-en">The Mental Landscape</div>
+          <p class="chapter-desc">建立核心框架：稀缺如何俘获注意力、产生管窥效应、征收带宽税。引入"专注红利"与"借用"概念，揭示稀缺心态的运作机制。</p>
+          <div class="chapter-chapters">Ch. 1 — 5</div>
+        </div>
+      </div>
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">行为与后果</h3>
+          <div class="chapter-title-en">Behavior and Consequences</div>
+          <p class="chapter-desc">深入贫穷与忙碌的具体表现：穷人为什么做出"不明智"的选择？忙碌者为什么越来越忙？揭示"借用"如何让稀缺陷阱自我强化。</p>
+          <div class="chapter-chapters">Ch. 6 — 10</div>
+        </div>
+      </div>
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">摆脱稀缺</h3>
+          <div class="chapter-title-en">Escaping Scarcity</div>
+          <p class="chapter-desc">提出解决方案：不是让穷人"更努力"，而是通过制度设计创造余闲——简化流程、设置缓冲、在恰当时机提供关键支持。</p>
+          <div class="chapter-chapters">Ch. 11 — 14</div>
+        </div>
       </div>
 
     </div>
@@ -650,25 +955,74 @@ section {
     <div class="section-rule"></div>
 
     <div class="quote-block">
-      <p class="quote-text">我们对自己认为自己知道的东西过于自信，而且我们显然无法承认自己的无知和这个世界的不确定性。</p>
-      <p class="quote-attr">— Daniel Kahneman</p>
+      <p class="quote-text">贫穷之人之所以贫穷，不是因为他们的选择不好，而是因为他们在做选择时，带宽已经被稀缺占满了。</p>
+      <p class="quote-attr">— Sendhil Mullainathan</p>
     </div>
 
     <div class="quote-block">
-      <p class="quote-text">没有任何记忆性自我能够计算体验的时长加权平均值——这就是峰终定律存在的原因。</p>
-      <p class="quote-attr">— 论体验的记忆</p>
+      <p class="quote-text">稀缺会俘获注意力。你无法不去想那件你没有的东西——就像饿的时候无法不想食物。</p>
+      <p class="quote-attr">— 稀缺的核心命题</p>
     </div>
 
     <div class="quote-block">
-      <p class="quote-text">损失带来的痛苦大约是同等收益带来的快乐的两倍，这一不对称性深植于我们的进化历史。</p>
-      <p class="quote-attr">— 论损失厌恶</p>
+      <p class="quote-text">余闲，就是当你不需要为了每一个决定都绞尽脑汁时，那种奢侈的自由。</p>
+      <p class="quote-attr">— Eldar Shafir</p>
     </div>
 
     <div class="quote-block">
-      <p class="quote-text">系统1的运行方式是自动的、快速的、毫不费力的，而系统2则需要集中注意力，进行复杂的计算。</p>
-      <p class="quote-attr">— Daniel Kahneman</p>
+      <p class="quote-text">忙碌的人并不比悠闲的人更"高效"——他们只是更擅长在管子里奔跑，却忘了问管子通向哪里。</p>
+      <p class="quote-attr">— 管窥效应的隐喻</p>
     </div>
 
+    <div class="quote-block">
+      <p class="quote-text">解决稀缺问题的关键，不是更努力地挤时间或省钱，而是为大脑创造做正确决策的空间。</p>
+      <p class="quote-attr">— 全书核心主张</p>
+    </div>
+
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>主动在日程中制造"留白"</h4>
+          <p>不要把每一分钟都排满。每天至少留 1-2 小时空白，不安排任何任务。这不是"偷懒"，而是为不可预见的突发状况留出缓冲。没有余闲的系统极其脆弱——一个意外就能摧毁整天计划。留白是你对抗稀缺的第一道防线。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>识别"借用"行为，停止透支未来</h4>
+          <p>熬夜赶工、刷信用卡度日、跳过锻炼赶进度——这些都是"借用"。短期看解决了问题，长期看在制造更大的稀缺。每次"借用"时问自己：我是在解决稀缺，还是在推迟稀缺？如果是后者，立刻停下。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>在带宽充裕时做重要决策</h4>
+          <p>稀缺会征收"带宽税"，让你在忙碌/疲惫时判断力大幅下降。重要决策（投资、职业选择、人际冲突）不要在 deadline 前或深夜做。等到精力恢复、视野打开时再决定——你会发现当时的"紧急"其实没那么紧急。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>简化流程，减少决策负担</h4>
+          <p>穷人和忙碌者最大的敌人不是"选择不好"，而是"选择太多"消耗带宽。自动化日常决策（固定早餐、固定穿搭、自动储蓄），把有限的认知资源留给真正重要的事。流程越简单，稀缺越难俘获你。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>为"管外"的事设置提醒机制</h4>
+          <p>管窥效应让你只关注紧急的事，忽略重要但不紧急的事（健康、学习、关系）。解决方法：设置外部提醒——定期体检预约、每周学习闹钟、月度关系维护计划。让系统替你记住管子外面的事。</p>
+        </div>
+      </li>
+    </ol>
   </section>
 
   <!-- AUDIENCE -->
@@ -679,33 +1033,33 @@ section {
     <div class="audience-grid">
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>投资与金融从业者</h4>
-        <p>理解市场非理性行为，避免认知偏误影响投资决策</p>
+        <h4>总觉得"时间不够用"的人</h4>
+        <p>如果你每天都在赶 deadline，这本书会告诉你为什么越忙越穷</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>产品与 UX 设计师</h4>
-        <p>利用认知规律设计更符合用户直觉的产品体验</p>
+        <h4>管理者与组织设计者</h4>
+        <p>理解员工为何在高压下犯错，设计有余闲缓冲的团队制度</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>管理者与决策者</h4>
-        <p>识别组织决策中的系统性偏误，提升判断质量</p>
+        <h4>政策制定者与社会工作者</h4>
+        <p>重新理解贫穷——不是"不够努力"，而是稀缺本身在制造贫穷</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>心理学与经济学学生</h4>
-        <p>行为经济学奠基之作，理解现代决策理论的必读经典</p>
+        <h4>教育工作者</h4>
+        <p>理解学生为何在考试压力下做出糟糕决策，设计更人性化的教学节奏</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>对自我认知感兴趣的人</h4>
-        <p>想知道"为什么我会做出这样的判断"，认识自己的思维盲区</p>
+        <h4>产品经理与服务设计者</h4>
+        <p>用户可能正处于稀缺状态——如何在他们带宽最低时提供最好的体验</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>营销与传播从业者</h4>
-        <p>理解消费者决策的心理机制，设计更有效的沟通策略</p>
+        <h4>所有想打破"越忙越穷"循环的人</h4>
+        <p>如果你只读一本关于时间管理和财务规划的书，就是这一本</p>
       </div>
     </div>
   </section>
@@ -715,8 +1069,8 @@ section {
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bookmark"></div>
-  <p>Thinking, Fast and Slow · Daniel Kahneman · 2011</p>
-  <p class="footer-cn">每日读书笔记 · 2026 年 7 月 10 日</p>
+  <p>Scarcity · Mullainathan & Shafir · 2013</p>
+  <p class="footer-cn">读书笔记 · 周宇鹏 · 整理于 2026 年 7 月</p>
 </footer>
 
 </body>
