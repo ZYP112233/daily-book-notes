@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读书笔记 ·《思考，快与慢》— 丹尼尔·卡尼曼</title>
+<title>读书笔记 ·《少有人走的路》— M·斯科特·派克</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Paper texture */
+/* Paper texture - SVG noise */
 body::before {
   content: '';
   position: fixed;
@@ -231,7 +231,7 @@ section {
   border-radius: 2px;
 }
 
-/* ============ BOOK INFO ============ */
+/* ============ BOOK INFO (2x2) ============ */
 .book-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -272,7 +272,7 @@ section {
   margin-top: 0.2rem;
 }
 
-/* ============ OVERVIEW ============ */
+/* ============ OVERVIEW (一句话总览) ============ */
 .overview {
   text-align: center;
   padding: 4rem 0;
@@ -309,14 +309,14 @@ section {
   margin: 2rem auto 0;
 }
 
-/* ============ CORE IDEAS (DUAL SYSTEM) ============ */
-.core-ideas {
+/* ============ DUAL COMPARISON (双系统对比) ============ */
+.dual-compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-top: 1rem;
 }
-.idea-card {
+.compare-panel {
   background: var(--paper);
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -324,13 +324,13 @@ section {
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.idea-card:hover {
+.compare-panel:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(92,79,62,0.12);
 }
-.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
-.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
-.idea-badge {
+.compare-panel.panel-a { border-top: 4px solid var(--accent-blue); }
+.compare-panel.panel-b { border-top: 4px solid var(--bookmark); }
+.compare-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -341,26 +341,26 @@ section {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
-.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
-.idea-card.idea2 .idea-badge { color: var(--bookmark); }
-.idea-name {
+.compare-panel.panel-a .compare-badge { color: var(--accent-blue); }
+.compare-panel.panel-b .compare-badge { color: var(--bookmark); }
+.compare-name {
   font-family: var(--serif-cn);
   font-weight: 700;
   font-size: 1.5rem;
   margin-bottom: 0.3rem;
 }
-.idea-tagline {
+.compare-tagline {
   font-family: var(--serif-cn);
   font-size: 0.9rem;
   color: var(--ink-faded);
   margin-bottom: 1.2rem;
   font-style: italic;
 }
-.idea-points {
+.compare-points {
   list-style: none;
   padding: 0;
 }
-.idea-points li {
+.compare-points li {
   padding: 0.5rem 0;
   border-bottom: 1px dashed var(--border-soft);
   font-size: 0.92rem;
@@ -369,8 +369,8 @@ section {
   align-items: flex-start;
   gap: 0.6rem;
 }
-.idea-points li:last-child { border-bottom: none; }
-.idea-points li::before {
+.compare-points li:last-child { border-bottom: none; }
+.compare-points li::before {
   content: '';
   display: inline-block;
   width: 6px;
@@ -379,23 +379,23 @@ section {
   margin-top: 0.6rem;
   flex-shrink: 0;
 }
-.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
-.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
-.idea-example {
+.compare-panel.panel-a .compare-points li::before { background: var(--accent-blue); }
+.compare-panel.panel-b .compare-points li::before { background: var(--bookmark); }
+.compare-example {
   margin-top: 1rem;
   padding: 0.8rem 1rem;
-  background: rgba(58,90,122,0.05);
   border-radius: 4px;
   font-size: 0.85rem;
   color: var(--ink-soft);
   font-style: italic;
 }
-.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+.compare-panel.panel-a .compare-example { background: rgba(58,90,122,0.05); }
+.compare-panel.panel-b .compare-example { background: rgba(158,43,37,0.05); }
 
-/* ============ KEY CONCEPTS ============ */
+/* ============ CONCEPT CARDS (关键概念 8张) ============ */
 .concept-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.2rem;
   margin-top: 1rem;
 }
@@ -679,7 +679,7 @@ section {
     border-left-width: 15px;
     border-right-width: 15px;
   }
-  .hero { min-height: 80vh; }
+  .hero { min-height: 75vh; }
   .hero-bg {
     background-position: center center;
   }
@@ -688,8 +688,8 @@ section {
   .book-info { grid-template-columns: 1fr; }
   .info-item { border-right: none; }
   .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
-  .core-ideas { grid-template-columns: 1fr; }
-  .concept-grid { grid-template-columns: 1fr; }
+  .dual-compare { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr 1fr; }
   .chapter-part { flex-direction: column; gap: 0; }
   .chapter-roman {
     width: 100%;
@@ -729,13 +729,13 @@ section {
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-label">Reading Notes · 2026-07-10</div>
-    <h1 class="hero-title">思考，快与慢</h1>
-    <div class="hero-title-en">Thinking, Fast and Slow</div>
+    <div class="hero-label">Reading Notes · 2026.07.10</div>
+    <h1 class="hero-title">少有人走的路</h1>
+    <div class="hero-title-en">The Road Less Traveled</div>
     <div class="hero-divider"></div>
     <div class="hero-author">
-      丹尼尔 · 卡尼曼 Daniel Kahneman
-      <span class="subtitle">2002 Nobel Memorial Prize in Economic Sciences</span>
+      M·斯科特·派克 M. Scott Peck
+      <span class="subtitle">自律 · 延迟满足 · 心智成熟</span>
     </div>
   </div>
   <div class="scroll-hint">scroll ↓</div>
@@ -744,7 +744,7 @@ section {
 <!-- ============ MAIN ============ -->
 <main class="content">
 
-  <!-- BOOK INFO -->
+  <!-- 1. BOOK INFO (2×2 卡片) -->
   <section>
     <div class="section-label">Bibliographic Info</div>
     <h2 class="section-title">书籍信息</h2>
@@ -752,300 +752,270 @@ section {
     <div class="book-info">
       <div class="info-item">
         <div class="info-label">Author</div>
-        <div class="info-value">丹尼尔 · 卡尼曼
-          <span class="sub">Daniel Kahneman 1934—2024</span>
+        <div class="info-value">M·斯科特·派克
+          <span class="sub">美国精神科医师、畅销书作家，曾在哈佛医学院获医学博士学位</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Field</div>
-        <div class="info-value">行为经济学 · 认知心理学
-          <span class="sub">决策科学 / 行为科学</span>
+        <div class="info-value">心理学·心灵成长
+          <span class="sub">融合精神分析、宗教哲学与个人成长实践</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Published</div>
-        <div class="info-value">2011 年
-          <span class="sub">中文版由中信出版社引进</span>
+        <div class="info-value">1978
+          <span class="sub">首版于纽约，连续登上《纽约时报》畅销榜逾20年</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Core Thesis</div>
-        <div class="info-value">人类的决策远非理性
-          <span class="sub">两套思维系统与生俱来的认知偏误系统性地扭曲着我们的判断</span>
+        <div class="info-value">心智成熟是一条非凡旅程
+          <span class="sub">人生苦难重重——接受这一真相，便是超越苦难的开始</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ONE-SENTENCE OVERVIEW -->
+  <!-- 2. ONE-SENTENCE OVERVIEW (一句话总览) -->
   <section class="overview">
     <div class="overview-quote">
-      我们以为自己在「思考」，其实大部分时间在「感觉」——大脑用一套快速直觉系统替我们做了绝大多数决定，而那套缓慢的理性系统不仅懒惰，还常常沦为直觉偏见的辩护者。
+      人生苦难重重。这是一个伟大的真理，也是最伟大的真理——当我们真正接受并理解了这一点，人生便不再苦难。
     </div>
   </section>
 
-  <!-- CORE IDEAS: DUAL SYSTEM -->
+  <!-- 3. DUAL COMPARISON (双系统对比) -->
   <section>
     <div class="section-label">The Core Framework</div>
-    <h2 class="section-title">双系统：快思考与慢思考</h2>
+    <h2 class="section-title">自律之路 vs 逃避之路</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      卡尼曼将人类心智描绘为两套协作（又常常冲突）的系统。系统 1 自动、快速、凭直觉；系统 2 缓慢、审慎、需努力。我们以为系统 2 在做主，但日常几乎一切判断都出自系统 1。
+      派克认为，面对人生的苦难，人有两种根本选择：以自律直面问题走向成熟，或以逃避换取短暂安逸却陷入更深的困境。
     </p>
-    <div class="core-ideas">
-      <div class="idea-card idea1">
-        <div class="idea-badge">● System 1</div>
-        <h3 class="idea-name">系统 1 · 快思考</h3>
-        <p class="idea-tagline">自动的、毫不费力的直觉模式</p>
-        <ul class="idea-points">
-          <li>自动启动，无法关闭</li>
-          <li>速度极快，并行处理</li>
-          <li>毫不费力，不占注意力</li>
-          <li>联想性强，情绪驱动</li>
-          <li>擅长模式识别与印象形成</li>
-          <li>掌控日常 95% 以上的判断</li>
+    <div class="dual-compare">
+      <div class="compare-panel panel-a">
+        <div class="compare-badge">● 自律之路</div>
+        <h3 class="compare-name">心智成熟</h3>
+        <p class="compare-tagline">The Disciplined Life — 主动承担，不断成长</p>
+        <ul class="compare-points">
+          <li>先面对困难，后享受轻松</li>
+          <li>为自己的问题承担全部责任</li>
+          <li>不断修订自己的人生地图</li>
+          <li>在必要时放弃过时的自我认知</li>
+          <li>以爱的意愿推动自我与他人心智成长</li>
+          <li>接受熵的本能，以自律对抗惰性</li>
         </ul>
-        <div class="idea-example">
-          看到一张愤怒的脸 → 立刻判断"危险"<br>2 + 2 = ? → 答案自动浮现
+        <div class="compare-example">
+          典型案例：一个孩子先花30分钟完成最难的数学作业，再用剩余时间轻松玩耍——延迟满足让他既高效又愉悦。
         </div>
       </div>
-      <div class="idea-card idea2">
-        <div class="idea-badge">● System 2</div>
-        <h3 class="idea-name">系统 2 · 慢思考</h3>
-        <p class="idea-tagline">受控的、需要努力的理性模式</p>
-        <ul class="idea-points">
-          <li>需主动调用，可以中断</li>
-          <li>速度缓慢，串行处理</li>
-          <li>消耗认知资源，容易疲劳</li>
-          <li>逻辑推理，规则驱动</li>
-          <li>擅长计算、比较与审慎分析</li>
-          <li>极其"懒惰"，常默认接受系统 1 的结论</li>
+      <div class="compare-panel panel-b">
+        <div class="compare-badge">● 逃避之路</div>
+        <h3 class="compare-name">原地踏步</h3>
+        <p class="compare-tagline">The Easy Road — 回避问题，停滞不前</p>
+        <ul class="compare-points">
+          <li>先享受轻松，把困难留到最后</li>
+          <li>把问题归咎于他人或环境</li>
+          <li>固守童年形成的人生地图不再更新</li>
+          <li>害怕改变，死守熟悉的舒适区</li>
+          <li>把爱等同于依赖或感觉，而非行动</li>
+          <li>向熵屈服，被惰性支配生活</li>
         </ul>
-        <div class="idea-example">
-          17 × 24 = ? → 需要调动注意力计算<br>在嘈杂中分辨一句话 → 主动聚焦
+        <div class="compare-example">
+          典型案例：一个人先花一小时刷手机，深夜才开始赶报告——焦虑与低质并存，问题越积越多。
         </div>
       </div>
     </div>
   </section>
 
-  <!-- KEY CONCEPTS -->
+  <!-- 4. CONCEPT CARDS (关键概念 8张) -->
   <section>
-    <div class="section-label">Heuristics & Biases</div>
-    <h2 class="section-title">关键认知偏误</h2>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">八个核心概念</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      系统 1 为了快速响应，进化出了一系列"启发式捷径"。它们多数时候管用，但在特定情境下会产生系统性的判断偏差——这些偏误可预测、可识别，却极难根除。
+      派克围绕自律、爱、成长与恩典，构建了一套完整的心智成熟体系。
     </p>
     <div class="concept-grid">
-
       <div class="concept-card">
         <div class="concept-num">No. 01</div>
-        <h3 class="concept-name">锚定效应</h3>
-        <div class="concept-name-en">Anchoring Effect</div>
-        <p class="concept-desc">最先接触到的数字（即使无关）会像锚一样拖拽后续判断，使估计值系统偏向该"锚点"。</p>
-        <div class="concept-eg"><strong>例</strong> 问"甘地活到 114 岁了吗"再问"甘地多少岁去世"，估计值会显著偏高。</div>
+        <h3 class="concept-name">延迟满足</h3>
+        <div class="concept-name-en">Delayed Gratification</div>
+        <p class="concept-desc">先花时间去解决最难的问题，再享受轻松时光。不是放弃快乐，而是重新安排快乐与痛苦的次序。</p>
+        <div class="concept-eg"><strong>例</strong> 先吃蔬菜再吃甜点，既健康又让甜点更美味。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 02</div>
-        <h3 class="concept-name">可得性启发</h3>
-        <div class="concept-name-en">Availability Heuristic</div>
-        <p class="concept-desc">越容易回忆起的事件，越被判断为"经常发生"。记忆的流畅性替代了真实频率。</p>
-        <div class="concept-eg"><strong>例</strong> 空难新闻铺天盖地后，人们会高估飞行风险，低估车祸风险。</div>
+        <h3 class="concept-name">承担责任</h3>
+        <div class="concept-name-en">Acceptance of Responsibility</div>
+        <p class="concept-desc">承认"问题是我的"，而非推诿给他人。神经症患者过度揽责，人格障碍患者则完全推卸——两者都需修正。</p>
+        <div class="concept-eg"><strong>例</strong> 工作受挫时先问"我能改变什么"，而非"谁害了我"。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 03</div>
-        <h3 class="concept-name">损失厌恶</h3>
-        <div class="concept-name-en">Loss Aversion</div>
-        <p class="concept-desc">失去 100 元的心理痛苦，约为获得 100 元快乐的 2 倍。人对损失极度敏感。</p>
-        <div class="concept-eg"><strong>例</strong> 投资者死拿亏损股票不卖，因为"卖出=确认损失"，这比账面浮亏更痛苦。</div>
+        <h3 class="concept-name">忠于真相</h3>
+        <div class="concept-name-en">Dedication to the Truth</div>
+        <p class="concept-desc">不断审视和修订自己的人生地图，使之与现实吻合。这意味着敢于承认自己曾经错了。</p>
+        <div class="concept-eg"><strong>例</strong> 发现旧观念不再适用时，主动学习新视角而非固守成见。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 04</div>
-        <h3 class="concept-name">框架效应</h3>
-        <div class="concept-name-en">Framing Effect</div>
-        <p class="concept-desc">同一信息的不同表述方式，会引导出完全不同的决策——逻辑等价，心理不等价。</p>
-        <div class="concept-eg"><strong>例</strong>"存活率 90%"比"死亡率 10%"更容易被接受，尽管二者完全等价。</div>
+        <h3 class="concept-name">保持平衡</h3>
+        <div class="concept-name-en">Balancing</div>
+        <p class="concept-desc">在冲突的需求之间灵活取舍，必要时放弃一部分自我以换取更大的成长。自律的最高形态。</p>
+        <div class="concept-eg"><strong>例</strong> 在事业野心与家庭陪伴之间找到动态平衡，而非极端取舍。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 05</div>
-        <h3 class="concept-name">光环效应</h3>
-        <div class="concept-name-en">Halo Effect</div>
-        <p class="concept-desc">对某人的一个突出特质（如外貌、名校）的好感，会泛化到对其所有方面的评价。</p>
-        <div class="concept-eg"><strong>例</strong> 面试中候选人口齿伶俐，面试官便倾向于高估其专业能力和责任心。</div>
+        <h3 class="concept-name">爱的定义</h3>
+        <div class="concept-name-en">Love as Will</div>
+        <p class="concept-desc">爱是为了促进自我和他人心智成熟，而不断拓展自我界限、实现自我完善的一种意愿。爱是行动，不是感觉。</p>
+        <div class="concept-eg"><strong>例</strong> 父母在孩子犯错时选择耐心教导而非发怒——这是爱的意愿，而非爱的感觉。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 06</div>
-        <h3 class="concept-name">峰终定律</h3>
-        <div class="concept-name-en">Peak-End Rule</div>
-        <p class="concept-desc">人对一段体验的评价，主要取决于"最强烈时刻"和"结束时刻"的感受，而非全程均值。</p>
-        <div class="concept-eg"><strong>例</strong> 旅行最后一天阳光灿烂，整趟旅程的记忆就会被镀上金边。</div>
+        <h3 class="concept-name">依赖与独立</h3>
+        <div class="concept-name-en">Dependency vs. Independence</div>
+        <p class="concept-desc">依赖不是爱。真正的爱建立在两个独立个体之间——先成为完整的自己，才能健康地爱他人。</p>
+        <div class="concept-eg"><strong>例</strong> 不再因害怕孤独而维持一段消耗自己的关系。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 07</div>
-        <h3 class="concept-name">替代效应</h3>
-        <div class="concept-name-en">Substitution</div>
-        <p class="concept-desc">面对难题时，系统 1 会偷偷替换成一个更容易回答的相关问题，并以为回答了原题。</p>
-        <div class="concept-eg"><strong>例</strong> 被问"这个候选人能胜任吗"，大脑实际回答的是"我喜不喜欢他"。</div>
+        <h3 class="concept-name">恩典</h3>
+        <div class="concept-name-en">Grace</div>
+        <p class="concept-desc">一种来自意识之外的力量，推动我们走向健康与成长。梦境、直觉、巧合、"好运"——都是恩典的显现。</p>
+        <div class="concept-eg"><strong>例</strong> 在人生低谷时，一本偶然翻开的书恰好解答了困惑——这并非纯粹巧合。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 08</div>
-        <h3 class="concept-name">过度自信</h3>
-        <div class="concept-name-en">Overconfidence</div>
-        <p class="concept-desc">人们系统性地高估自己的知识、判断力和预测准确性，对"自己不知道什么"缺乏自觉。</p>
-        <div class="concept-eg"><strong>例</strong> 创业者明知 65% 的新企业五年内倒闭，却坚信自己成功概率超过 80%。</div>
+        <h3 class="concept-name">熵与成长</h3>
+        <div class="concept-name-en">Entropy vs. Evolution</div>
+        <p class="concept-desc">人性中有趋向懒惰、退化的"原罪"（熵），同时也有朝向进化与成长的力量。自律是用意志力对抗熵的过程。</p>
+        <div class="concept-eg"><strong>例</strong> 下班后躺在沙发上不想运动——这是熵；起身换上跑鞋——这是进化。</div>
       </div>
-
     </div>
   </section>
 
-  <!-- CHAPTER MAP -->
+  <!-- 5. CHAPTER MAP (章节脉络图) -->
   <section>
     <div class="section-label">Book Structure</div>
     <h2 class="section-title">全书章节脉络</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      全书 38 章，五大板块，从"两个系统"出发，经偏误、过度自信、选择理论，最终落脚于"两个自我"——体验自我与记忆自我的分裂。
+      全书分为四大部分，从具体的自律工具出发，经由世界观审视，抵达恩典与爱的深层维度，最终指向心智成熟的设计。
     </p>
     <div class="chapter-map">
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅰ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">两个系统</h3>
-          <div class="chapter-title-en">Two Systems</div>
-          <p class="chapter-desc">建立全书的基础框架：系统 1 与系统 2 如何分工、如何冲突、系统 2 为何如此"懒惰"。引入"注意力"这一稀缺资源概念。</p>
-          <div class="chapter-chapters">Ch. 1 — 9</div>
+          <h3 class="chapter-title">自律</h3>
+          <div class="chapter-title-en">Discipline</div>
+          <p class="chapter-desc">解决人生问题的基本工具：延迟满足、承担责任、忠于真相、保持平衡。自律是全书的基石，也是心智成熟的第一把钥匙。</p>
+          <div class="chapter-chapters">Ch. 1 — 2</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅱ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">启发法与偏误</h3>
-          <div class="chapter-title-en">Heuristics and Biases</div>
-          <p class="chapter-desc">系统拆解系统 1 的工作机制：小数定律、锚定、可得性、代表性启发、回归均值。展示直觉判断在何处可靠、何处失灵。</p>
-          <div class="chapter-chapters">Ch. 10 — 18</div>
+          <h3 class="chapter-title">宗教</h3>
+          <div class="chapter-title-en">Religion</div>
+          <p class="chapter-desc">审视我们从小继承的世界观与信念系统。每个人都有自己的"宗教"——那些未经审视的假设与成见，决定了我们如何解读现实。</p>
+          <div class="chapter-chapters">Ch. 3 — 4</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅲ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">过度自信</h3>
-          <div class="chapter-title-en">Overconfidence</div>
-          <p class="chapter-desc">揭示人对自己判断的盲目信任：理解过去的"后见之明"、预测未来的"叙事谬误"、以及专家直觉的可靠边界。</p>
-          <div class="chapter-chapters">Ch. 19 — 24</div>
+          <h3 class="chapter-title">恩典</h3>
+          <div class="chapter-title-en">Grace</div>
+          <p class="chapter-desc">探讨意识之外的成长力量：潜意识、梦境的启示、"好运"的本质。恩典不是神秘主义，而是人类心灵中客观存在的进化推动力。</p>
+          <div class="chapter-chapters">Ch. 5 — 6</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅳ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">选择</h3>
-          <div class="chapter-title-en">Choices</div>
-          <p class="chapter-desc">引入前景理论（Prospect Theory），挑战经典经济学的理性人假设：损失厌恶、禀赋效应、确定性效应如何重塑对风险决策的理解。</p>
-          <div class="chapter-chapters">Ch. 25 — 34</div>
+          <h3 class="chapter-title">爱的设计与成长</h3>
+          <div class="chapter-title-en">The Design of Love & Growth</div>
+          <p class="chapter-desc">重新定义爱为"意愿"而非感觉，区分真爱与依赖，探讨承诺、独立与自我完善的终极关系。心智成熟是一场永无止境的旅程。</p>
+          <div class="chapter-chapters">Ch. 7 — 结语</div>
         </div>
       </div>
-
-      <div class="chapter-part">
-        <div class="chapter-roman">Ⅴ</div>
-        <div class="chapter-body">
-          <h3 class="chapter-title">两个自我</h3>
-          <div class="chapter-title-en">Two Selves</div>
-          <p class="chapter-desc">收束全书：区分"体验自我"（当下感受）与"记忆自我"（事后叙述）。峰终定律揭示二者根本分裂，我们对幸福的判断常常被记忆欺骗。</p>
-          <div class="chapter-chapters">Ch. 35 — 38</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- QUOTES -->
+  <!-- 6. QUOTES (金句摘录 5条) -->
   <section class="quotes-section">
     <div class="section-label">Notable Quotes</div>
     <h2 class="section-title">金句摘录</h2>
     <div class="section-rule"></div>
-
     <div class="quote-block">
-      <p class="quote-text">我们对自己思考时的自己，知道得太少了。</p>
-      <p class="quote-attr">— Daniel Kahneman</p>
+      <p class="quote-text">人生苦难重重。这是一个伟大的真理，也是最伟大的真理——因为当我们真正看清并接受这一点，人生便不再苦难。</p>
+      <p class="quote-attr">— 第一章 · 自律</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">系统 2 以为自己在做主，其实大部分时候是系统 1 在操控。</p>
-      <p class="quote-attr">— Daniel Kahneman</p>
+      <p class="quote-text">自律是解决人生问题最主要的工具，也是消除人生苦难最重要的工具。</p>
+      <p class="quote-attr">— 第一章 · 自律</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">人们对损失的厌恶远强于对等量收益的渴望——损失的心理效力约为收益的两倍。</p>
-      <p class="quote-attr">— 前景理论核心命题</p>
+      <p class="quote-text">爱，是为了促进自我和他人心智成熟，而不断拓展自我界限，实现自我完善的一种意愿。</p>
+      <p class="quote-attr">— 第六章 · 爱</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">自信并非来自你知道多少，而来自你大脑构建故事的连贯性。一个好听的故事，比一堆数据更有说服力。</p>
-      <p class="quote-attr">— Daniel Kahneman</p>
+      <p class="quote-text">你不能解决问题，你就会成为问题。逃避问题只会让问题变大，最终吞噬你。</p>
+      <p class="quote-attr">— 第一章 · 自律</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">能记住的，就会被认为发生得多。记忆的流畅性，替代了概率的判断。</p>
-      <p class="quote-attr">— 可得性启发法则</p>
+      <p class="quote-text">真正的爱，永远是一种意愿的体现，而非一种感觉。坠入情网不是真正的爱——那只是一种幻觉。</p>
+      <p class="quote-attr">— 第六章 · 爱</p>
     </div>
-
   </section>
 
-  <!-- ACTION INSIGHTS -->
+  <!-- 7. ACTION INSIGHTS (行动启发 5条) -->
   <section>
     <div class="section-label">Practical Takeaways</div>
-    <h2 class="section-title">对工作与决策的行动启发</h2>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
     <div class="section-rule"></div>
     <ol class="insights-list">
       <li class="insight-item">
         <div class="insight-num">1</div>
         <div class="insight-content">
-          <h4>重要决策前，强制按下暂停键</h4>
-          <p>系统 1 的判断速度是 0.1 秒级的。面试打分、投资买入、人才评价——给自己 24 小时冷却期，让系统 2 有机会介入审查。越是"一眼就觉得好"的判断，越需要慢下来质疑：我是真的分析了，还是只是觉得顺眼？</p>
+          <h4>每天先吃掉那只青蛙</h4>
+          <p>把一天中最难、最不想面对的任务放在第一个完成。不是因为它最重要，而是因为它消耗你最多的心理能量。先解决它，余下的时间便都是轻松的奖赏。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">2</div>
         <div class="insight-content">
-          <h4>警惕"第一个数字"的锚定陷阱</h4>
-          <p>薪资谈判、项目报价、估值判断——谁先出价，谁就设了锚。不要被动接受对方的起始数字，而应独立推算合理区间后再回应。谈判前写下你自己的基准线，用纸笔对抗锚的拖拽。</p>
+          <h4>把"别人的问题"变成"我的问题"</h4>
+          <p>遇到冲突时，先问自己"我在这件事中承担什么责任"，而非"对方哪里做错了"。即使90%的责任在对方，那10%属于你的部分才是你能改变的。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">3</div>
         <div class="insight-content">
-          <h4>主动重新框定问题，对抗框架效应</h4>
-          <p>把"存活率 90%"换成"死亡率 10%"再想一遍；把"投入 50 万会亏"换成"不投 50 万会省"再想一遍。重大决策前，刻意用收益和损失两种表述各问自己一次，看看结论是否一致。如果不一致，说明你被框架绑架了。</p>
+          <h4>定期修订你的人生地图</h4>
+          <p>每隔一段时间，审视自己的核心信念：我对世界的假设还成立吗？哪些观念来自童年而从未被验证？敢于承认"我曾经错了"，是成长的开始。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">4</div>
         <div class="insight-content">
-          <h4>用"外部视角"替代"内部视角"</h4>
-          <p>规划项目时，别只看自己的情况（内部视角），去查同类项目的真实数据：平均超期多久？超预算多少？成功率几何？基础概率比你的直觉乐观更靠谱。这是全书最实用的决策工具之一。</p>
+          <h4>以意愿去爱，而非等待感觉</h4>
+          <p>不要等"有感觉了"才去付出。真正的爱是选择、是承诺、是行动。当你选择为他人的成长付出时间与耐心，爱的感觉会随之而来——而非相反。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">5</div>
         <div class="insight-content">
-          <h4>记录决策时的真实理由，而非事后的叙事</h4>
-          <p>后见之明会让你觉得"我早就知道"。在做出重要决策的当下就写下：我基于什么信息、预期什么结果、承担什么风险。日后回顾时，你才能区分"判断对不对"和"运气好不好"——这是从经验中真正学习的前提。</p>
+          <h4>承认懒惰，然后对抗它</h4>
+          <p>每个人心中都有熵——那种想躺平、想逃避、想放弃的本能。派克说：懒惰是爱的对立面。承认它的存在，然后用微小的自律行动去对抗它——哪怕只是今天多走一步。</p>
         </div>
       </li>
     </ol>
   </section>
 
-  <!-- AUDIENCE -->
+  <!-- 8. AUDIENCE (适合谁读 6张) -->
   <section>
     <div class="section-label">Who Should Read</div>
     <h2 class="section-title">适合谁读</h2>
@@ -1053,33 +1023,33 @@ section {
     <div class="audience-grid">
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>管理者与决策者</h4>
-        <p>每天做大量判断的人，最需要了解自己的大脑如何在"帮"你做决定</p>
+        <h4>感到迷茫的年轻人</h4>
+        <p>在人生方向不清时，这本书提供了一套清晰的自律框架，帮你从混沌中建立秩序。</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>投资者</h4>
-        <p>损失厌恶和过度自信是亏损的两大心理根源，读懂才能对抗</p>
+        <h4>职场瓶颈期的专业人士</h4>
+        <p>当你感觉停滞不前，书中关于承担责任与修订人生地图的思路，能帮你打破自我设限。</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>产品经理与设计师</h4>
-        <p>用户决策背后的偏误，正是产品设计可以利用或需要规避的</p>
+        <h4>亲密关系中困惑的人</h4>
+        <p>派克对爱的重新定义——区分依赖与真爱、感觉与意愿——会让你重新审视自己的关系模式。</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>内容创作者与营销人</h4>
-        <p>框架效应、可得性、峰终定律——好的叙事本质上就是对偏误的设计</p>
+        <h4>对心理学感兴趣的读者</h4>
+        <p>一位精神科医师40年临床经验的结晶，既有专业深度，又有文学之美，是心理学入门的经典。</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>教育工作者</h4>
-        <p>理解学生和自己的认知局限，让教学设计更符合真实的学习心理</p>
+        <h4>追求自我成长的人</h4>
+        <p>心智成熟不是一蹴而就的目标，而是一场永无止境的旅程。这本书是这条路上最诚实的向导。</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>所有想提升批判性思维的人</h4>
-        <p>如果你只读一本认知偏误的书，就是这一本</p>
+        <h4>父母与教育者</h4>
+        <p>理解爱的真正含义——促进他人心智成长而非满足自己的依赖——对养育与教育至关重要。</p>
       </div>
     </div>
   </section>
@@ -1089,8 +1059,8 @@ section {
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bookmark"></div>
-  <p>Thinking, Fast and Slow · Daniel Kahneman · 2011</p>
-  <p class="footer-cn">每日读书笔记 · 2026 年 7 月 10 日</p>
+  <p>The Road Less Traveled · M. Scott Peck · 1978</p>
+  <p class="footer-cn">每日读书笔记 · 2026年7月10日</p>
 </footer>
 
 </body>
