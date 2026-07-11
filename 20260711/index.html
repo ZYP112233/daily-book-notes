@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《非暴力沟通》— 马歇尔·卢森堡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture - SVG noise */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO (2x2) ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW (一句话总览) ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ DUAL COMPARISON (双系统对比) ============ */
+.dual-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.compare-panel {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.compare-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.compare-panel.panel-a { border-top: 4px solid var(--accent-blue); }
+.compare-panel.panel-b { border-top: 4px solid var(--bookmark); }
+.compare-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.compare-panel.panel-a .compare-badge { color: var(--accent-blue); }
+.compare-panel.panel-b .compare-badge { color: var(--bookmark); }
+.compare-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.compare-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.compare-points {
+  list-style: none;
+  padding: 0;
+}
+.compare-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.compare-points li:last-child { border-bottom: none; }
+.compare-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.compare-panel.panel-a .compare-points li::before { background: var(--accent-blue); }
+.compare-panel.panel-b .compare-points li::before { background: var(--bookmark); }
+.compare-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.compare-panel.panel-a .compare-example { background: rgba(58,90,122,0.05); }
+.compare-panel.panel-b .compare-example { background: rgba(158,43,37,0.05); }
+
+/* ============ CONCEPT CARDS (关键概念 8张) ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 75vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .dual-compare { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026.07.11</div>
+    <h1 class="hero-title">非暴力沟通</h1>
+    <div class="hero-title-en">Nonviolent Communication: A Language of Life</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      马歇尔·卢森堡 Marshall Rosenberg
+      <span class="subtitle">观察 · 感受 · 需要 · 请求</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- 1. BOOK INFO (2×2 卡片) -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">马歇尔·卢森堡
+          <span class="sub">临床心理学博士，国际非暴力沟通中心创始人</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">沟通 · 心理学
+          <span class="sub">人际沟通、冲突调解、同理心实践</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">2003年
+          <span class="sub">PuddleDancer Press 出版</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">语言的暴力与爱的转化
+          <span class="sub">通过观察、感受、需要、请求四要素重建连接</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ONE-SENTENCE OVERVIEW (一句话总览) -->
+  <section class="overview">
+    <div class="overview-quote">
+      所有的愤怒、指责和冲突，都是未被满足的需要的悲剧性表达。当我们学会用非暴力的方式表达观察、感受、需要和请求，就能在人与人之间建立起真诚的连接。
+    </div>
+  </section>
+
+  <!-- 3. DUAL COMPARISON (暴力沟通 vs 非暴力沟通) -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">沟通方式的核心对比</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      卢森堡博士指出，我们日常使用的语言中隐藏着"隐蔽的暴力"——道德评判、进行比较、推卸责任。非暴力沟通提供了一条从"习惯性反应"走向"有意识回应"的路径。
+    </p>
+    <div class="dual-compare">
+      <div class="compare-panel panel-a">
+        <div class="compare-badge">● 暴力沟通</div>
+        <h3 class="compare-name">异化的沟通</h3>
+        <p class="compare-tagline">Alienating Communication</p>
+        <ul class="compare-points">
+          <li>用道德评判定义他人——"你太自私了"</li>
+          <li>进行比较，制造自卑与敌意</li>
+          <li>回避责任——"我不得不这样做"</li>
+          <li>以命令代替请求，暗含惩罚威胁</li>
+          <li>关注"谁对谁错"而非"什么需要未被满足"</li>
+          <li>倾听时急于建议、安慰或反驳</li>
+        </ul>
+        <div class="compare-example">
+          例：丈夫回家晚了，妻子说"你总是这么不负责任！"——评判掩盖了真实需要。
+        </div>
+      </div>
+      <div class="compare-panel panel-b">
+        <div class="compare-badge">● 非暴力沟通</div>
+        <h3 class="compare-name">爱的语言</h3>
+        <p class="compare-tagline">The Language of Compassion</p>
+        <ul class="compare-points">
+          <li>区分观察与评判，只陈述事实</li>
+          <li>表达内心真实感受而非想法</li>
+          <li>连接感受背后的内在需要</li>
+          <li>提出具体、可操作的请求而非要求</li>
+          <li>用同理心倾听他人，不急于评判</li>
+          <li>关注"我们各自需要什么"而非"谁该负责"</li>
+        </ul>
+        <div class="compare-example">
+          例：妻子说"这周你有四天超过11点回家（观察），我感到孤单（感受），因为我需要陪伴（需要），你愿意每周至少两天在8点前回来吗？（请求）"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CONCEPT CARDS (关键概念 8张) -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">八个关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      非暴力沟通的核心框架由四个要素和四个延伸实践构成，它们共同构成了一种全新的与他人、与自己相处的方式。
+    </p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">观察</h3>
+        <div class="concept-name-en">Observation</div>
+        <p class="concept-desc">不带评判地观察正在发生的事情，是NVC的第一步。区分"观察"与"评价"——印度哲学家克里希那穆提说"不带评价的观察是人类智力的最高形式"。</p>
+        <div class="concept-eg"><strong>例</strong> "他本周迟到三次"是观察；"他总是迟到"是评价。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">感受</h3>
+        <div class="concept-name-en">Feelings</div>
+        <p class="concept-desc">识别并表达内心的情感状态，而非想法或判断。"我感到失望"是感受；"我觉得你不尊重我"是想法。感受词汇表帮助我们精确命名情绪。</p>
+        <div class="concept-eg"><strong>例</strong> "我感到焦虑"是感受；"我觉得你在针对我"是对他人意图的推测。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">需要</h3>
+        <div class="concept-name-en">Needs</div>
+        <p class="concept-desc">感受的根源在于需要。我们的需要——被理解、被尊重、安全感、自主性——是全人类共通的。需要不包含具体行为或指向特定的人。</p>
+        <div class="concept-eg"><strong>例</strong> "我需要被重视"是通用需要；"我需要你每天给我打电话"是策略。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">请求</h3>
+        <div class="concept-name-en">Requests</div>
+        <p class="concept-desc">用具体、正向、可操作的语言提出请求。请求不同于要求——对方有权说"不"，而我们愿意倾听"不"背后的需要。请求越具体越好。</p>
+        <div class="concept-eg"><strong>例</strong> "你能把厨房的碗洗了吗？"是具体请求；"你能不能多关心一下家？"太模糊。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">同理心倾听</h3>
+        <div class="concept-name-en">Empathic Listening</div>
+        <p class="concept-desc">全身心倾听他人，不急于提建议、安慰或讲述自己的经历。通过复述对方的观察、感受、需要来确认理解，帮助对方与自己连接。</p>
+        <div class="concept-eg"><strong>例</strong> 朋友抱怨工作，不是说"我当年也……"，而是"你是不是感到疲惫，需要休息？"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">自我同理</h3>
+        <div class="concept-name-en">Self-Empathy</div>
+        <p class="concept-desc">对自己运用NVC四要素：觉察自己做了什么、感受如何、什么需要未被满足。不再自我惩罚，而是以善意理解自己的行为。</p>
+        <div class="concept-eg"><strong>例</strong> 对小孩发火后，不说"我太差劲了"，而是"我感到后悔，因为我需要耐心"。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 07</div>
+        <h3 class="concept-name">充分表达愤怒</h3>
+        <div class="concept-name-en">Expressing Anger Fully</div>
+        <p class="concept-desc">愤怒的根源不是他人的行为，而是我们未被满足的需要。NVC不压抑愤怒，而是转化它：停下来→觉察想法→连接需要→表达感受和请求。</p>
+        <div class="concept-eg"><strong>例</strong> 不是"你让我生气"，而是"我感到愤怒，因为我需要被尊重"。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 08</div>
+        <h3 class="concept-name">强制力与惩罚</h3>
+        <div class="concept-name-en">Protective vs Punitive Force</div>
+        <p class="concept-desc">NVC区分"保护性强制力"（防止伤害发生）和"惩罚性强制力"（让对方受苦）。惩罚只会制造敌意，无法真正改变行为动机。</p>
+        <div class="concept-eg"><strong>例</strong> 拉住跑向马路的孩子是保护性强制力；因为成绩差而禁止玩耍是惩罚。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CHAPTER MAP (章节脉络图) -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书十三章，从"让爱融入生活"的愿景出发，逐步展开四要素的表达与倾听，最终延伸到自我宽恕、愤怒转化和表达感激等深层实践。
+    </p>
+    <div class="chapter-map">
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">让爱融入生活</h3>
+          <div class="chapter-title-en">Giving from the Heart</div>
+          <p class="chapter-desc">介绍非暴力沟通的愿景——转变谈话和聆听的方式，不再条件反射式地反应，而是基于觉察、感受和需要来回应。揭示日常语言中的"隐蔽暴力"。</p>
+          <div class="chapter-chapters">Ch. 1 — 让爱融入生活</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">四要素的表达</h3>
+          <div class="chapter-title-en">The Four Components of NVC</div>
+          <p class="chapter-desc">逐一展开非暴力沟通的四个核心步骤：观察（不带评判）、感受（区分想法）、需要（人类共通）、请求（具体可操作）。每一要素配有大量生活对话练习。</p>
+          <div class="chapter-chapters">Ch. 2–5 — 观察 · 感受 · 需要 · 请求</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">用全身心倾听</h3>
+          <div class="chapter-title-en">Receiving Empathically</div>
+          <p class="chapter-desc">从"表达自己"转向"倾听他人"。学习如何在冲突中放下建议、安慰、比较、说教等习惯，用同理心去接收对方的观察、感受和需要。</p>
+          <div class="chapter-chapters">Ch. 6–7 — 倾听的力量 · 倾听的障碍与突破</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">爱自己与爱自己</h3>
+          <div class="chapter-title-en">Self-Empathy & Self-Forgiveness</div>
+          <p class="chapter-desc">将NVC应用于与自己的关系：自我同理、自我宽恕。不再用"应该"来惩罚自己，而是去理解每个行为背后试图满足的需要，从而做出不同的选择。</p>
+          <div class="chapter-chapters">Ch. 8–9 — 爱自己 · 充分表达愤怒</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">运用强制力与表达感激</h3>
+          <div class="chapter-title-en">Protective Force & Expressing Appreciation</div>
+          <p class="chapter-desc">讨论在无法沟通的情境下如何使用保护性强制力，以及如何用NVC的方式表达感激——不是评判对方"你做得好"，而是具体说明对方的行为满足了我们的什么需要。</p>
+          <div class="chapter-chapters">Ch. 10–13 — 强制力 · 重获生命热情 · 表达感激</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. QUOTES (金句摘录 5条) -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+    <div class="quote-block">
+      <p class="quote-text">不带评论的观察是人类智力的最高形式。</p>
+      <p class="quote-attr">— 引自印度哲学家克里希那穆提，第2章</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">当我们通过评判、指责和分类来表达自己时，我们其实是在用语言表达暴力。别人的行为可能会刺激我们，但并不是我们感受的根源。</p>
+      <p class="quote-attr">— 第3章 · 感受的根源</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">如果我们通过批评来提出主张，人们的反应常常是申辩或反击。反之，如果我们直接说出需要，其他人就较有可能作出积极的回应。</p>
+      <p class="quote-attr">— 第5章 · 请求</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">在一个生气的人面前，永远不要用"不过""可是""但是"之类的词语。在情绪得到充分倾听之前，任何建议都是多余的。</p>
+      <p class="quote-attr">— 第7章 · 倾听的力量</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">非暴力沟通的感激方式：首先，说明对方做了什么事使我们的生活得到了改善；其次，说明我们的哪些需要得到了满足；第三，我们的心情怎么样。</p>
+      <p class="quote-attr">— 第13章 · 表达感激</p>
+    </div>
+  </section>
+
+  <!-- 7. ACTION INSIGHTS (行动启发 5条) -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>练习"观察—评价"分离日记</h4>
+          <p>每天记录一件让你不舒服的事，先写下你脑海中浮现的评判（"他太懒了"），再改写为纯粹的事实观察（"他本周有三次没有在约定时间回复邮件"）。坚持两周，你会发现自己习惯性评判的频率大幅下降。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>建立个人"感受词汇表"</h4>
+          <p>很多人只能说出"高兴""不爽""烦"三个词。卢森堡在书中提供了丰富的感受词汇表。每天尝试用更精确的词描述情绪——"沮丧""忐忑""释然""欣慰"。精确命名情绪本身就是调节情绪的第一步。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>冲突中先问"你需要什么？"</h4>
+          <p>下次与人发生分歧时，在表达自己观点之前，先问对方："你希望从这件事中得到什么？"或者"对你来说最重要的是什么？"这个问题往往能瞬间改变对话的方向——从争对错转向理解需要。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>把"你应该"替换为"我希望"</h4>
+          <p>"你应该更努力"暗含评判和强迫；"我希望看到你每天花一小时练习，因为我相信这对你实现目标有帮助"则表达了观察、感受和请求。语言结构的改变会直接影响对方的接受度。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>每晚五分钟的"自我同理"复盘</h4>
+          <p>睡前回顾今天让你后悔或自责的一件事，用NVC四要素重新理解自己：我做了什么（观察）？我当时的感受是什么？背后什么需要没被满足？下次我可以怎样不同？不评判，只理解。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 8. AUDIENCE (适合谁读 6张) -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>亲密关系中的伴侣</h4>
+        <p>经常因为"你总是""你从不"而争吵的伴侣，NVC能帮助你们从指责转向理解彼此的需要。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>团队管理者</h4>
+        <p>需要在反馈、批评、激励中保持尊重与效能的管理者，NVC提供了不伤人又能推动改变的沟通框架。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>父母与教育者</h4>
+        <p>希望不用惩罚和威胁就能引导孩子行为的父母和老师，NVC强调连接需要而非控制行为。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>容易自我批评的人</h4>
+        <p>总觉得自己"不够好""应该更努力"的人，NVC的自我同理练习能帮你从内耗转向自我理解。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>心理咨询师与调解员</h4>
+        <p>从事助人工作的专业人士，NVC提供了一套可操作的倾听和对话框架，适用于咨询、调解、教练等场景。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>希望提升情商的人</h4>
+        <p>想更精确地识别自己和他人的情绪、理解行为背后的动机，NVC是情商训练的最佳实操手册。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>Nonviolent Communication · Marshall Rosenberg · 2003</p>
+  <p class="footer-cn">每日读书笔记 · 2026年7月11日</p>
+</footer>
+
+</body>
+</html>
