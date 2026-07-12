@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《存在与时间》— 海德格尔</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture - SVG noise */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO (2x2) ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW (一句话总览) ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ DUAL COMPARISON (双系统对比) ============ */
+.dual-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.compare-panel {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.compare-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.compare-panel.panel-a { border-top: 4px solid var(--accent-blue); }
+.compare-panel.panel-b { border-top: 4px solid var(--bookmark); }
+.compare-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.compare-panel.panel-a .compare-badge { color: var(--accent-blue); }
+.compare-panel.panel-b .compare-badge { color: var(--bookmark); }
+.compare-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.compare-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.compare-points {
+  list-style: none;
+  padding: 0;
+}
+.compare-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.compare-points li:last-child { border-bottom: none; }
+.compare-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.compare-panel.panel-a .compare-points li::before { background: var(--accent-blue); }
+.compare-panel.panel-b .compare-points li::before { background: var(--bookmark); }
+.compare-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.compare-panel.panel-a .compare-example { background: rgba(58,90,122,0.05); }
+.compare-panel.panel-b .compare-example { background: rgba(158,43,37,0.05); }
+
+/* ============ CONCEPT CARDS (关键概念 8张) ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 75vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .dual-compare { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026.07.12</div>
+    <h1 class="hero-title">存在与时间</h1>
+    <div class="hero-title-en">Being and Time</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      海德格尔 Martin Heidegger
+      <span class="subtitle">此在 · 向死而生 · 时间性</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- 1. BOOK INFO (2×2 卡片) -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">马丁·海德格尔
+          <span class="sub">德国哲学家，现象学与存在主义运动核心人物</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">现象学·存在主义
+          <span class="sub">基础存在论（Fundamental Ontology）</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">1927年
+          <span class="sub">首发于《胡塞尔纪念文集》（Halle）</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">重新追问存在的意义
+          <span class="sub">通过分析此在的时间性来揭示存在之意义</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ONE-SENTENCE OVERVIEW (一句话总览) -->
+  <section class="overview">
+    <div class="overview-quote">
+      存在的意义问题不是任何随便的问题，而是统领一切存在论研究的根本问题——唯有通过对此在之时间性的深入分析，才能照亮存在本身。
+    </div>
+  </section>
+
+  <!-- 3. DUAL COMPARISON (本真存在 vs 非本真存在) -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">本真存在 vs 非本真存在</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      海德格尔认为此在（Dasein）的日常状态往往是"非本真的"——沉沦于常人之中，逃避自身的有限性。而通过"畏"的启示与"向死而生"的决断，此在可以回归本真的存在方式。
+    </p>
+    <div class="dual-compare">
+      <div class="compare-panel panel-a">
+        <div class="compare-badge">● AUTHENTIC</div>
+        <h3 class="compare-name">本真存在</h3>
+        <p class="compare-tagline">Eigentlichkeit — 直面自身的可能性</p>
+        <ul class="compare-points">
+          <li>直面死亡，将有限性作为存在的根基</li>
+          <li>在"良知"的呼唤中做出决断（Entschlossenheit）</li>
+          <li>承担被抛性，将命运作为自身的命运</li>
+          <li>时间性以"将来"为优先维度</li>
+          <li>从"常人"中抽身，回到个体化的自身</li>
+          <li>以整体性的方式把握此在的存在</li>
+        </ul>
+        <div class="compare-example">
+          典型案例：一个人意识到生命的有限，不再随波逐流，而是清醒地选择并承担自己的道路——如海德格尔所说的"先行的决断"（vorlaufende Entschlossenheit）。
+        </div>
+      </div>
+      <div class="compare-panel panel-b">
+        <div class="compare-badge">● INAUTHENTIC</div>
+        <h3 class="compare-name">非本真存在</h3>
+        <p class="compare-tagline">Uneigentlichkeit — 沉沦于常人的日常</p>
+        <ul class="compare-points">
+          <li>逃避死亡，将死亡视为"尚未到来"的事件</li>
+          <li>沉沦于闲谈、好奇与两可之中</li>
+          <li>被"常人"（das Man）所支配，失去个体性</li>
+          <li>时间性以"当前"为优先维度，遗忘过去与将来</li>
+          <li>在"世界"中迷失，把存在者当作存在本身</li>
+          <li>以碎片化的方式经验生活，缺乏整体性</li>
+        </ul>
+        <div class="compare-example">
+          典型案例：一个人按照"大家都这么做"的方式生活——读别人都在读的书，对 scandal 感到震惊，用闲谈填充沉默，从不追问"我究竟是谁"。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CONCEPT CARDS (关键概念 8张卡片) -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">八个关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      海德格尔创造了一套全新的哲学词汇来描述此在的存在结构。以下八个概念是理解《存在与时间》的核心钥匙。
+    </p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">此在</h3>
+        <div class="concept-name-en">Dasein</div>
+        <p class="concept-desc">字面意为"在此存在"。指那种以追问自身存在为存在方式的存在者——即人。此在的本质在于它的"去存在"（Zu-sein），它总是面向可能性而存在。</p>
+        <div class="concept-eg"><strong>例</strong> 你不是一个固定的"东西"，而是一个始终在"成为"的过程——你的选择、你的可能性构成了你。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">在世界中存在</h3>
+        <div class="concept-name-en">In-der-Welt-sein</div>
+        <p class="concept-desc">此在从来不是孤立的主体，而是始终已经"在世界之中"。世界不是外在的容器，而是此在存在的结构性环节——我们总是与事物、与他人打交道。</p>
+        <div class="concept-eg"><strong>例</strong> 你不可能脱离你的家庭、语言、文化来理解"你是谁"——你总是已经被抛入一个意义网络之中。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">上手状态</h3>
+        <div class="concept-name-en">Zuhandenheit</div>
+        <p class="concept-desc">事物首先不是作为"对象"呈现给我们，而是作为"上手的"工具——锤子在被使用时隐退自身，只有当它损坏时才变成"现成在手"的对象。</p>
+        <div class="concept-eg"><strong>例</strong> 你熟练地用筷子吃饭时不会"看到"筷子；只有当筷子断了，你才注意到它作为一个"东西"存在。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">被抛性</h3>
+        <div class="concept-name-en">Geworfenheit</div>
+        <p class="concept-desc">此在发现自己总是已经被抛入一个它未曾选择的世界——特定的时代、语言、家庭、身体。被抛性意味着：我们的起点从来不是我们自己决定的。</p>
+        <div class="concept-eg"><strong>例</strong> 你没有选择出生在哪个国家、哪个家庭、说什么语言——但这些已经构成了你存在的地基。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">沉沦</h3>
+        <div class="concept-name-en">Verfallenheit</div>
+        <p class="concept-desc">此在倾向于"沉沦"于世界和常人之中——被日常事务所占据，在闲谈和好奇中消散自身，逃避自身的存在问题和有限性。</p>
+        <div class="concept-eg"><strong>例</strong> 刷短视频到深夜，不是因为你"想要"，而是因为你"沉沦"在了无尽的推送和好奇心之中，忘了追问自己究竟在做什么。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">向死而生</h3>
+        <div class="concept-name-en">Sein-zum-Tode</div>
+        <p class="concept-desc">死亡不是"尚未到来"的事件，而是此在最本己的、不可逾越的可能性。先行到死亡中去，此在才能从整体的角度把握自身的存在，获得本真的自由。</p>
+        <div class="concept-eg"><strong>例</strong> 当一个人真正意识到"我终将死去"，日常中那些焦虑和琐碎突然失去了重量——他反而获得了选择的勇气。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 07</div>
+        <h3 class="concept-name">畏</h3>
+        <div class="concept-name-en">Angst</div>
+        <p class="concept-desc">不同于对具体事物的"怕"（Furcht），"畏"没有确定的对象——它指向"在世界中存在"本身。在畏中，日常意义崩塌，此在被带回自身的赤裸存在。</p>
+        <div class="concept-eg"><strong>例</strong> 深夜突然涌上来的那种无名焦虑——不是怕什么具体的事，而是感到一切意义突然变得可疑，"我为什么在这里？"</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 08</div>
+        <h3 class="concept-name">时间性</h3>
+        <div class="concept-name-en">Zeitlichkeit</div>
+        <p class="concept-desc">此在存在的终极意义是时间性。此在不是"在时间中"的存在者，而是时间性本身——它以"将来—过去—当前"的统一绽出（Ekstase）结构来存在。</p>
+        <div class="concept-eg"><strong>例</strong> 你此刻的每一个决定，都同时承载着你的过去（被抛性）、朝向你的将来（可能性）、并在当前做出决断——这就是时间性的绽出统一。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CHAPTER MAP (章节脉络图) -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="全书章节脉络">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      《存在与时间》原计划分两部，但海德格尔只出版了第一部的前两篇（加上导论）。未完成的第三篇原计划题为"时间与存在"，后来以其他形式出现在海德格尔后期著作中。
+    </p>
+    <div class="chapter-map">
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">导论：存在问题</h3>
+          <div class="chapter-title-en">Introduction: The Question of Being</div>
+          <p class="chapter-desc">阐明为何要重新追问"存在的意义"，回顾古希腊以来存在问题的历史，指出存在被遗忘的困境，并规划通过此在的存在论分析来重新进入这一问题。</p>
+          <div class="chapter-chapters">§1–§4</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">第一篇：此在的存在分析</h3>
+          <div class="chapter-title-en">Division I: The Analytic of Dasein</div>
+          <p class="chapter-desc">从"在世界中存在"出发，分析此在的日常存在结构——上手与现成、常人、被抛性、沉沦、操心（Sorge）作为此在存在的整体性。</p>
+          <div class="chapter-chapters">§5–§44</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">第二篇：此在与时间性</h3>
+          <div class="chapter-title-en">Division II: Dasein and Temporality</div>
+          <p class="chapter-desc">通过"向死而生"、良知、罪责、决断等生存论环节，揭示此在的整体性，最终将操心回溯到时间性——此在存在的终极意义。</p>
+          <div class="chapter-chapters">§45–§82</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">未完成的第三篇（计划）</h3>
+          <div class="chapter-title-en">Division III (Unfinished): Time and Being</div>
+          <p class="chapter-desc">原计划从时间性出发正面阐释"存在"本身的意义，但海德格尔后来放弃了这一计划，认为用存在论的传统语言无法真正表达他的思想——这成为他后来"转向"（Kehre）的起点。</p>
+          <div class="chapter-chapters">未出版 · 后以其他形式呈现</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. QUOTES (金句摘录 5条) -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+    <div class="quote-block">
+      <p class="quote-text">存在的意义问题不仅尚未被解答，甚至这个问题本身还晦暗而缺乏方向。重新提出这个问题，在今天仍然是当务之急。</p>
+      <p class="quote-attr">— §1, 导论</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">此在的"本质"在于它的生存。因此，在此在身上可以发掘出来的那些结构，都不是某种现成存在的"属性"，而是可能的存在方式，并且仅仅是这些。</p>
+      <p class="quote-attr">— §9, 此在的存在论分析</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">世界不是某种把人和物都包含在内的框架，而是此在本身的存在方式。只要此在存在着，它就已经在世界之中。</p>
+      <p class="quote-attr">— §12–§18, 在世界中存在</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">死亡是此在本身必须承担的存在可能性。在死亡中，关键的是此在最本己的、无所关联的、不可逾越的、确知而不确定的可能性。</p>
+      <p class="quote-attr">— §53, 向死而生</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">时间性绽出地构成自身。原初而统一的时间性现象是：将来与当前化在统一中让当下化成为可能——此即"曾在"的重复。</p>
+      <p class="quote-attr">— §68, 时间性与操心</p>
+    </div>
+  </section>
+
+  <!-- 7. ACTION INSIGHTS (行动启发 5条) -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>练习"向死而生"的视角</h4>
+          <p>定期停下来问自己：如果我的时间是有限的，我此刻正在做的事还重要吗？这不是消极的悲观，而是海德格尔所说的"先行到死亡中"——用有限性来照亮什么才是真正值得投入的。在职业选择、关系维护、日常决策中，让死亡的意识成为你清醒的盟友。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>警惕"常人"的支配</h4>
+          <p>海德格尔的"常人"（das Man）描述的是我们如何不自觉地按照"大家都这么做"来生活。定期审视：你的观点、品味、选择，有多少真正是你自己的？有多少只是"别人都这样"？不必完全脱离常人，但要保持对自身"沉沦"的觉察。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>区分"上手"与"现成在手"</h4>
+          <p>当你熟练使用一个工具时，它是透明的、上手的；只有当它出问题时，它才变成"对象"。这个洞察可以应用到工作中：最好的流程、最好的协作，是让人"忘记"流程本身而专注于目标。如果你发现自己总是在"看流程"而不是"做事"，说明系统出了问题。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>拥抱"畏"的启示</h4>
+          <p>当你感到无名焦虑、感到日常意义崩塌时，不要急于用忙碌或娱乐来填满。海德格尔认为"畏"是一种存在论上的启示时刻——它让你看到日常意义的脆弱，也让你有机会重新选择。把焦虑当作一个信号，而不是需要消灭的敌人。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>以时间性的整体来理解自身</h4>
+          <p>你不是一个"在时间中移动"的固定实体，而是时间性本身——你的过去（被抛性）、你的将来（可能性）、你的当前（决断）是统一的绽出结构。在做人生规划时，不要只问"我想要什么"，而要问"我如何把我的过去、我的可能性和我此刻的处境统一起来"。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 8. AUDIENCE (适合谁读 6张) -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>哲学专业学生</h4>
+        <p>20世纪欧陆哲学的奠基之作，理解现象学、存在主义、诠释学的必经之路。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>心理学与精神分析从业者</h4>
+        <p>存在主义治疗（罗洛·梅、欧文·亚隆）的理论源头，理解"焦虑""死亡意识""意义感"的哲学基础。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>文学与艺术创作者</h4>
+        <p>对"存在""时间""有限性"的深刻洞察，为创作提供丰厚的思想资源——影响了萨特、加缪、里尔克等。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>建筑与设计理论研究者</h4>
+        <p>海德格尔后期关于"栖居""物""空间"的思想深刻影响了建筑现象学（如舒尔茨、帕拉斯玛）。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>对生命意义感到困惑的人</h4>
+        <p>如果你曾追问"我为什么活着""什么才是真正重要的"，这本书提供了一种不同于鸡汤的、严肃而深刻的回应。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>技术批判与媒介研究者</h4>
+        <p>海德格尔对"上手状态"与"现成在手"的分析，为理解技术如何改变人与世界的关系提供了基础框架。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>Being and Time · Martin Heidegger · 1927</p>
+  <p class="footer-cn">每日读书笔记 · 2026年7月12日</p>
+</footer>
+
+</body>
+</html>
