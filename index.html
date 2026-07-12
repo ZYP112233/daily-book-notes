@@ -3,214 +3,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日读书笔记 - Daily Book Notes</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<title>每日读书笔记</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
   --cream: #f5efe0;
-  --paper: #fdfaf2;
   --ink: #2c2416;
   --ink-soft: #5c4f3e;
-  --ink-faded: #8a7c68;
   --bookmark: #9e2b25;
   --gold: #b8860b;
   --border: #d8ccb6;
-  --serif: 'Noto Serif SC', serif;
-  --sans: 'Noto Sans SC', sans-serif;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', serif;
+  --serif-en: 'Cormorant Garamond', serif;
 }
+html { scroll-behavior: smooth; font-size: 17px; }
 body {
-  font-family: var(--sans);
+  font-family: var(--serif-cn);
   background: var(--cream);
   color: var(--ink);
-  line-height: 1.7;
+  line-height: 1.85;
   min-height: 100vh;
 }
-.header {
+.container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
   text-align: center;
-  padding: 3rem 1rem 2rem;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+  color: var(--ink);
 }
-.header h1 {
-  font-family: var(--serif);
-  font-weight: 900;
-  font-size: 2rem;
-  letter-spacing: 0.05em;
-}
-.header p {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--ink-faded);
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
+.subtitle {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
 }
 .stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: var(--ink-faded);
+  text-align: center;
+  color: var(--gold);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
 }
-.stats span strong {
-  color: var(--bookmark);
-  font-family: var(--serif);
-  font-size: 1.2rem;
+.note-list { list-style: none; }
+.note-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.grid {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.2rem;
+.note-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
-.card {
-  display: block;
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.3rem;
+.note-item a {
   text-decoration: none;
-  color: var(--ink);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  color: inherit;
+  display: block;
 }
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(92,79,62,0.12);
-  border-color: var(--gold);
-}
-.card-date {
-  font-size: 0.75rem;
-  color: var(--ink-faded);
-  letter-spacing: 0.1em;
-  margin-bottom: 0.4rem;
-}
-.card-title {
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: 1.15rem;
-  margin-bottom: 0.3rem;
-  line-height: 1.4;
-}
-.card-author {
+.note-date {
   font-size: 0.85rem;
   color: var(--ink-soft);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.3rem;
 }
-.card-tags {
+.note-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.note-author {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.note-tags {
+  margin-top: 0.5rem;
   display: flex;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  gap: 0.4rem;
 }
-.card-tags span {
-  font-size: 0.7rem;
-  padding: 0.15rem 0.5rem;
-  background: rgba(184,134,11,0.08);
-  border: 1px solid rgba(184,134,11,0.15);
-  border-radius: 100px;
-  color: var(--gold);
-}
-.footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.8rem;
-  color: var(--ink-faded);
-  border-top: 1px solid var(--border);
-  margin-top: 2rem;
-}
-@media (max-width: 480px) {
-  .grid { grid-template-columns: 1fr; }
-  .header h1 { font-size: 1.6rem; }
+.tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--cream);
+  color: var(--ink-soft);
+  border-radius: 4px;
 }
 </style>
 </head>
 <body>
-  <header class="header">
-    <h1>每日读书笔记</h1>
-    <p>Daily Book Notes · AI-Powered Reading Journey</p>
-    <div class="stats">
-      <span>已读 <strong>9</strong> 本</span>
-      <span>始于 <strong>2026-07-04</strong></span>
-    </div>
-  </header>
-  <main class="grid">
-    
-        <a href="20260712/index.html" class="card">
-          <div class="card-date">2026-07-12</div>
-          <h3 class="card-title">存在与时间</h3>
-          <p class="card-author">海德格尔</p>
-          <div class="card-tags">
-            <span>此在</span><span>向死而生</span><span>时间性</span>
-          </div>
-        </a>
-        <a href="20260711/index.html" class="card">
-          <div class="card-date">2026-07-11</div>
-          <h3 class="card-title">非暴力沟通</h3>
-          <p class="card-author">马歇尔·卢森堡</p>
-          <div class="card-tags">
-            <span>观察与评判</span><span>需求</span><span>同理心</span>
-          </div>
-        </a>
-        <a href="20260710/index.html" class="card">
-          <div class="card-date">2026-07-10</div>
-          <h3 class="card-title">少有人走的路</h3>
-          <p class="card-author">M·斯科特·派克</p>
-          <div class="card-tags">
-            <span>自律</span><span>心智成熟</span><span>爱的定义</span>
-          </div>
-        </a>
-        <a href="20260709/index.html" class="card">
-          <div class="card-date">2026-07-09</div>
-          <h3 class="card-title">关键在于不在乎</h3>
-          <p class="card-author">马克·曼森</p>
-          <div class="card-tags">
-            <span>价值排序</span><span>选择焦虑</span><span>反鸡汤</span>
-          </div>
-        </a>
-        <a href="20260708/index.html" class="card">
-          <div class="card-date">2026-07-08</div>
-          <h3 class="card-title">刻意练习</h3>
-          <p class="card-author">安德斯·艾利克森 / 罗伯特·普尔</p>
-          <div class="card-tags">
-            <span>心理表征</span><span>刻意练习</span><span>专家之路</span>
-          </div>
-        </a>
-        <a href="20260707/index.html" class="card">
-          <div class="card-date">2026-07-07</div>
-          <h3 class="card-title">人类简史</h3>
-          <p class="card-author">尤瓦尔·赫拉利</p>
-          <div class="card-tags">
-            <span>认知革命</span><span>虚构故事</span><span>人类命运</span>
-          </div>
-        </a>
-        <a href="20260706/index.html" class="card">
-          <div class="card-date">2026-07-06</div>
-          <h3 class="card-title">心流</h3>
-          <p class="card-author">米哈里·契克森米哈赖</p>
-          <div class="card-tags">
-            <span>最优体验</span><span>内在动机</span><span>专注力</span>
-          </div>
-        </a>
-        <a href="20260705/index.html" class="card">
-          <div class="card-date">2026-07-05</div>
-          <h3 class="card-title">被讨厌的勇气</h3>
-          <p class="card-author">岸见一郎 / 古贺史健</p>
-          <div class="card-tags">
-            <span>阿德勒心理学</span><span>课题分离</span><span>自我接纳</span>
-          </div>
-        </a>
-        <a href="20260704/index.html" class="card">
-          <div class="card-date">2026-07-04</div>
-          <h3 class="card-title">思考，快与慢</h3>
-          <p class="card-author">丹尼尔·卡尼曼</p>
-          <div class="card-tags">
-            <span>双系统理论</span><span>认知偏差</span><span>决策</span>
-          </div>
-        </a>
-  </main>
-  <footer class="footer">
-    <p>Powered by Hermes AI · Updated 2026-07-12</p>
-  </footer>
+<div class="container">
+  <h1>每日读书笔记</h1>
+  <p class="subtitle">Reading Notes Collection</p>
+  <p class="stats">共 42 篇读书笔记</p>
+  <ul class="note-list">
+    <li class="note-item">
+      <a href="20260712/">
+        <div class="note-date">2026-07-12</div>
+        <div class="note-title">《存在与时间》</div>
+        <div class="note-author">海德格尔</div>
+        <div class="note-tags"><span class="tag">此在</span><span class="tag">向死而生</span><span class="tag">时间性</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260711/">
+        <div class="note-date">2026-07-11</div>
+        <div class="note-title">《非暴力沟通》</div>
+        <div class="note-author">马歇尔·卢森堡</div>
+        <div class="note-tags"><span class="tag">观察与评判</span><span class="tag">需求</span><span class="tag">同理心</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260710/">
+        <div class="note-date">2026-07-10</div>
+        <div class="note-title">《少有人走的路》</div>
+        <div class="note-author">M·斯科特·派克</div>
+        <div class="note-tags"><span class="tag">自律</span><span class="tag">心智成熟</span><span class="tag">爱的定义</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260709/">
+        <div class="note-date">2026-07-09</div>
+        <div class="note-title">《关键在于不在乎》</div>
+        <div class="note-author">马克·曼森</div>
+        <div class="note-tags"><span class="tag">价值排序</span><span class="tag">选择焦虑</span><span class="tag">反鸡汤</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260708/">
+        <div class="note-date">2026-07-08</div>
+        <div class="note-title">《刻意练习》</div>
+        <div class="note-author">安德斯·艾利克森 / 罗伯特·普尔</div>
+        <div class="note-tags"><span class="tag">心理表征</span><span class="tag">刻意练习</span><span class="tag">专家之路</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260707/">
+        <div class="note-date">2026-07-07</div>
+        <div class="note-title">《人类简史》</div>
+        <div class="note-author">尤瓦尔·赫拉利</div>
+        <div class="note-tags"><span class="tag">认知革命</span><span class="tag">虚构故事</span><span class="tag">人类命运</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260706/">
+        <div class="note-date">2026-07-06</div>
+        <div class="note-title">《心流》</div>
+        <div class="note-author">米哈里·契克森米哈赖</div>
+        <div class="note-tags"><span class="tag">最优体验</span><span class="tag">内在动机</span><span class="tag">专注力</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260705/">
+        <div class="note-date">2026-07-05</div>
+        <div class="note-title">《被讨厌的勇气》</div>
+        <div class="note-author">岸见一郎 / 古贺史健</div>
+        <div class="note-tags"><span class="tag">阿德勒心理学</span><span class="tag">课题分离</span><span class="tag">自我接纳</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260704/">
+        <div class="note-date">2026-07-04</div>
+        <div class="note-title">《思考，快与慢》</div>
+        <div class="note-author">丹尼尔·卡尼曼</div>
+        <div class="note-tags"><span class="tag">双系统理论</span><span class="tag">认知偏差</span><span class="tag">决策</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260703/">
+        <div class="note-date">2026-07-03</div>
+        <div class="note-title">《象与骑象人》</div>
+        <div class="note-author">乔纳森·海特</div>
+        <div class="note-tags"><span class="tag">象与骑象人</span><span class="tag">道德基础</span><span class="tag">幸福假设</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260702/">
+        <div class="note-date">2026-07-02</div>
+        <div class="note-title">《创新者的窘境》</div>
+        <div class="note-author">克莱顿·克里斯坦森</div>
+        <div class="note-tags"><span class="tag">破坏性创新</span><span class="tag">价值网络</span><span class="tag">组织能力</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260701/">
+        <div class="note-date">2026-07-01</div>
+        <div class="note-title">《失控》</div>
+        <div class="note-author">凯文·凯利</div>
+        <div class="note-tags"><span class="tag">涌现</span><span class="tag">自组织</span><span class="tag">分布式</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260630/">
+        <div class="note-date">2026-06-30</div>
+        <div class="note-title">《存在与时间》</div>
+        <div class="note-author">海德格尔</div>
+        <div class="note-tags"><span class="tag">此在</span><span class="tag">在世存在</span><span class="tag">向死而生</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260629/">
+        <div class="note-date">2026-06-29</div>
+        <div class="note-title">《国富论》</div>
+        <div class="note-author">亚当·斯密</div>
+        <div class="note-tags"><span class="tag">分工</span><span class="tag">看不见的手</span><span class="tag">自由市场</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260628/">
+        <div class="note-date">2026-06-28</div>
+        <div class="note-title">《孙子兵法》</div>
+        <div class="note-author">孙武</div>
+        <div class="note-tags"><span class="tag">不战而胜</span><span class="tag">知己知彼</span><span class="tag">奇正相生</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260627/">
+        <div class="note-date">2026-06-27</div>
+        <div class="note-title">《道德经》</div>
+        <div class="note-author">老子</div>
+        <div class="note-tags"><span class="tag">道</span><span class="tag">无为</span><span class="tag">自然</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260626/">
+        <div class="note-date">2026-06-26</div>
+        <div class="note-title">《刻意不满足》</div>
+        <div class="note-author">本杰明·哈迪 / 丹·苏利文</div>
+        <div class="note-tags"><span class="tag">Gap与Gain</span><span class="tag">进步视角</span><span class="tag">成就者幸福</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260625/">
+        <div class="note-date">2026-06-25</div>
+        <div class="note-title">《稀缺》</div>
+        <div class="note-author">穆来纳森 / 森迪尔</div>
+        <div class="note-tags"><span class="tag">稀缺心态</span><span class="tag">带宽税</span><span class="tag">管窥效应</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260624/">
+        <div class="note-date">2026-06-24</div>
+        <div class="note-title">《写作这回事》</div>
+        <div class="note-author">斯蒂芬·金</div>
+        <div class="note-tags"><span class="tag">写作纪律</span><span class="tag">诚实叙事</span><span class="tag">恐惧与勇气</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260623/">
+        <div class="note-date">2026-06-23</div>
+        <div class="note-title">《自控力》</div>
+        <div class="note-author">凯利·麦格尼格尔</div>
+        <div class="note-tags"><span class="tag">意志力</span><span class="tag">自控科学</span><span class="tag">身心训练</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260622/">
+        <div class="note-date">2026-06-22</div>
+        <div class="note-title">《模型思维》</div>
+        <div class="note-author">斯科特·佩奇</div>
+        <div class="note-tags"><span class="tag">多模型思维</span><span class="tag">复杂性科学</span><span class="tag">决策智慧</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260621/">
+        <div class="note-date">2026-06-21</div>
+        <div class="note-title">《枪炮、病菌与钢铁》</div>
+        <div class="note-author">贾雷德·戴蒙德</div>
+        <div class="note-tags"><span class="tag">地理决定论</span><span class="tag">大陆轴线</span><span class="tag">驯化运气</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260620/">
+        <div class="note-date">2026-06-20</div>
+        <div class="note-title">《第二性》</div>
+        <div class="note-author">西蒙娜·德·波伏瓦</div>
+        <div class="note-tags"><span class="tag">他者建构</span><span class="tag">存在主义女性</span><span class="tag">超越与内在</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260619/">
+        <div class="note-date">2026-06-19</div>
+        <div class="note-title">《金字塔原理》</div>
+        <div class="note-author">芭芭拉·明托</div>
+        <div class="note-tags"><span class="tag">结论先行</span><span class="tag">MECE</span><span class="tag">逻辑分组</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260618/">
+        <div class="note-date">2026-06-18</div>
+        <div class="note-title">《刻意忽视》</div>
+        <div class="note-author">马克·曼森</div>
+        <div class="note-tags"><span class="tag">价值观筛选</span><span class="tag">责任与自由</span><span class="tag">死亡意识</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260617/">
+        <div class="note-date">2026-06-17</div>
+        <div class="note-title">《系统之美》</div>
+        <div class="note-author">德内拉·梅多斯</div>
+        <div class="note-tags"><span class="tag">系统思维</span><span class="tag">反馈回路</span><span class="tag">杠杆点</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260616/">
+        <div class="note-date">2026-06-16</div>
+        <div class="note-title">《活出最乐观的自己》</div>
+        <div class="note-author">马丁·塞利格曼</div>
+        <div class="note-tags"><span class="tag">习得性乐观</span><span class="tag">解释风格</span><span class="tag">积极心理学</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260615/">
+        <div class="note-date">2026-06-15</div>
+        <div class="note-title">《学会提问》</div>
+        <div class="note-author">尼尔·布朗 / 斯图尔特·基利</div>
+        <div class="note-tags"><span class="tag">批判性思维</span><span class="tag">逻辑谬误</span><span class="tag">论证分析</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260614/">
+        <div class="note-date">2026-06-14</div>
+        <div class="note-title">《纳瓦尔宝典》</div>
+        <div class="note-author">埃里克·乔根森</div>
+        <div class="note-tags"><span class="tag">财富杠杆</span><span class="tag">特定知识</span><span class="tag">幸福技能</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260613/">
+        <div class="note-date">2026-06-13</div>
+        <div class="note-title">《认知觉醒》</div>
+        <div class="note-author">周岭</div>
+        <div class="note-tags"><span class="tag">元认知</span><span class="tag">自我觉察</span><span class="tag">刻意练习</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260612/">
+        <div class="note-date">2026-06-12</div>
+        <div class="note-title">《深度工作》</div>
+        <div class="note-author">卡尔·纽波特</div>
+        <div class="note-tags"><span class="tag">专注力</span><span class="tag">认知深度</span><span class="tag">职业稀缺性</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260611/">
+        <div class="note-date">2026-06-11</div>
+        <div class="note-title">《清单革命》</div>
+        <div class="note-author">阿图·葛文德</div>
+        <div class="note-tags"><span class="tag">清单思维</span><span class="tag">复杂系统安全</span><span class="tag">执行纪律</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260610/">
+        <div class="note-date">2026-06-10</div>
+        <div class="note-title">《自私的基因》</div>
+        <div class="note-author">理查德·道金斯</div>
+        <div class="note-tags"><span class="tag">基因中心论</span><span class="tag">进化稳定策略</span><span class="tag">模因</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260609/">
+        <div class="note-date">2026-06-09</div>
+        <div class="note-title">《从0到1》</div>
+        <div class="note-author">彼得·蒂尔</div>
+        <div class="note-tags"><span class="tag">垂直进步</span><span class="tag">垄断创新</span><span class="tag">创业哲学</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260608/">
+        <div class="note-date">2026-06-08</div>
+        <div class="note-title">《当下的力量》</div>
+        <div class="note-author">埃克哈特·托利</div>
+        <div class="note-tags"><span class="tag">临在</span><span class="tag">小我</span><span class="tag">心智的解脱</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260607/">
+        <div class="note-date">2026-06-07</div>
+        <div class="note-title">《高效能人士的七个习惯》</div>
+        <div class="note-author">史蒂芬·柯维</div>
+        <div class="note-tags"><span class="tag">品格伦理</span><span class="tag">由内而外</span><span class="tag">原则中心</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260606/">
+        <div class="note-date">2026-06-06</div>
+        <div class="note-title">《活出生命的意义》</div>
+        <div class="note-author">维克多·弗兰克尔</div>
+        <div class="note-tags"><span class="tag">意义疗法</span><span class="tag">存在主义</span><span class="tag">苦难的意义</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260605/">
+        <div class="note-date">2026-06-05</div>
+        <div class="note-title">《影响力》</div>
+        <div class="note-author">罗伯特·西奥迪尼</div>
+        <div class="note-tags"><span class="tag">互惠</span><span class="tag">承诺一致</span><span class="tag">社会认同</span><span class="tag">权威</span><span class="tag">喜好</span><span class="tag">稀缺</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260604/">
+        <div class="note-date">2026-06-04</div>
+        <div class="note-title">《黑天鹅》</div>
+        <div class="note-author">纳西姆·塔勒布</div>
+        <div class="note-tags"><span class="tag">黑天鹅</span><span class="tag">认知盲区</span><span class="tag">极端斯坦</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260603/">
+        <div class="note-date">2026-06-03</div>
+        <div class="note-title">《穷查理宝典》</div>
+        <div class="note-author">查理·芒格</div>
+        <div class="note-tags"><span class="tag">多元思维模型</span><span class="tag">逆向思考</span><span class="tag">能力圈</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260602/">
+        <div class="note-date">2026-06-02</div>
+        <div class="note-title">《反脆弱》</div>
+        <div class="note-author">纳西姆·塔勒布</div>
+        <div class="note-tags"><span class="tag">反脆弱</span><span class="tag">林迪效应</span><span class="tag">杠铃策略</span></div>
+      </a>
+    </li>
+    <li class="note-item">
+      <a href="20260601/">
+        <div class="note-date">2026-06-01</div>
+        <div class="note-title">《原则》</div>
+        <div class="note-author">瑞·达利欧</div>
+        <div class="note-tags"><span class="tag">原则</span><span class="tag">极度透明</span><span class="tag">可信度加权</span></div>
+      </a>
+    </li>
+  </ul>
+</div>
 </body>
 </html>

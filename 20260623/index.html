@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《自控力》— 凯利·麦格尼格尔</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-06-23</div>
+    <h1 class="hero-title">自控力</h1>
+    <div class="hero-title-en">The Willpower Instinct</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      凯利·麦格尼格尔 Kelly McGonigal
+      <span class="subtitle">意志力 · 自控科学 · 身心训练</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">凯利·麦格尼格尔
+          <span class="sub">Kelly McGonigal</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">心理学·神经科学
+          <span class="sub">意志力 · 自控科学 · 身心训练</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">2012 年
+          <span class="sub">斯坦福大学最受欢迎的心理学课程，首次集结成书出版</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">意志力不是一种美德，而是一种可以被科学训练的身心本能
+          <span class="sub">意志力 · 自控科学 · 身心训练</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      本书把意志力拆解为'我要做''我不要''我想要'三种力量，结合神经科学与行为实验，给出可操作的自控力训练方案。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
+    </p>
+    <div class="core-ideas">
+
+      <div class="idea-card idea01">
+        <div class="idea-badge">● Idea 01</div>
+        <h3 class="idea-name">意志力本能</h3>
+        <p class="idea-tagline">自控力是可以被锻炼的肌肉</p>
+        <ul class="idea-points">
+          <li>意志力由前额叶皮层控制，是一种可训练的生理机能</li>
+          <li>心率变异度（HRV）是衡量意志力强弱的生理指标</li>
+          <li>呼吸、冥想、运动都能即时提升HRV</li>
+          <li>意志力像肌肉，使用后会疲劳，也能通过锻炼变强</li>
+          <li>睡眠不足和压力会显著削弱自控力</li>
+          <li>训练从小事开始：比如用非惯用手刷牙</li>
+        </ul>
+        <div class="idea-example">
+          每天5分钟呼吸冥想，坚持数周后前额叶灰质密度增加，自控力显著提升
+        </div>
+      </div>
+      <div class="idea-card idea02">
+        <div class="idea-badge">● Idea 02</div>
+        <h3 class="idea-name">三种意志力</h3>
+        <p class="idea-tagline">我要做、我不要、我想要</p>
+        <ul class="idea-points">
+          <li>'我要做'是坚持困难但重要的事的能力</li>
+          <li>'我不要'是抵制诱惑的能力</li>
+          <li>'我想要'是牢记长远目标的能力</li>
+          <li>三者共同构成完整的自控力</li>
+          <li>多数人只关注'我不要'，忽略另外两种</li>
+          <li>真正的自控是三者协调，而非一味压抑</li>
+        </ul>
+        <div class="idea-example">
+          戒烟者不仅要说'不要抽烟'，还要'坚持运动'并'牢记为家人健康'的长远目标
+        </div>
+      </div>
+      <div class="idea-card idea03">
+        <div class="idea-badge">● Idea 03</div>
+        <h3 class="idea-name">道德许可效应</h3>
+        <p class="idea-tagline">做了好事后，我们更容易放纵</p>
+        <ul class="idea-points">
+          <li>当人觉得自己'已经做得够好'时，会奖励自己放纵</li>
+          <li>这种心理让进步变成倒退的借口</li>
+          <li>关注目标而非进步，能减少道德许可</li>
+          <li>把身份认同从'我正在做'转为'我是这样的人'</li>
+          <li>进步感本身会成为诱惑的通行证</li>
+          <li>警惕'因为A好，所以B也没关系'的思维</li>
+        </ul>
+        <div class="idea-example">
+          去健身房后觉得自己'已努力'，于是奖励自己一顿高热量大餐，反而抵消了锻炼效果
+        </div>
+      </div>
+      <div class="idea-card idea04">
+        <div class="idea-badge">● Idea 04</div>
+        <h3 class="idea-name">多巴胺的陷阱</h3>
+        <p class="idea-tagline">承诺奖励不等于真正快乐</p>
+        <ul class="idea-points">
+          <li>多巴胺让我们'想要'，但不保证'喜欢'</li>
+          <li>购物、刷手机、吃糖都会刺激多巴胺释放</li>
+          <li>大脑把'期待奖励'误认为'获得幸福'</li>
+          <li>广告和社交媒体正是利用这一机制</li>
+          <li>区分'真正让我满足'和'让我想要更多'</li>
+          <li>延迟满足能打破多巴胺的即时循环</li>
+        </ul>
+        <div class="idea-example">
+          刷短视频时不断期待'下一条更有趣'，实际结束后却感到空虚
+        </div>
+      </div>
+      <div class="idea-card idea05">
+        <div class="idea-badge">● Idea 05</div>
+        <h3 class="idea-name">压力与自控</h3>
+        <p class="idea-tagline">压力越大，越容易失控</p>
+        <ul class="idea-points">
+          <li>压力触发'战或逃'反应，让人寻求即时安慰</li>
+          <li>压力下大脑更倾向于多巴胺驱动的诱惑</li>
+          <li>自我批评会加重压力，进一步削弱自控</li>
+          <li>自我同情（self-compassion）反而能恢复自控</li>
+          <li>原谅自己的失败，比严厉自责更有效</li>
+          <li>运动、睡眠、社交是减压的三大支柱</li>
+        </ul>
+        <div class="idea-example">
+          考试焦虑时反而暴饮暴食，事后又自责，形成恶性循环；自我同情能打破这一循环
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">心率变异度</h3>
+        <div class="concept-name-en">Heart Rate Variability</div>
+        <p class="concept-desc">心跳间隔的变化程度，是衡量意志力强弱的生理指标。HRV越高，自控力越强。</p>
+        <div class="concept-eg"><strong>例</strong> 深呼吸后HRV上升，此时面对诱惑更能坚持目标</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">道德许可</h3>
+        <div class="concept-name-en">Moral Licensing</div>
+        <p class="concept-desc">当人做了一件好事后，会觉得自己有资格做坏事作为奖励，从而抵消之前的努力。</p>
+        <div class="concept-eg"><strong>例</strong> 捐了钱之后觉得自己'够善良'，于是买了一堆不需要的东西</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">那又如何效应</h3>
+        <div class="concept-name-en">What-the-Hell Effect</div>
+        <p class="concept-desc">一旦破戒，就产生羞耻感，进而彻底放弃，'反正已经失败了，干脆破罐破摔'。</p>
+        <div class="concept-eg"><strong>例</strong> 节食时吃了一块饼干，心想'已经破戒了'，于是把整包都吃完</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">多巴胺陷阱</h3>
+        <div class="concept-name-en">Dopamine Trap</div>
+        <p class="concept-desc">大脑把'期待奖励'的兴奋误认为'真正满足'，导致不断追逐却无法获得幸福。</p>
+        <div class="concept-eg"><strong>例</strong> 不断刷新社交媒体期待'有趣内容'，实际却越刷越无聊</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">自我同情</h3>
+        <div class="concept-name-en">Self-Compassion</div>
+        <p class="concept-desc">以温和、理解的态度对待自己的失败，而非严厉批评，反而能更快恢复自控。</p>
+        <div class="concept-eg"><strong>例</strong> 戒烟失败后对自己说'这很难，很多人都会反复'，比自责更容易重新开始</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">未来折扣</h3>
+        <div class="concept-name-en">Future Discounting</div>
+        <p class="concept-desc">大脑倾向于高估即时奖励、低估未来收益，导致短视决策。</p>
+        <div class="concept-eg"><strong>例</strong> 选择现在吃甜食，而忽略未来健康的代价</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">意志力的本能</h3>
+          <div class="chapter-title-en">The Willpower Instinct</div>
+          <p class="chapter-desc">从神经科学角度解释意志力是什么，以及心率变异度如何衡量自控力</p>
+          <div class="chapter-chapters">Ch. 1 — 2</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">意志力的陷阱</h3>
+          <div class="chapter-title-en">Traps of Willpower</div>
+          <p class="chapter-desc">揭示道德许可、多巴胺、情绪修复等让自控力失效的心理机制</p>
+          <div class="chapter-chapters">Ch. 3 — 5</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">意志力的锻炼</h3>
+          <div class="chapter-title-en">Training Willpower</div>
+          <p class="chapter-desc">通过睡眠、运动、冥想、饮食等生理手段提升自控力的基础</p>
+          <div class="chapter-chapters">Ch. 6 — 8</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">意志力的社会性</h3>
+          <div class="chapter-title-en">Social Willpower</div>
+          <p class="chapter-desc">镜像神经元、群体感染如何影响我们的自控行为</p>
+          <div class="chapter-chapters">Ch. 9 — 10</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">不要做什么</h3>
+          <div class="chapter-title-en">Don't Do This</div>
+          <p class="chapter-desc">总结最容易削弱意志力的行为，以及如何避免自我挫败</p>
+          <div class="chapter-chapters">Ch. 11</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">意志力不是一种美德，而是一种本能。</p>
+      <p class="quote-attr">— — 第1章</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">自我批评会降低积极性，而自我同情能增强动力。</p>
+      <p class="quote-attr">— — 第5章</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">最大的意志力挑战，不是'我不要'，而是'我想要'。</p>
+      <p class="quote-attr">— — 第2章</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">压力是意志力的天敌，它让大脑回到最原始的本能反应。</p>
+      <p class="quote-attr">— — 第4章</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">意志力像肌肉，用进废退。</p>
+      <p class="quote-attr">— — 第6章</p>
+    </div>
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>从生理基础入手</h4>
+          <p>先保证睡眠和运动，再谈意志力训练。每天5分钟冥想就能显著提升前额叶功能。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>警惕道德许可</h4>
+          <p>做了好事后不要把它当成放纵的借口。关注'我是谁'而非'我做了什么'。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>原谅自己的失败</h4>
+          <p>破戒时用自我同情代替自责，'那又如何'效应会大幅减弱，更容易重新开始。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>区分想要和需要</h4>
+          <p>面对诱惑时问自己：这真的让我满足，还是只是多巴胺在作祟？</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>从小事训练</h4>
+          <p>用非惯用手刷牙、纠正坐姿等微小习惯，能逐步增强意志力的'肌肉'。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>拖延症患者</h4>
+        <p>理解拖延的神经机制，找到可操作的启动方法</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>减肥反复失败者</h4>
+        <p>识别'道德许可'和'那又如何'陷阱，打破节食恶性循环</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>手机/社交媒体成瘾者</h4>
+        <p>看清多巴胺陷阱，重建对即时奖励的抵抗力</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>高压工作者</h4>
+        <p>理解压力如何削弱自控，学会用科学方法恢复意志力</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>自我要求过高者</h4>
+        <p>用自我同情代替严厉自责，反而能提升长期表现</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>习惯养成者</h4>
+        <p>掌握意志力训练的科学方法，让好习惯可持续</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>The Willpower Instinct · Kelly McGonigal · 2012</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 06 月 年 月 23 日</p>
+</footer>
+
+</body>
+</html>

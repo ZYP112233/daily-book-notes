@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《黑天鹅》— 纳西姆·塔勒布</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-06-04</div>
+    <h1 class="hero-title">黑天鹅</h1>
+    <div class="hero-title-en">The Black Swan: The Impact of the Highly Improbable</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      纳西姆·塔勒布 Nassim Nicholas Taleb
+      <span class="subtitle">黑天鹅 · 认知盲区 · 极端斯坦</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">纳西姆·塔勒布
+          <span class="sub">Nassim Nicholas Taleb</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">哲学·概率论·认识论
+          <span class="sub">黑天鹅 · 认知盲区 · 极端斯坦</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">2007 年
+          <span class="sub">《不确定性》系列核心之作，2008年金融危机前出版并精准预言</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">极端不可预测的事件（黑天鹅）主导了历史和我们的生活，而我们系统性地低估了它们的影响。
+          <span class="sub">黑天鹅 · 认知盲区 · 极端斯坦</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      塔勒布揭示了人类对极端事件的系统性无知：我们习惯于用正态分布的框架理解世界，但真正塑造历史的是那些罕见的、不可预测的、影响巨大的'黑天鹅'事件。我们无法预测它们，但可以构建对它们有准备的世界观。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
+    </p>
+    <div class="core-ideas">
+
+      <div class="idea-card idea01">
+        <div class="idea-badge">● Idea 01</div>
+        <h3 class="idea-name">黑天鹅的三重属性</h3>
+        <p class="idea-tagline">不可预测、影响巨大、事后合理化</p>
+        <ul class="idea-points">
+          <li>黑天鹅事件具有三个特征：稀有性（超出正常预期）、极端影响力（改变一切）、事后可解释性（人类本性让我们事后编造解释）</li>
+          <li>历史不是由缓慢的渐变驱动的，而是由少数不可预测的跳跃驱动的</li>
+          <li>9/11、互联网的出现、苏联解体、2008年金融危机都是黑天鹅事件</li>
+          <li>我们系统性地低估了黑天鹅的可能性，因为我们的心智被'正常'经验所塑造</li>
+          <li>专家预测往往不可靠——特别是在复杂和不可预测的领域</li>
+          <li>关键不是预测黑天鹅，而是认识到它们的存在并构建有韧性的系统</li>
+        </ul>
+        <div class="idea-example">
+          2007年本书出版时，几乎所有经济学家和分析师都认为房地产市场稳定。一年后，次贷危机爆发——一个典型的黑天鹅事件，事前无人预测，事后人人解释。
+        </div>
+      </div>
+      <div class="idea-card idea02">
+        <div class="idea-badge">● Idea 02</div>
+        <h3 class="idea-name">极端斯坦vs平均斯坦</h3>
+        <p class="idea-tagline">两种不同的世界——一种由平均值主导，一种由极端值主导</p>
+        <ul class="idea-points">
+          <li>平均斯坦（Mediocristan）：单个观察值对总体影响很小（如身高、体重、卡路里消耗）</li>
+          <li>极端斯坦（Extremistan）：单个观察值可以不成比例地影响总体（如财富、书籍销量、战争死亡人数）</li>
+          <li>我们错误地用平均斯坦的工具（正态分布、平均值）来分析极端斯坦的现象</li>
+          <li>在极端斯坦中，平均值是毫无意义的——一个亿万富翁可以让一群人的'平均财富'暴增</li>
+          <li>互联网时代让越来越多的领域进入极端斯坦——赢家通吃效应加剧</li>
+          <li>在极端斯坦中，不确定性不可缩减，预测本质上是不可能的</li>
+        </ul>
+        <div class="idea-example">
+          J.K.罗琳的《哈利·波特》销量占整个儿童文学市场的不成比例的份额——这就是极端斯坦。你无法用'平均'来理解图书市场，因为少数超级畅销书主导了一切。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">黑天鹅</h3>
+        <div class="concept-name-en">Black Swan</div>
+        <p class="concept-desc">满足三个条件的罕见事件：稀有性（超出常规预期）、极端影响力（产生重大后果）、事后可解释性（人类事后编造解释使其看似可预测）。</p>
+        <div class="concept-eg"><strong>例</strong> 互联网的发明——事前几乎无人预测到它会彻底改变人类社会的方方面面。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">火鸡问题</h3>
+        <div class="concept-name-en">Turkey Problem</div>
+        <p class="concept-desc">一只火鸡被喂养了1000天，每天都确认人类是善意的。直到感恩节那天，一件对它来说完全意外的事发生了。过去的经验不能预测未来。</p>
+        <div class="concept-eg"><strong>例</strong> 金融机构在危机前连续多年盈利，让所有人误以为风险很低——直到黑天鹅事件将一切摧毁。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">叙事谬误</h3>
+        <div class="concept-name-en">Narrative Fallacy</div>
+        <p class="concept-desc">人类天生需要用故事来理解世界。我们总是为随机事件编造因果叙事，使世界看起来比实际更有规律、更可解释。</p>
+        <div class="concept-eg"><strong>例</strong> 每次股市大跌后，媒体总会找到一个'原因'来解释——但真正的原因是复杂的、不可简化的。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">沉默的证据</h3>
+        <div class="concept-name-en">Silent Evidence</div>
+        <p class="concept-desc">我们只看到成功者（幸存者偏差），看不到失败者。历史是由胜利者书写的，那些沉默的失败者不发出声音，导致我们系统性地高估成功率。</p>
+        <div class="concept-eg"><strong>例</strong> 我们研究成功企业家的共同特征，却忽略了成千上万有同样特征但失败了的创业者——他们沉默不语。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">游戏谬误</h3>
+        <div class="concept-name-en">Ludic Fallacy</div>
+        <p class="concept-desc">将真实世界的不确定性等同于赌场中的概率游戏。真实世界中的概率分布是未知的，规则是不断变化的，而赌场有明确的规则和已知的概率。</p>
+        <div class="concept-eg"><strong>例</strong> 风险模型假设市场服从正态分布（像赌场骰子），但真实市场有肥尾效应——极端事件远比模型预测的更频繁。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">极端斯坦</h3>
+        <div class="concept-name-en">Extremistan</div>
+        <p class="concept-desc">一个由极端值主导的领域，其中单个观察可以不成比例地影响总体。财富、出版、金融市场都属于极端斯坦，不能用平均斯坦的工具来分析。</p>
+        <div class="concept-eg"><strong>例</strong> 全球最富有的1%人口拥有世界近一半的财富——这种极端不平等是极端斯坦的典型特征。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">极端斯坦与黑天鹅</h3>
+          <div class="chapter-title-en">The Apprenticeship of an Empirical Skeptic</div>
+          <p class="chapter-desc">引入黑天鹅概念，讲述塔勒布的个人经历如何塑造了他对不确定性的理解，区分平均斯坦和极端斯坦。</p>
+          <div class="chapter-chapters">Ch. 1 — 8</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">我们为何无法预测黑天鹅</h3>
+          <div class="chapter-title-en">We Just Can't Predict</div>
+          <p class="chapter-desc">探讨人类认知的局限性——叙事谬误、沉默的证据、证实偏差等如何系统性地蒙蔽我们。</p>
+          <div class="chapter-chapters">Ch. 9 — 15</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">灰天鹅的翅膀</h3>
+          <div class="chapter-title-en">The Wings of the Gray Swan</div>
+          <p class="chapter-desc">讨论为什么正态分布（高斯分布）在极端斯坦中是危险的欺骗，以及肥尾分布的现实意义。</p>
+          <div class="chapter-chapters">Ch. 16 — 19</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">从不确定性中获益</h3>
+          <div class="chapter-title-en">Conclusion: The World is More Opaque Than You Think</div>
+          <p class="chapter-desc">既然无法预测黑天鹅，我们应该如何生活？塔勒布提出实践建议——关注不对称性，构建有韧性的生活。</p>
+          <div class="chapter-chapters">Ch. 20 — 22</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">后记与附录</h3>
+          <div class="chapter-title-en">From the Aftermath to the Technical Notes</div>
+          <p class="chapter-desc">后记中塔勒布反思2008年金融危机对本书论点的验证，附录包含技术性的概率论讨论。</p>
+          <div class="chapter-chapters">Aftermath & Appendix</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">黑天鹅事件的逻辑是：你无法从已知的已知中推断出未知的未知。</p>
+      <p class="quote-attr">— — 《黑天鹅》</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">历史不是缓慢爬行的，而是跳跃式的。它不是在可预测的常规中前行，而是在黑天鹅的冲击中突变。</p>
+      <p class="quote-attr">— — 《黑天鹅》</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">火鸡被喂养了1000天。每一天都证实了人类对它的善意。直到第1001天。</p>
+      <p class="quote-attr">— — 《黑天鹅》论火鸡问题</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">我们需要的不是更多的数据，而是更少的傲慢。</p>
+      <p class="quote-attr">— — 《黑天鹅》论专家预测的局限</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">预测者不是在帮助我们准备未来，而是在让我们误以为未来是可知的。</p>
+      <p class="quote-attr">— — 《黑天鹅》论预测的幻觉</p>
+    </div>
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>停止预测，开始准备</h4>
+          <p>放弃对未来的精确预测——这在复杂系统中本质上不可能。转而问：如果最坏的情况发生，我能承受吗？如果最好的情况发生，我能抓住吗？</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>关注不对称性而非概率</h4>
+          <p>你无法知道极端事件的概率，但你可以知道一件事：如果它发生，损失有多大/收益有多大？追求损失有限而收益无限的不对称布局。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>警惕专家预测</h4>
+          <p>对经济学家、政治分析师等专家的预测保持高度怀疑。研究表明，在复杂领域，专家的预测准确率不比随机猜测好多少。关注他们的错误记录而非头衔。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>不要成为火鸡</h4>
+          <p>如果你当前的安全完全依赖于'过去一直如此'的假设，你就是火鸡。主动思考：什么事件会让我当前的假设彻底崩塌？为此做好准备。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>利用正面黑天鹅</h4>
+          <p>将自己暴露在正面黑天鹅的可能性中——写书、创业、社交、学习新技能。这些活动的特点是：下行风险有限，但上行收益可能是指数级的。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>投资者与金融从业者</h4>
+        <p>理解尾部风险对投资决策至关重要——风险模型往往是错的</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>企业家与创业者</h4>
+        <p>创业本身就是黑天鹅游戏——理解极端分布有助于做出更好的战略选择</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>政策制定者</h4>
+        <p>理解系统性风险和预测的局限性，避免基于错误模型的决策</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>科学工作者</h4>
+        <p>对归纳法的局限性和证实偏差有深刻认识，有助于更严谨的研究</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>哲学与认识论爱好者</h4>
+        <p>塔勒布对知识论的探讨极具深度——我们到底能知道什么？</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>所有做决策的人</h4>
+        <p>理解黑天鹅思维有助于在不确定世界中做出更谦逊、更有韧性的决策</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>The Black Swan: The Impact of the Highly Improbable · Nassim Nicholas Taleb · 2007</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 06 月 年 月 04 日</p>
+</footer>
+
+</body>
+</html>

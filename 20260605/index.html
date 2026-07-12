@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《影响力》— 罗伯特·西奥迪尼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-06-05</div>
+    <h1 class="hero-title">影响力</h1>
+    <div class="hero-title-en">Influence: The Psychology of Persuasion</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      罗伯特·西奥迪尼 Robert B. Cialdini
+      <span class="subtitle">互惠 · 承诺一致 · 社会认同 · 权威 · 喜好 · 稀缺</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">罗伯特·西奥迪尼
+          <span class="sub">Robert B. Cialdini</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">社会心理学·说服科学
+          <span class="sub">互惠 · 承诺一致 · 社会认同 · 权威 · 喜好 · 稀缺</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">1984 年
+          <span class="sub">社会心理学经典，说服领域的奠基之作，2021年出版修订扩展版</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">人类决策中存在六大自动化的说服原则，理解它们既能保护自己也能影响他人。
+          <span class="sub">互惠 · 承诺一致 · 社会认同 · 权威 · 喜好 · 稀缺</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      西奥迪尼通过大量实验和亲身卧底研究，揭示了驱动人类顺从行为的六大心理原则。这些原则在日常生活中无处不在——从销售话术到广告策略，从政治宣传到社交互动。了解它们是抵御操纵和有效说服的基础。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
+    </p>
+    <div class="core-ideas">
+
+      <div class="idea-card idea01">
+        <div class="idea-badge">● Idea 01</div>
+        <h3 class="idea-name">六大说服原则</h3>
+        <p class="idea-tagline">驱动人类顺从行为的六种自动化心理机制</p>
+        <ul class="idea-points">
+          <li>互惠原则：我们会感到有义务回报他人的恩惠——即使是不请自来的恩惠</li>
+          <li>承诺与一致原则：一旦做出选择或表态，我们会感到压力要与之保持一致</li>
+          <li>社会认同原则：不确定时，我们会参考他人的行为来决定自己该怎么做</li>
+          <li>权威原则：我们倾向于服从权威人物的指示，即使指示不合理</li>
+          <li>喜好原则：我们更容易被自己喜欢的人说服——外表、相似性、赞美都起作用</li>
+          <li>稀缺原则：当某物变得稀缺时，我们会赋予它更高的价值——'限时限量'的威力</li>
+        </ul>
+        <div class="idea-example">
+          超市免费试吃利用了互惠原则（吃了就觉得该买）；'已售10000件'利用了社会认同；'仅剩3件'利用了稀缺原则——这些策略之所以有效，是因为它们触发了我们的自动化决策捷径。
+        </div>
+      </div>
+      <div class="idea-card idea02">
+        <div class="idea-badge">● Idea 02</div>
+        <h3 class="idea-name">固定行为模式与对比原理</h3>
+        <p class="idea-tagline">人类行为中的自动化捷径——高效但容易被利用</p>
+        <ul class="idea-points">
+          <li>人类进化出了大量'固定行为模式'（fixed-action patterns）——按一个按钮就能触发一整套行为序列</li>
+          <li>这些捷径在大多数时候是高效的，但在被刻意利用时会导致错误决策</li>
+          <li>对比原理（contrast principle）：两个事物先后呈现时，第二个会因与第一个的差异而显得更不同</li>
+          <li>销售员先给你看贵的，再看'便宜的'——后者在对比之下显得更划算</li>
+          <li>'拒绝-退让'策略：先提大要求被拒绝，再提小要求——小要求在对比下显得更合理</li>
+          <li>了解这些模式是防御的第一步——识别触发器，而非被无意识地驱动</li>
+        </ul>
+        <div class="idea-example">
+          汽车销售员先带你试驾顶配车型，再推荐中配——在对比之下，中配显得更合理。同时，他递给你一杯咖啡（互惠），告诉你'很多客户都选了这个配置'（社会认同），'今天有特价'（稀缺）。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">互惠原则</h3>
+        <div class="concept-name-en">Reciprocity</div>
+        <p class="concept-desc">人类有强烈的义务感去回报他人的给予。这个原则如此强大，以至于不请自来的恩惠也能触发回报义务，而且回报往往不成比例地大于原始恩惠。</p>
+        <div class="concept-eg"><strong>例</strong> 超市免费试吃后，顾客购买率显著提高——即使只是一小块食物，也触发了互惠义务感。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">承诺与一致原则</h3>
+        <div class="concept-name-en">Commitment and Consistency</div>
+        <p class="concept-desc">一旦做出选择或表明立场，我们会感到内在和外在的压力要与之保持一致。小的承诺会引导后续更大的行为改变。</p>
+        <div class="concept-eg"><strong>例</strong> 先让人签一份小请愿书（如'支持环保'），之后再请求更大的行为改变（如捐款），成功率大幅提高。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">社会认同原则</h3>
+        <div class="concept-name-en">Social Proof</div>
+        <p class="concept-desc">当我们不确定该怎么做时，会参考他人（特别是与我们相似的人）的行为作为正确行为的指南。在模糊情境中，这个原则的影响力尤其强大。</p>
+        <div class="concept-eg"><strong>例</strong> 酒店放一张'大多数客人都会重复使用毛巾'的卡片，比放'请环保'的卡片更能减少毛巾更换量。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">权威原则</h3>
+        <div class="concept-name-en">Authority</div>
+        <p class="concept-desc">我们从小被教导服从权威，这种习惯深深植入行为中。权威的标志（头衔、制服、名车）就能触发自动顺从，即使权威并不真正存在。</p>
+        <div class="concept-eg"><strong>例</strong> 米尔格拉姆实验中，65%的普通人在穿白大褂的实验者要求下，对他人施加了可能致命的电击——仅仅因为'权威说了'。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">喜好原则</h3>
+        <div class="concept-name-en">Liking</div>
+        <p class="concept-desc">我们更容易答应自己喜欢的人的请求。喜好受多种因素影响：外表吸引力、相似性、赞美、接触与合作、关联（如名人代言）。</p>
+        <div class="concept-eg"><strong>例</strong> 特百惠家庭聚会之所以有效，是因为在朋友家中，你碍于情面（喜好）很难拒绝购买——即使产品本身未必比商店的更好。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">稀缺原则</h3>
+        <div class="concept-name-en">Scarcity</div>
+        <p class="concept-desc">当某物变得稀缺（或被认为稀缺）时，我们会赋予它更高的价值。失去的恐惧比获得的渴望更有力地驱动行为。</p>
+        <div class="concept-eg"><strong>例</strong> '限时24小时''仅剩最后2件''独家信息'——这些稀缺信号触发我们的损失厌恶，让我们做出本不会做的购买决定。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">武器的力量</h3>
+          <div class="chapter-title-en">Weapons of Influence</div>
+          <p class="chapter-desc">引入固定行为模式和自动化顺从的概念。解释为什么人类需要决策捷径，以及这些捷径如何被系统性地利用。</p>
+          <div class="chapter-chapters">Ch. 1</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">互惠——给予、索取与拒绝</h3>
+          <div class="chapter-title-en">Reciprocity — The Give, Take, and Refuse</div>
+          <p class="chapter-desc">深入探讨互惠原则的力量：不请自来的恩惠如何触发义务感，以及不对等回报的机制。</p>
+          <div class="chapter-chapters">Ch. 2</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">承诺与一致——做魔鬼的代言人</h3>
+          <div class="chapter-title-en">Commitment and Consistency — The Devil's Advocate</div>
+          <p class="chapter-desc">探讨承诺如何改变自我形象，以及一致性的压力如何让人做出不理性的坚持。</p>
+          <div class="chapter-chapters">Ch. 3</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">社会认同——真理在我们身边</h3>
+          <div class="chapter-title-en">Social Proof — Truths Are Us</div>
+          <p class="chapter-desc">分析社会认同在不确定情境中的强大影响力，包括多元无知效应和维特效应（自杀模仿）。</p>
+          <div class="chapter-chapters">Ch. 4</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">喜好、权威与稀缺</h3>
+          <div class="chapter-title-en">Liking, Authority, and Scarcity</div>
+          <p class="chapter-desc">探讨外表吸引力、权威标志和稀缺信号如何绕过理性思考，直接触发自动化的顺从行为。</p>
+          <div class="chapter-chapters">Ch. 5 — 7</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">我们在做出选择时，并不总是进行精密的成本收益分析。很多时候，我们只是在按一个按钮。</p>
+      <p class="quote-attr">— — 《影响力》论固定行为模式</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">最危险的顺从不是强迫，而是让你觉得是你自己做出的选择。</p>
+      <p class="quote-attr">— — 《影响力》论承诺与一致</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">当我们不确定该怎么做时，我们最可能参考的就是别人正在做什么。</p>
+      <p class="quote-attr">— — 《影响力》论社会认同</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">机会越少见，它看起来就越有价值。</p>
+      <p class="quote-attr">— — 《影响力》论稀缺原则</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">我们总是先答应一个小请求，然后发现自己不得不答应更大的请求——因为我们想保持一致。</p>
+      <p class="quote-attr">— — 《影响力》论承诺的升级效应</p>
+    </div>
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>识别并防御操纵</h4>
+          <p>当感到被说服的压力时，停下来问：我是否正在被某个说服原则触发？是互惠感让我觉得亏欠？还是稀缺让我恐慌？识别触发器是防御的第一步。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>用身体信号识别错误决策</h4>
+          <p>西奥迪尼发现，当被不当利用时，身体会有信号——胃部的不适感。学会倾听这种'内脏反应'，它在告诉你：不是因为这件事值得做，而是因为你被操纵了。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>伦理性地使用影响力</h4>
+          <p>了解这些原则不仅是为了防御，也可以用于正面的影响。关键是：只在产品/请求真正有价值时才使用这些原则。虚假的稀缺或不请自来的恩惠是不道德的操纵。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>利用承诺一致性做习惯改变</h4>
+          <p>想养成新习惯？先做出一个小的公开承诺（如告诉朋友你要跑步），然后一致性压力会帮你坚持下去。小的身份认同改变会引导更大的行为改变。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>警惕社会认同的盲区</h4>
+          <p>在不确定时参考他人是合理的，但要意识到他人可能也在参考其他人（多元无知效应）。在做重要决策时，主动寻找独立的信息来源，而非只看'大家都在做'。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>营销与销售人员</h4>
+        <p>理解说服的底层心理机制，设计更有效的营销策略</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>谈判者</h4>
+        <p>了解互惠、承诺一致等原则在谈判中的应用和防御</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>产品经理</h4>
+        <p>利用社会认同、稀缺等原则设计更好的用户体验和转化漏斗</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>消费者</h4>
+        <p>识别商家的说服策略，做出更理性的购买决策</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>管理者与领导者</h4>
+        <p>理解如何影响团队行为，同时避免被下属或同事不当影响</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>心理学爱好者</h4>
+        <p>西奥迪尼的研究是社会心理学中最实用、最有趣的领域之一</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>Influence: The Psychology of Persuasion · Robert B. Cialdini · 1984</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 06 月 年 月 05 日</p>
+</footer>
+
+</body>
+</html>

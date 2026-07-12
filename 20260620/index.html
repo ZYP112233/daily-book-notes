@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《第二性》— 西蒙娜·德·波伏瓦</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-06-20</div>
+    <h1 class="hero-title">第二性</h1>
+    <div class="hero-title-en">The Second Sex</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      西蒙娜·德·波伏瓦 Simone de Beauvoir
+      <span class="subtitle">他者建构 · 存在主义女性 · 超越与内在</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">西蒙娜·德·波伏瓦
+          <span class="sub">Simone de Beauvoir</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">哲学·女性主义
+          <span class="sub">他者建构 · 存在主义女性 · 超越与内在</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">1949 年
+          <span class="sub">法国存在主义哲学家波伏瓦的代表作，被视为第二波女性主义的理论基石。</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">女人不是天生的，而是被社会建构的；女性作为「他者」被置于男性的主体地位之外。
+          <span class="sub">他者建构 · 存在主义女性 · 超越与内在</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      本书从生物学、精神分析、历史与存在主义哲学多角度论证：女性的从属地位并非自然必然，而是文明长期建构的结果。波伏瓦提出「女人不是天生的，而是后天形成的」这一划时代命题，开启现代女性主义理论。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
+    </p>
+    <div class="core-ideas">
+
+      <div class="idea-card idea01">
+        <div class="idea-badge">● Idea 01</div>
+        <h3 class="idea-name">女人是被建构的「他者」</h3>
+        <p class="idea-tagline">主体与客体的二元对立</p>
+        <ul class="idea-points">
+          <li>人类文明以男性为主体（Subject），将女性定义为「他者」（the Other）。</li>
+          <li>这种「他者化」不是生物学事实，而是社会、文化、语言的建构。</li>
+          <li>男性把自身定义为「人」的默认标准，女性则被定义为「非男性」或「偏离」。</li>
+          <li>他者化使女性的存在意义依附于男性：妻子、母亲、女儿。</li>
+          <li>这种建构通过教育、神话、制度代代相传，被误认为「自然」。</li>
+          <li>打破他者地位的第一步是意识到这种建构的历史性与可改变性。</li>
+        </ul>
+        <div class="idea-example">
+          波伏瓦分析：男孩被鼓励探索世界（主体），女孩被教导取悦他人（客体）——这不是天性，而是教养的结果。
+        </div>
+      </div>
+      <div class="idea-card idea02">
+        <div class="idea-badge">● Idea 02</div>
+        <h3 class="idea-name">超越与内在性的对立</h3>
+        <p class="idea-tagline">自由创造 vs. 被困重复</p>
+        <ul class="idea-points">
+          <li>存在主义认为人的本质在于「超越」——通过行动、创造、选择定义自己。</li>
+          <li>女性被限制在「内在性」（immanence）中：家务、生育、重复性劳动，无法向外创造。</li>
+          <li>内在性工作（家务、育儿）不产生持久成果，无法积累为历史或文化。</li>
+          <li>经济独立是女性获得超越性的必要条件——没有经济权就没有真正的自由。</li>
+          <li>婚姻制度传统上把女性锁定在内在性中，以「保护」之名剥夺超越权。</li>
+          <li>真正解放要求女性同时获得经济独立与文化叙事的主体地位。</li>
+        </ul>
+        <div class="idea-example">
+          波伏瓦对比：男性通过工作、创作、政治参与实现超越；女性被限制在「做饭-打扫-育儿」的循环中，无法留下痕迹。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">他者</h3>
+        <div class="concept-name-en">The Other</div>
+        <p class="concept-desc">主体通过定义「非我」来确立自身；男性把女性定义为「他者」，从而确立自身为「人」的默认。</p>
+        <div class="concept-eg"><strong>例</strong> 语言中「人类」（mankind）以男性为默认，女性成为「例外」或「补充」。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">内在性</h3>
+        <div class="concept-name-en">Immanence</div>
+        <p class="concept-desc">被困在重复性、无创造性的劳动中，无法向外扩展、留下持久成果的存在状态。</p>
+        <div class="concept-eg"><strong>例</strong> 家庭主妇每天做饭打扫，成果当天消失，无法积累为作品或历史。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">超越性</h3>
+        <div class="concept-name-en">Transcendence</div>
+        <p class="concept-desc">通过自由选择、创造与行动定义自身本质的存在状态；存在主义认为这是人的根本追求。</p>
+        <div class="concept-eg"><strong>例</strong> 艺术家通过创作、政治家通过决策、工人通过产品实现超越。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">成为女人</h3>
+        <div class="concept-name-en">Becoming a Woman</div>
+        <p class="concept-desc">「女人不是天生的，而是后天形成的」——性别身份是社会建构的结果，非生物决定。</p>
+        <div class="concept-eg"><strong>例</strong> 女孩被教导温柔、顺从、注重外表，这些「女性特质」是教养而非天性。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">女性神话</h3>
+        <div class="concept-name-en">The Myth of Woman</div>
+        <p class="concept-desc">文化通过文学、宗教、科学构建「永恒女性」的神话，把社会建构伪装成自然本质。</p>
+        <div class="concept-eg"><strong>例</strong> 文学中「圣母」与「荡妇」的二元形象，都是男性视角的投射而非真实女性。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">本真性</h3>
+        <div class="concept-name-en">Authenticity</div>
+        <p class="concept-desc">拒绝接受被赋予的「他者」角色，通过自由选择和行动定义自身——存在主义伦理的核心。</p>
+        <div class="concept-eg"><strong>例</strong> 女性拒绝「贤妻良母」的社会期待，选择自己的职业与生活方式，即本真性实践。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">命运：生物学与精神分析</h3>
+          <div class="chapter-title-en">Destiny: Biology & Psychoanalysis</div>
+          <p class="chapter-desc">审视生物学决定论与弗洛伊德精神分析对女性的解释，论证二者都无法证明女性从属的必然性。</p>
+          <div class="chapter-chapters">Vol. I, Pt. 1</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">历史：从原始社会到当代</h3>
+          <div class="chapter-title-en">History: From Primitive Societies to Today</div>
+          <p class="chapter-desc">追溯不同文明中女性的地位变迁，论证女性从属是历史建构而非自然法则。</p>
+          <div class="chapter-chapters">Vol. I, Pt. 2 — 3</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">神话：文学与文化中的女性</h3>
+          <div class="chapter-title-en">Myths: Woman in Literature & Culture</div>
+          <p class="chapter-desc">分析文学、宗教、哲学中「永恒女性」的神话建构，揭示其男性视角本质。</p>
+          <div class="chapter-chapters">Vol. I, Pt. 4</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">形成：从女孩到女人</h3>
+          <div class="chapter-title-en">Formative Years: From Girl to Woman</div>
+          <p class="chapter-desc">追踪女性从童年、青春期、性觉醒到婚姻的生命历程，展示他者化如何被内化。</p>
+          <div class="chapter-chapters">Vol. II, Pt. 1 — 2</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">处境与超越：走向解放</h3>
+          <div class="chapter-title-en">Situation & Transcendence: Toward Liberation</div>
+          <p class="chapter-desc">探讨已婚、母亲、社交、老年等处境，最终论证经济独立与本真选择是解放之路。</p>
+          <div class="chapter-chapters">Vol. II, Pt. 3 — 4</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">女人不是天生的，而是后天形成的。</p>
+      <p class="quote-attr">— — 导论</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">人类是男性的，男人通过女人定义自身，女人却不通过男人定义自身。</p>
+      <p class="quote-attr">— — 导论</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">压迫者最成功的策略，是让被压迫者相信压迫是自然的。</p>
+      <p class="quote-attr">— — 第Ⅰ卷</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">真正的爱应该是两个自由主体之间的相互承认。</p>
+      <p class="quote-attr">— — 第Ⅱ卷</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">女人的最大解放，是经济独立与精神独立的同步实现。</p>
+      <p class="quote-attr">— — 结论</p>
+    </div>
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>识别日常中的「他者化」</h4>
+          <p>留意语言、媒体、制度中把某一群体默认为「标准」、另一群体为「例外」的结构。意识到建构是改变的第一步。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>追问「自然」背后的历史</h4>
+          <p>当有人说「女人天生就该……」或「某群体天生……」时，追问：这是生物事实，还是历史建构？</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>经济独立是自由的基础</h4>
+          <p>无论性别，经济依赖都会限制选择权。建立自己的经济能力，是获得本真生活的前提。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>拒绝单一叙事</h4>
+          <p>警惕文化对任何群体的「神话化」叙事（永恒女性、理想男性）。真实的人比任何标签都复杂。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>在关系中保持主体性</h4>
+          <p>爱、婚姻、母职不应要求一方放弃超越性。健康的关系是两个自由主体的相互承认。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>女性主义理论初学者</h4>
+        <p>本书是第二波女性主义的奠基之作，理解当代性别议题绕不开的思想源头。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>哲学与存在主义爱好者</h4>
+        <p>波伏瓦将存在主义哲学应用于性别问题，是哲学介入现实的典范。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>关注性别平等的男性</h4>
+        <p>理解「他者化」机制不仅帮助女性，也帮助男性反思自身被建构的主体角色。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>社会学与性别研究学生</h4>
+        <p>本书提供了性别建构论的完整论证框架，是该领域必读经典。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>感到「被定义」的任何人</h4>
+        <p>任何感到被社会角色（妻子、母亲、儿子、员工）困住的人，都能从「超越性」概念中获得启发。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>文学与文化批评读者</h4>
+        <p>波伏瓦对文学中女性神话的分析，为解读文化文本提供了锐利工具。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>The Second Sex · Simone de Beauvoir · 1949</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 06 月 年 月 20 日</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《写作这回事》— 斯蒂芬·金</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-06-24</div>
+    <h1 class="hero-title">写作这回事</h1>
+    <div class="hero-title-en">On Writing: A Memoir of the Craft</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      斯蒂芬·金 Stephen King
+      <span class="subtitle">写作纪律 · 诚实叙事 · 恐惧与勇气</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">斯蒂芬·金
+          <span class="sub">Stephen King</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">写作·文学
+          <span class="sub">写作纪律 · 诚实叙事 · 恐惧与勇气</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">2000 年
+          <span class="sub">斯蒂芬·金半生回忆与写作经验的结合，被誉为作家必读经典</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">写作不是神秘天赋，而是可以像挖煤一样靠纪律和诚实练就的手艺
+          <span class="sub">写作纪律 · 诚实叙事 · 恐惧与勇气</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      本书前半部分是金的成长回忆，后半部分是实用写作指南，核心观点是：关门写作，开门修改，远离副词，忠于故事。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
+    </p>
+    <div class="core-ideas">
+
+      <div class="idea-card idea01">
+        <div class="idea-badge">● Idea 01</div>
+        <h3 class="idea-name">关门写作，开门修改</h3>
+        <p class="idea-tagline">初稿为自己，改稿为读者</p>
+        <ul class="idea-points">
+          <li>初稿要像关门一样，完全沉浸在自己的世界里</li>
+          <li>不要边写边担心读者会怎么想</li>
+          <li>改稿时要开门，站在读者角度审视</li>
+          <li>公式：第二稿 = 第一稿 − 10%</li>
+          <li>删掉不必要的词，让故事自己说话</li>
+          <li>修改时保持冷静，不要爱上自己的文字</li>
+        </ul>
+        <div class="idea-example">
+          金写《嘉莉》时完全沉浸，连洗澡时都在想情节；改稿时则大刀阔斧删减
+        </div>
+      </div>
+      <div class="idea-card idea02">
+        <div class="idea-badge">● Idea 02</div>
+        <h3 class="idea-name">远离副词和被动语态</h3>
+        <p class="idea-tagline">通往地狱的路，由副词铺就</p>
+        <ul class="idea-points">
+          <li>副词是懦弱写作的标志</li>
+          <li>'他愤怒地关上门'不如'他摔上门'</li>
+          <li>被动语态让文字失去力量</li>
+          <li>让动词和名词自己工作</li>
+          <li>'说'字后面不需要加副词修饰</li>
+          <li>简洁有力的句子比华丽辞藻更有冲击力</li>
+        </ul>
+        <div class="idea-example">
+          '她轻声地说'改为'她耳语'，一个动词代替副词+动词
+        </div>
+      </div>
+      <div class="idea-card idea03">
+        <div class="idea-badge">● Idea 03</div>
+        <h3 class="idea-name">挖掘自己的经验</h3>
+        <p class="idea-tagline">恐惧来自你最了解的地方</p>
+        <ul class="idea-points">
+          <li>不要写你'认为应该写'的东西</li>
+          <li>写你真正害怕、真正关心的事</li>
+          <li>恐惧是最好的素材，因为它是真实的</li>
+          <li>不要为了迎合市场而改变方向</li>
+          <li>故事会自己找到方向，作家要跟随</li>
+          <li>大纲是死的，故事是活的</li>
+        </ul>
+        <div class="idea-example">
+          《嘉莉》的灵感来自金在女子浴室看到两个女孩被同学嘲笑，他把自己被霸凌的恐惧注入其中
+        </div>
+      </div>
+      <div class="idea-card idea04">
+        <div class="idea-badge">● Idea 04</div>
+        <h3 class="idea-name">每天写，不停笔</h3>
+        <p class="idea-tagline">写作是肌肉，不用就萎缩</p>
+        <ul class="idea-points">
+          <li>每天至少写1000字，不找借口</li>
+          <li>没有灵感也要写，灵感会在写作中到来</li>
+          <li>写作空间不要有电话、电视、窗户</li>
+          <li>给自己设定截止日期并严格遵守</li>
+          <li>写作不是职业，是生活方式</li>
+          <li>休息一天容易，休息两天就难了</li>
+        </ul>
+        <div class="idea-example">
+          金在车祸康复期间每天坚持写作，因为'不写就浑身难受'
+        </div>
+      </div>
+      <div class="idea-card idea05">
+        <div class="idea-badge">● Idea 05</div>
+        <h3 class="idea-name">读得多，写得多</h3>
+        <p class="idea-tagline">没有捷径，只有大量阅读和写作</p>
+        <ul class="idea-points">
+          <li>不读书的人不配写作</li>
+          <li>读好书和坏书都能学到东西</li>
+          <li>阅读是写作的燃料</li>
+          <li>写作是阅读的产出</li>
+          <li>两者缺一不可，互为因果</li>
+          <li>不要只读'经典'，也要读类型小说</li>
+        </ul>
+        <div class="idea-example">
+          金从小读遍科幻、恐怖、悬疑小说，这些阅读直接塑造了他的写作风格
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">故事 vs 情节</h3>
+        <div class="concept-name-en">Story vs Plot</div>
+        <p class="concept-desc">故事是自然生长的有机体，情节是人为设计的机械结构。金推崇前者，反对过度大纲。</p>
+        <div class="concept-eg"><strong>例</strong> 金写《米泽丽》时不知道安妮会做什么，让角色自己决定</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">恐惧写作</h3>
+        <div class="concept-name-en">Writing from Fear</div>
+        <p class="concept-desc">最有效的恐怖来自作家真正害怕的东西，而不是编造的怪物。</p>
+        <div class="concept-eg"><strong>例</strong> 《宠物公墓》来自金对自己孩子死于车祸的真实恐惧</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">工具箱</h3>
+        <div class="concept-name-en">Toolbox</div>
+        <p class="concept-desc">作家的工具箱里最上层是词汇，中间是语法，最底层是风格——风格来自诚实。</p>
+        <div class="concept-eg"><strong>例</strong> 不要为了显得'文学'而用生僻词，用最准确的词</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">第二稿公式</h3>
+        <div class="concept-name-en">Second Draft Formula</div>
+        <p class="concept-desc">第二稿 = 第一稿 − 10%。删掉所有不必要的词，让故事更紧凑。</p>
+        <div class="concept-eg"><strong>例</strong> 一篇5万字的初稿，改稿应控制在4.5万字以内</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">关门/开门</h3>
+        <div class="concept-name-en">Door Closed / Door Open</div>
+        <p class="concept-desc">关门写作是为自己写，开门修改是为读者改。两个阶段不可混淆。</p>
+        <div class="concept-eg"><strong>例</strong> 写初稿时不管读者，改稿时想象一个聪明的朋友在读</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">背景故事</h3>
+        <div class="concept-name-en">Backstory</div>
+        <p class="concept-desc">背景故事要藏在后面，不要大段交代。让读者自己拼凑。</p>
+        <div class="concept-eg"><strong>例</strong> 《闪灵》中杰克的过去通过细节暗示，而非直接叙述</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">回忆：童年与阅读</h3>
+          <div class="chapter-title-en">Coda: Childhood and Reading</div>
+          <p class="chapter-desc">金的成长经历，如何从一个爱读漫画的男孩成为作家</p>
+          <div class="chapter-chapters">Ch. 1 — 3</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">写作工具箱</h3>
+          <div class="chapter-title-en">Toolbox</div>
+          <p class="chapter-desc">词汇、语法、风格——作家必备的基本工具</p>
+          <div class="chapter-chapters">Ch. 4</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">写作这回事</h3>
+          <div class="chapter-title-en">On Writing</div>
+          <p class="chapter-desc">核心写作方法：关门写作、开门修改、远离副词</p>
+          <div class="chapter-chapters">Ch. 5 — 7</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">生活与写作</h3>
+          <div class="chapter-title-en">Life and Writing</div>
+          <p class="chapter-desc">金的车祸、康复，以及写作如何拯救他的生命</p>
+          <div class="chapter-chapters">Ch. 8 — 9</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">推荐书单</h3>
+          <div class="chapter-title-en">Reading List</div>
+          <p class="chapter-desc">金推荐的对他影响最深的作品</p>
+          <div class="chapter-chapters">Appendix</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">通往地狱的路，是由副词铺就的。</p>
+      <p class="quote-attr">— — Toolbox 章节</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">如果你没有时间读书，你就没有时间写作。</p>
+      <p class="quote-attr">— — On Writing</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">写作不是为了赚钱、出名、找对象……最终是为了让彼此的生活更丰富。</p>
+      <p class="quote-attr">— — 结尾</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">恐惧是一切。恐惧是最好的素材。</p>
+      <p class="quote-attr">— — 论恐怖写作</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">业余者坐等灵感，职业者每天按时上班干活。</p>
+      <p class="quote-attr">— — 论纪律</p>
+    </div>
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>建立写作仪式</h4>
+          <p>固定时间、固定地点、固定字数。不要等灵感，灵感会在写作中到来。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>删掉10%</h4>
+          <p>改稿时狠心删掉所有不必要的副词、形容词和过渡句，让文字更有力。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>读你写的类型</h4>
+          <p>写恐怖就大量读恐怖，写科幻就大量读科幻。不读同类型作品等于闭眼开车。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>让角色自己行动</h4>
+          <p>不要过度控制角色，给他们真实的情境，看他们会做什么。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>写你真正害怕的</h4>
+          <p>最打动人的作品来自作家最真实的恐惧和渴望，而不是编造的套路。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4> aspiring 作家</h4>
+        <p>最实用的写作入门指南，没有空洞理论</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>类型小说作者</h4>
+        <p>金是类型小说大师，他的方法对悬疑、恐怖、科幻尤其有效</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>写作拖延者</h4>
+        <p>金的纪律观能打破'等灵感'的幻想</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>文字工作者</h4>
+        <p>编辑、记者、文案都能从'删掉10%'中受益</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>斯蒂芬·金读者</h4>
+        <p>了解金的作品如何诞生，读他的小说会有新体会</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>创意写作学生</h4>
+        <p>比大多数MFA课程更真实、更接地气的写作课</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>On Writing: A Memoir of the Craft · Stephen King · 2000</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 06 月 年 月 24 日</p>
+</footer>
+
+</body>
+</html>
