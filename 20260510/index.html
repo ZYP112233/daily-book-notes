@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读书笔记 ·《刻意练习》— 安德斯·艾利克森 / 罗伯特·普尔</title>
+<title>读书笔记 ·《道德动物》— 罗伯特·赖特</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -757,45 +757,6 @@ section {
   }
 }
 
-
-/* ============ BACK TO INDEX BUTTON ============ */
-.back-to-index {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.2rem;
-  background: var(--ink, #2c2416);
-  color: var(--paper, #fdfaf2);
-  font-family: var(--serif-cn, 'Noto Serif SC', serif);
-  font-size: 0.85rem;
-  border-radius: 24px;
-  text-decoration: none;
-  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
-  transition: all 0.3s ease;
-  opacity: 0.85;
-}
-.back-to-index:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
-}
-.back-to-index svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-@media (max-width: 768px) {
-  .back-to-index {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-}
 </style>
 </head>
 <body>
@@ -808,13 +769,13 @@ section {
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-label">Reading Notes · 2026-07-08</div>
-    <h1 class="hero-title">刻意练习</h1>
-    <div class="hero-title-en">Peak: Secrets from the New Science of Expertise</div>
+    <div class="hero-label">Reading Notes · 2026-05-10</div>
+    <h1 class="hero-title">道德动物</h1>
+    <div class="hero-title-en">The Moral Animal</div>
     <div class="hero-divider"></div>
     <div class="hero-author">
-      安德斯·艾利克森 / 罗伯特·普尔 K. Anders Ericsson / Robert Pool
-      <span class="subtitle">心理表征 · 刻意练习 · 专家之路</span>
+      罗伯特·赖特 Robert Wright
+      <span class="subtitle">进化心理学 · 道德起源 · 社会行为</span>
     </div>
   </div>
   <div class="scroll-hint">scroll ↓</div>
@@ -831,26 +792,26 @@ section {
     <div class="book-info">
       <div class="info-item">
         <div class="info-label">Author</div>
-        <div class="info-value">安德斯·艾利克森 / 罗伯特·普尔
-          <span class="sub">K. Anders Ericsson / Robert Pool</span>
+        <div class="info-value">罗伯特·赖特
+          <span class="sub">Robert Wright</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Field</div>
-        <div class="info-value">认知心理学·技能习得
-          <span class="sub">心理表征 · 刻意练习 · 专家之路</span>
+        <div class="info-value">进化心理学·道德
+          <span class="sub">进化心理学 / 道德起源</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Published</div>
-        <div class="info-value">2016 年
-          <span class="sub">"一万小时定律"的原始研究者的权威著作</span>
+        <div class="info-value">1994 年
+          <span class="sub">The Moral Animal</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Core Thesis</div>
-        <div class="info-value">天才不是天生的，而是刻意练习的结果——但关键在于"刻意"，而非简单的重复
-          <span class="sub">心理表征 · 刻意练习 · 专家之路</span>
+        <div class="info-value">我们的道德直觉不是神的恩赐，而是自然选择在漫长进化中塑造的生存策略
+          <span class="sub">进化心理学 · 道德起源 · 社会行为</span>
         </div>
       </div>
     </div>
@@ -859,7 +820,7 @@ section {
   <!-- ONE-SENTENCE OVERVIEW -->
   <section class="overview">
     <div class="overview-quote">
-      一万小时不够，因为重复不等于进步——真正的进步来自有目的、有反馈、走出舒适区的"刻意"练习。
+      赖特用进化心理学的视角，重新解读人类的爱情、友谊、嫉妒、道德——所有这些看似"高尚"的情感，都可以追溯到基因的自私逻辑。这不是贬低人性，而是理解人性的起点。
     </div>
   </section>
 
@@ -868,41 +829,37 @@ section {
     <div class="section-label">The Core Framework</div>
     <h2 class="section-title">两大核心思想</h2>
     <div class="section-rule"></div>
-    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
-    </p>
     <div class="core-ideas">
-
-      <div class="idea-card idea01">
+      <div class="idea-card idea1">
         <div class="idea-badge">● Idea 01</div>
-        <h3 class="idea-name">天才是训练出来的</h3>
-        <p class="idea-tagline">打破"天赋神话"</p>
+        <h3 class="idea-name">道德的进化根源</h3>
+        <p class="idea-tagline">我们的"善"，来自基因的"自私"</p>
         <ul class="idea-points">
-          <li>莫扎特不是天才，而是 3 岁开始被父亲高强度训练</li>
-          <li>所谓"天赋"只是早期训练的结果被误读了</li>
-          <li>大脑具有强大的适应能力（神经可塑性）</li>
-          <li>长期刻意练习会改变大脑的物理结构</li>
-          <li>没有"天生不能"，只有"还没练够"</li>
-          <li>唯一例外：身高等物理限制（如篮球运动员）</li>
+          <li>利他行为的进化解释：亲缘选择——帮助亲属就是帮助自己的基因</li>
+          <li>互惠利他：帮助非亲属，因为预期未来会得到回报</li>
+          <li>道德情感是进化的"软件"：内疚、羞耻、愤怒都是社会控制工具</li>
+          <li>公平感不是抽象原则，而是进化出的合作维持机制</li>
+          <li>道德双标：我们对亲属更宽容，对外人更严苛——这是进化设计</li>
+          <li>"道德"是基因利益的意识形态包装</li>
         </ul>
         <div class="idea-example">
-          莫扎特 6 岁作曲？他父亲是音乐教育家<br>从他出生起就在进行"刻意训练"——这是训练，不是天赋
+          母亲为孩子牺牲 → 不是"无私"，而是亲缘选择<br>朋友互相帮助 → 不是"高尚"，而是互惠利他
         </div>
       </div>
-      <div class="idea-card idea02">
+      <div class="idea-card idea2">
         <div class="idea-badge">● Idea 02</div>
-        <h3 class="idea-name">刻意练习的要素</h3>
-        <p class="idea-tagline">不是重复，而是有目的的训练</p>
+        <h3 class="idea-name">达尔文主义的日常生活</h3>
+        <p class="idea-tagline">用进化视角重新理解日常行为</p>
         <ul class="idea-points">
-          <li>明确的目标：每次练习都有具体的改进方向</li>
-          <li>专注：全神贯注，不是"自动驾驶"</li>
-          <li>反馈：立刻知道哪里错了、如何改进</li>
-          <li>走出舒适区：持续挑战"刚好做不到"的水平</li>
-          <li>心理表征：建立对领域的内在认知模型</li>
-          <li>好老师：提供正确的训练方法和即时反馈</li>
+          <li>爱情：不是浪漫命运，而是配偶选择的进化策略</li>
+          <li>嫉妒：不是性格缺陷，而是配偶保卫的适应机制</li>
+          <li>地位追求：不是虚荣，而是繁殖优势的进化驱动</li>
+          <li>道德伪善：我们谴责别人的自私，却合理化自己的——因为基因利益不同</li>
+          <li>自我欺骗：相信自己的谎言，才能更好欺骗别人</li>
+          <li>理解这些不是要否定人性，而是更诚实地面对它</li>
         </ul>
         <div class="idea-example">
-          弹 100 遍同样的曲子 ≠ 刻意练习<br>每次只练一个难点、录音回听、调整指法 = 刻意练习
+          男人更在意伴侣的身体忠诚 → 父权不确定性<br>女人更在意伴侣的情感忠诚 → 资源保障需求
         </div>
       </div>
     </div>
@@ -913,53 +870,56 @@ section {
     <div class="section-label">Key Concepts</div>
     <h2 class="section-title">关键概念</h2>
     <div class="section-rule"></div>
-    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
-    </p>
     <div class="concept-grid">
 
       <div class="concept-card">
         <div class="concept-num">No. 01</div>
-        <h3 class="concept-name">心理表征</h3>
-        <div class="concept-name-en">Mental Representation</div>
-        <p class="concept-desc">专家与新手的根本区别：专家建立了精密的"心理表征"——对领域的内在认知模型，能快速识别模式、预测结果。</p>
-        <div class="concept-eg"><strong>例</strong> 国际象棋大师看棋盘，看到的不是棋子位置，而是"攻防态势"——这就是心理表征。</div>
+        <h3 class="concept-name">亲缘选择</h3>
+        <div class="concept-name-en">Kin Selection</div>
+        <p class="concept-desc">帮助与自己共享基因的亲属，间接传递自己的基因。"我愿意为两个兄弟或八个表亲献出生命。"</p>
+        <div class="concept-eg"><strong>例</strong> 母亲为孩子牺牲→ 因为孩子携带50%的相同基因。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 02</div>
-        <h3 class="concept-name">天真的练习</h3>
-        <div class="concept-name-en">Naive Practice</div>
-        <p class="concept-desc">只是重复做某事，不设定目标、不寻求反馈、不走出舒适区。这种练习即使 10000 小时也不会成为专家。</p>
-        <div class="concept-eg"><strong>例</strong> 每天开车上下班 20 年 ≠ 赛车手。因为你在"自动驾驶"，没有刻意提升。</div>
+        <h3 class="concept-name">互惠利他</h3>
+        <div class="concept-name-en">Reciprocal Altruism</div>
+        <p class="concept-desc">帮助非亲属，预期未来得到回报。需要记忆、识别、惩罚欺骗者的能力。</p>
+        <div class="concept-eg"><strong>例</strong> 灵长类互相理毛→ 建立联盟→ 未来互相支持。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 03</div>
-        <h3 class="concept-name">有目的的练习</h3>
-        <div class="concept-name-en">Purposeful Practice</div>
-        <p class="concept-desc">刻意练习的基础版：有明确目标、专注、反馈、走出舒适区。比天真的练习有效得多，但还不是最高效的。</p>
-        <div class="concept-eg"><strong>例</strong> 每天练 30 分钟吉他，每次只攻克一个小节——这就是有目的的练习。</div>
+        <h3 class="concept-name">配偶选择</h3>
+        <div class="concept-name-en">Mate Choice</div>
+        <p class="concept-desc">性选择驱动的特征：孔雀的尾巴、人类的幽默感、艺术才能——都是"好基因"的信号。</p>
+        <div class="concept-eg"><strong>例</strong> 男人的幽默感 → 智力信号 → 吸引配偶。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 04</div>
-        <h3 class="concept-name">3F 原则</h3>
-        <div class="concept-name-en">3F: Focus, Feedback, Fix it</div>
-        <p class="concept-desc">刻意练习的核心循环：Focus（专注）、Feedback（反馈）、Fix it（修正）。不断循环，持续改进。</p>
-        <div class="concept-eg"><strong>例</strong> 演讲练习：专注一个技巧→录像回看（反馈）→调整（修正）→再练→循环。</div>
+        <h3 class="concept-name">道德情感</h3>
+        <div class="concept-name-en">Moral Emotions</div>
+        <p class="concept-desc">内疚、羞耻、愤怒、同情——这些情感是进化出的社会控制工具，维持合作。</p>
+        <div class="concept-eg"><strong>例</strong> 内疚→ 防止你伤害合作者→ 维持关系→ 长期获益。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 05</div>
-        <h3 class="concept-name">舒适区边缘</h3>
-        <div class="concept-name-en">Edge of Comfort Zone</div>
-        <p class="concept-desc">进步发生在舒适区的边缘——不太难（不会崩溃），不太简单（不会无聊）。这个"甜蜜点"因人而异，需要持续探索。</p>
-        <div class="concept-eg"><strong>例</strong> 跑步训练：配速刚好比舒适速度快一点——累但能坚持，这就是进步最快的区域。</div>
+        <h3 class="concept-name">自我欺骗</h3>
+        <div class="concept-name-en">Self-Deception</div>
+        <p class="concept-desc">相信自己编造的谎言，才能更有效地欺骗别人。进化上的优势：不被识破。</p>
+        <div class="concept-eg"><strong>例</strong> 政客真心相信自己的承诺→ 说谎时不会被微表情出卖。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 06</div>
-        <h3 class="concept-name">停滞的突破</h3>
-        <div class="concept-name-en">Breaking Through Plateaus</div>
-        <p class="concept-desc">遇到平台期不是"练够了"，而是方法不对。需要改变训练方式、挑战不同的方面、寻求新的反馈。</p>
-        <div class="concept-eg"><strong>例</strong> 打字速度停在 80 WPM？换个键盘、改变指法、练习不同文本——打破自动化，重新开始刻意。</div>
+        <h3 class="concept-name">进化错配</h3>
+        <div class="concept-name-en">Evolutionary Mismatch</div>
+        <p class="concept-desc">进化适应的环境与现代环境不同，导致"过时"的本能产生问题。</p>
+        <div class="concept-eg"><strong>例</strong> 嗜糖本能→ 在食物稀缺时有利→ 在现代导致肥胖。</div>
       </div>
+
     </div>
   </section>
 
@@ -968,56 +928,48 @@ section {
     <div class="section-label">Book Structure</div>
     <h2 class="section-title">全书章节脉络</h2>
     <div class="section-rule"></div>
-    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
-    </p>
     <div class="chapter-map">
 
       <div class="chapter-part">
         <div class="chapter-roman">Ⅰ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">天才是训练出来的</h3>
-          <div class="chapter-title-en">The Making of an Expert</div>
-          <p class="chapter-desc">打破天赋神话。莫扎特、国际象棋大师、外科专家——都是长期刻意练习的结果。</p>
-          <div class="chapter-chapters">Ch. 1 — 3</div>
+          <h3 class="chapter-title">达尔文与人类行为</h3>
+          <div class="chapter-title-en">Darwin and Human Behavior</div>
+          <p class="chapter-desc">达尔文的进化论如何解释人类的社会行为？从《人类的由来》出发。</p>
+          <div class="chapter-chapters">Ch. 1 — 4</div>
         </div>
       </div>
+
       <div class="chapter-part">
         <div class="chapter-roman">Ⅱ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">大脑的适应能力</h3>
-          <div class="chapter-title-en">Brain Adaptability</div>
-          <p class="chapter-desc">神经可塑性：大脑能根据训练改变物理结构。伦敦出租车司机海马体更大——因为记忆地图的训练。</p>
-          <div class="chapter-chapters">Ch. 4 — 5</div>
+          <h3 class="chapter-title">社会生活的进化</h3>
+          <div class="chapter-title-en">Evolution of Social Life</div>
+          <p class="chapter-desc">亲缘选择、互惠利他、配偶选择——社会行为的三大进化机制。</p>
+          <div class="chapter-chapters">Ch. 5 — 10</div>
         </div>
       </div>
+
       <div class="chapter-part">
         <div class="chapter-roman">Ⅲ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">刻意练习的方法</h3>
-          <div class="chapter-title-en">How to Practice Deliberately</div>
-          <p class="chapter-desc">刻意练习的要素：目标、专注、反馈、心理表征、走出舒适区。与"天真的练习"的区别。</p>
-          <div class="chapter-chapters">Ch. 6 — 8</div>
+          <h3 class="chapter-title">道德情感的起源</h3>
+          <div class="chapter-title-en">Origins of Moral Emotions</div>
+          <p class="chapter-desc">内疚、羞耻、愤怒、同情——道德情感的进化功能。</p>
+          <div class="chapter-chapters">Ch. 11 — 14</div>
         </div>
       </div>
+
       <div class="chapter-part">
         <div class="chapter-roman">Ⅳ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">应用与误区</h3>
-          <div class="chapter-title-en">Applications & Misconceptions</div>
-          <p class="chapter-desc">在教育、职场、体育中的应用。"一万小时定律"的误区：重复不等于进步。</p>
-          <div class="chapter-chapters">Ch. 9 — 10</div>
+          <h3 class="chapter-title">自我欺骗与道德伪善</h3>
+          <div class="chapter-title-en">Self-Deception & Moral Hypocrisy</div>
+          <p class="chapter-desc">为什么我们对自己和对别人用不同的道德标准？进化心理学的解释。</p>
+          <div class="chapter-chapters">Ch. 15 — 17 + 结语</div>
         </div>
       </div>
-      <div class="chapter-part">
-        <div class="chapter-roman">Ⅴ</div>
-        <div class="chapter-body">
-          <h3 class="chapter-title">通往卓越的路径</h3>
-          <div class="chapter-title-en">Path to Excellence</div>
-          <p class="chapter-desc">如何在日常生活中应用刻意练习：设定目标、寻找反馈、保持动机、突破平台期。</p>
-          <div class="chapter-chapters">Ch. 11 — 结语</div>
-        </div>
-      </div>
+
     </div>
   </section>
 
@@ -1028,25 +980,25 @@ section {
     <div class="section-rule"></div>
 
     <div class="quote-block">
-      <p class="quote-text">天才是训练出来的。我们创造了自己的潜能。</p>
-      <p class="quote-attr">— — K. Anders Ericsson</p>
+      <p class="quote-text">我们的道德直觉不是神的恩赐，而是自然选择的产物。</p>
+      <p class="quote-attr">— Robert Wright</p>
     </div>
+
     <div class="quote-block">
-      <p class="quote-text">一万小时定律的问题不在于时间不够，而在于大多数人只是在"天真地练习"。</p>
-      <p class="quote-attr">— — 论一万小时定律</p>
+      <p class="quote-text">理解自私的基因，不是要否定利他行为，而是理解它为何存在。</p>
+      <p class="quote-attr">— 论进化心理学</p>
     </div>
+
     <div class="quote-block">
-      <p class="quote-text">如果你从不走出舒适区，你就永远不会进步。</p>
-      <p class="quote-attr">— — 论刻意练习</p>
+      <p class="quote-text">自我欺骗的进化优势：相信自己编造的谎言，才能更好欺骗别人。</p>
+      <p class="quote-attr">— 论道德伪善</p>
     </div>
+
     <div class="quote-block">
-      <p class="quote-text">专家与新手的区别，不在于能力，而在于心理表征的质量。</p>
-      <p class="quote-attr">— — 论心理表征</p>
+      <p class="quote-text">嫉妒不是性格缺陷，而是进化出的配偶保卫机制——虽然现代人不需要它。</p>
+      <p class="quote-attr">— 论进化错配</p>
     </div>
-    <div class="quote-block">
-      <p class="quote-text">遇到平台期不是终点，而是提醒你该换方法的信号。</p>
-      <p class="quote-attr">— — 论突破停滞</p>
-    </div>
+
   </section>
 
   <!-- ACTION INSIGHTS -->
@@ -1059,38 +1011,43 @@ section {
       <li class="insight-item">
         <div class="insight-num">1</div>
         <div class="insight-content">
-          <h4>区分"练习"和"重复"</h4>
-          <p>每天做同样的事 10 年 ≠ 专家。真正的练习需要：设定目标、专注投入、获取反馈、修正改进。没有这些，只是重复。</p>
+          <h4>用进化视角审视日常行为</h4>
+          <p>问自己：这个行为的进化功能是什么？嫉妒、愤怒、同情——都不是"无缘无故"的。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">2</div>
         <div class="insight-content">
-          <h4>为每次练习设定微目标</h4>
-          <p>不要"练 2 小时钢琴"，而是"今天攻克第 3 小节的跨指"。越具体，进步越快。</p>
+          <h4>识别"进化错配"</h4>
+          <p>很多现代问题源于"过时"的本能。嗜糖、八卦、地位焦虑——在原始环境有用，在现代有害。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">3</div>
         <div class="insight-content">
-          <h4>主动寻求反馈</h4>
-          <p>没有反馈的练习是盲目的。录音、录像、找老师、找同行——任何能让你知道"哪里错了"的方式都值得。</p>
+          <h4>警惕道德伪善</h4>
+          <p>我们对自己和对别人用不同的道德标准。承认这一点，是走向真正道德的第一步。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">4</div>
         <div class="insight-content">
-          <h4>在舒适区边缘训练</h4>
-          <p>太简单会无聊，太难会崩溃。找到"刚好有点吃力但能做到"的难度，这就是进步最快的区域。</p>
+          <h4>理解情感的功能</h4>
+          <p>内疚、羞耻、愤怒不是"负面情绪"，而是进化出的社会控制工具。理解它们，才能更好地管理它们。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">5</div>
         <div class="insight-content">
-          <h4>突破平台期的策略</h4>
-          <p>遇到停滞不要加量，要换方法。改变练习内容、换一种工具、从不同角度切入——打破自动化，重新开始刻意。</p>
+          <h4>不要否定人性，要理解它</h4>
+          <p>进化心理学不是要贬低人性，而是更诚实地面对它。只有理解"为什么"，才能决定"应该怎样"。</p>
         </div>
       </li>
+
     </ol>
   </section>
 
@@ -1103,48 +1060,40 @@ section {
 
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>技能学习者</h4>
-        <p>学乐器、运动、编程——任何需要刻意练习的领域</p>
+        <h4>心理学爱好者</h4>
+        <p>进化心理学的入门经典，用达尔文视角重新理解人性</p>
       </div>
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>教育工作者</h4>
-        <p>理解如何帮助学生有效练习，而非只是"多做题"</p>
+        <h4>哲学思考者</h4>
+        <p>道德的起源是什么？这本书给出进化论的答案</p>
       </div>
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>职场人士</h4>
-        <p>10 年经验不等于专家——需要刻意提升而非简单重复</p>
+        <h4>对人际关系感兴趣的人</h4>
+        <p>爱情、友谊、嫉妒——用进化视角重新理解日常情感</p>
       </div>
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>家长</h4>
-        <p>理解"天赋"的真相，给孩子正确的训练方法而非压力</p>
+        <h4>所有想"理解自己"的人</h4>
+        <p>为什么我们会这样做？答案可能在百万年前的草原上</p>
       </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>遇到瓶颈的人</h4>
-        <p>练了很久没有进步？问题不在时间，而在方法</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>所有想成为专家的人</h4>
-        <p>如果你只读一本关于技能习得的书，就是这一本</p>
-      </div>
+
     </div>
   </section>
 
 </main>
 
-<!-- ============ BACK TO INDEX ============ -->
-<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
-
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bookmark"></div>
-  <p>Peak: Secrets from the New Science of Expertise · K. Anders Ericsson / Robert Pool · 2016</p>
-  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 07 月 年 月 08 日</p>
+  <p>The Moral Animal · Robert Wright · 1994</p>
+  <p class="footer-cn">每日读书笔记 · 2026 年 05 月 10 日</p>
 </footer>
 
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
 </body>
 </html>

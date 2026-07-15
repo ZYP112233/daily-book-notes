@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读书笔记 ·《刻意练习》— 安德斯·艾利克森 / 罗伯特·普尔</title>
+<title>读书笔记 ·《超预测》— 菲利普·泰洛克</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -757,45 +757,6 @@ section {
   }
 }
 
-
-/* ============ BACK TO INDEX BUTTON ============ */
-.back-to-index {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.2rem;
-  background: var(--ink, #2c2416);
-  color: var(--paper, #fdfaf2);
-  font-family: var(--serif-cn, 'Noto Serif SC', serif);
-  font-size: 0.85rem;
-  border-radius: 24px;
-  text-decoration: none;
-  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
-  transition: all 0.3s ease;
-  opacity: 0.85;
-}
-.back-to-index:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
-}
-.back-to-index svg {
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-@media (max-width: 768px) {
-  .back-to-index {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-}
 </style>
 </head>
 <body>
@@ -808,13 +769,13 @@ section {
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-label">Reading Notes · 2026-07-08</div>
-    <h1 class="hero-title">刻意练习</h1>
-    <div class="hero-title-en">Peak: Secrets from the New Science of Expertise</div>
+    <div class="hero-label">Reading Notes · 2026-05-07</div>
+    <h1 class="hero-title">超预测</h1>
+    <div class="hero-title-en">Superforecasting</div>
     <div class="hero-divider"></div>
     <div class="hero-author">
-      安德斯·艾利克森 / 罗伯特·普尔 K. Anders Ericsson / Robert Pool
-      <span class="subtitle">心理表征 · 刻意练习 · 专家之路</span>
+      菲利普·泰洛克 Philip Tetlock
+      <span class="subtitle">预测能力 · 概率思维 · 贝叶斯更新</span>
     </div>
   </div>
   <div class="scroll-hint">scroll ↓</div>
@@ -831,26 +792,26 @@ section {
     <div class="book-info">
       <div class="info-item">
         <div class="info-label">Author</div>
-        <div class="info-value">安德斯·艾利克森 / 罗伯特·普尔
-          <span class="sub">K. Anders Ericsson / Robert Pool</span>
+        <div class="info-value">菲利普·泰洛克
+          <span class="sub">Philip Tetlock</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Field</div>
-        <div class="info-value">认知心理学·技能习得
-          <span class="sub">心理表征 · 刻意练习 · 专家之路</span>
+        <div class="info-value">预测科学·决策
+          <span class="sub">预测能力 / 概率思维</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Published</div>
-        <div class="info-value">2016 年
-          <span class="sub">"一万小时定律"的原始研究者的权威著作</span>
+        <div class="info-value">2015 年
+          <span class="sub">Superforecasting</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Core Thesis</div>
-        <div class="info-value">天才不是天生的，而是刻意练习的结果——但关键在于"刻意"，而非简单的重复
-          <span class="sub">心理表征 · 刻意练习 · 专家之路</span>
+        <div class="info-value">预测不是天赋，而是一种可训练的技能——关键在于思维方式而非智力
+          <span class="sub">预测能力 · 概率思维 · 贝叶斯更新</span>
         </div>
       </div>
     </div>
@@ -859,7 +820,7 @@ section {
   <!-- ONE-SENTENCE OVERVIEW -->
   <section class="overview">
     <div class="overview-quote">
-      一万小时不够，因为重复不等于进步——真正的进步来自有目的、有反馈、走出舒适区的"刻意"练习。
+      泰洛克用20年的研究证明：大多数专家的预测不比随机猜测好多少。但有一小群"超级预测者"，他们的准确率远超情报分析师。秘密不是更聪明，而是更谦逊、更灵活、更善于更新。
     </div>
   </section>
 
@@ -868,41 +829,37 @@ section {
     <div class="section-label">The Core Framework</div>
     <h2 class="section-title">两大核心思想</h2>
     <div class="section-rule"></div>
-    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
-    </p>
     <div class="core-ideas">
-
-      <div class="idea-card idea01">
+      <div class="idea-card idea1">
         <div class="idea-badge">● Idea 01</div>
-        <h3 class="idea-name">天才是训练出来的</h3>
-        <p class="idea-tagline">打破"天赋神话"</p>
+        <h3 class="idea-name">超级预测者的思维特征</h3>
+        <p class="idea-tagline">不是更聪明，而是更会思考</p>
         <ul class="idea-points">
-          <li>莫扎特不是天才，而是 3 岁开始被父亲高强度训练</li>
-          <li>所谓"天赋"只是早期训练的结果被误读了</li>
-          <li>大脑具有强大的适应能力（神经可塑性）</li>
-          <li>长期刻意练习会改变大脑的物理结构</li>
-          <li>没有"天生不能"，只有"还没练够"</li>
-          <li>唯一例外：身高等物理限制（如篮球运动员）</li>
+          <li>概率思维：不说"会发生"或"不会发生"，而是给出具体概率</li>
+          <li>谦逊：承认自己可能错，愿意根据新证据改变判断</li>
+          <li>贝叶斯更新：从小步调整开始，每次新信息都微调概率</li>
+          <li>分析能力：把大问题拆成小问题，逐一评估</li>
+          <li>开放性：主动寻找反对自己的证据</li>
+          <li>自我反思：定期回顾自己的预测，找出错误模式</li>
         </ul>
         <div class="idea-example">
-          莫扎特 6 岁作曲？他父亲是音乐教育家<br>从他出生起就在进行"刻意训练"——这是训练，不是天赋
+          普通专家："一定会涨"<br>超级预测者："65%概率涨，但如果X发生则降到40%"
         </div>
       </div>
-      <div class="idea-card idea02">
+      <div class="idea-card idea2">
         <div class="idea-badge">● Idea 02</div>
-        <h3 class="idea-name">刻意练习的要素</h3>
-        <p class="idea-tagline">不是重复，而是有目的的训练</p>
+        <h3 class="idea-name">蜻蜓眼与狐狸思维</h3>
+        <p class="idea-tagline">知道很多小事，比知道一件大事更有用</p>
         <ul class="idea-points">
-          <li>明确的目标：每次练习都有具体的改进方向</li>
-          <li>专注：全神贯注，不是"自动驾驶"</li>
-          <li>反馈：立刻知道哪里错了、如何改进</li>
-          <li>走出舒适区：持续挑战"刚好做不到"的水平</li>
-          <li>心理表征：建立对领域的内在认知模型</li>
-          <li>好老师：提供正确的训练方法和即时反馈</li>
+          <li>刺猬型：用一个宏大理论解释一切——通常预测很差</li>
+          <li>狐狸型：知道很多小东西，灵活组合——预测更准</li>
+          <li>超级预测者都是狐狸：不追求统一理论，而是多角度拼凑</li>
+          <li>蜻蜓眼：从多个视角看问题，而非单一框架</li>
+          <li>"足够好"的多个模型 > "完美"的单一模型</li>
+          <li>承认复杂性，而非简化它</li>
         </ul>
         <div class="idea-example">
-          弹 100 遍同样的曲子 ≠ 刻意练习<br>每次只练一个难点、录音回听、调整指法 = 刻意练习
+          刺猬："历史是阶级斗争"→ 所有问题都用这个解释<br>狐狸：经济+文化+制度+心理→ 多角度拼出更准确的图景
         </div>
       </div>
     </div>
@@ -913,53 +870,56 @@ section {
     <div class="section-label">Key Concepts</div>
     <h2 class="section-title">关键概念</h2>
     <div class="section-rule"></div>
-    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
-    </p>
     <div class="concept-grid">
 
       <div class="concept-card">
         <div class="concept-num">No. 01</div>
-        <h3 class="concept-name">心理表征</h3>
-        <div class="concept-name-en">Mental Representation</div>
-        <p class="concept-desc">专家与新手的根本区别：专家建立了精密的"心理表征"——对领域的内在认知模型，能快速识别模式、预测结果。</p>
-        <div class="concept-eg"><strong>例</strong> 国际象棋大师看棋盘，看到的不是棋子位置，而是"攻防态势"——这就是心理表征。</div>
+        <h3 class="concept-name">概率思维</h3>
+        <div class="concept-name-en">Probabilistic Thinking</div>
+        <p class="concept-desc">用概率而非确定性来描述未来。不说"会"或"不会"，而是"70%可能"。</p>
+        <div class="concept-eg"><strong>例</strong> "70%概率下雨"比"会下雨"更准确、更有用。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 02</div>
-        <h3 class="concept-name">天真的练习</h3>
-        <div class="concept-name-en">Naive Practice</div>
-        <p class="concept-desc">只是重复做某事，不设定目标、不寻求反馈、不走出舒适区。这种练习即使 10000 小时也不会成为专家。</p>
-        <div class="concept-eg"><strong>例</strong> 每天开车上下班 20 年 ≠ 赛车手。因为你在"自动驾驶"，没有刻意提升。</div>
+        <h3 class="concept-name">贝叶斯更新</h3>
+        <div class="concept-name-en">Bayesian Updating</div>
+        <p class="concept-desc">根据新证据逐步调整信念。不追求一次到位，而是持续微调。</p>
+        <div class="concept-eg"><strong>例</strong> 初始判断60%→ 新证据出现→ 调到65%→ 再新证据→ 调到58%。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 03</div>
-        <h3 class="concept-name">有目的的练习</h3>
-        <div class="concept-name-en">Purposeful Practice</div>
-        <p class="concept-desc">刻意练习的基础版：有明确目标、专注、反馈、走出舒适区。比天真的练习有效得多，但还不是最高效的。</p>
-        <div class="concept-eg"><strong>例</strong> 每天练 30 分钟吉他，每次只攻克一个小节——这就是有目的的练习。</div>
+        <h3 class="concept-name">刺猬与狐狸</h3>
+        <div class="concept-name-en">Hedgehog vs Fox</div>
+        <p class="concept-desc">刺猬用一个理论解释一切，狐狸知道很多小事。狐狸的预测通常更准。</p>
+        <div class="concept-eg"><strong>例</strong> 马克思是刺猬（一切皆阶级斗争），达尔文是狐狸（多角度观察）。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 04</div>
-        <h3 class="concept-name">3F 原则</h3>
-        <div class="concept-name-en">3F: Focus, Feedback, Fix it</div>
-        <p class="concept-desc">刻意练习的核心循环：Focus（专注）、Feedback（反馈）、Fix it（修正）。不断循环，持续改进。</p>
-        <div class="concept-eg"><strong>例</strong> 演讲练习：专注一个技巧→录像回看（反馈）→调整（修正）→再练→循环。</div>
+        <h3 class="concept-name">预测校准</h3>
+        <div class="concept-name-en">Calibration</div>
+        <p class="concept-desc">当你说"70%可能"时，实际发生的频率应该接近70%。校准越好，预测越可靠。</p>
+        <div class="concept-eg"><strong>例</strong> 如果你说"100%确定"的事只有80%发生，你需要更谦逊。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 05</div>
-        <h3 class="concept-name">舒适区边缘</h3>
-        <div class="concept-name-en">Edge of Comfort Zone</div>
-        <p class="concept-desc">进步发生在舒适区的边缘——不太难（不会崩溃），不太简单（不会无聊）。这个"甜蜜点"因人而异，需要持续探索。</p>
-        <div class="concept-eg"><strong>例</strong> 跑步训练：配速刚好比舒适速度快一点——累但能坚持，这就是进步最快的区域。</div>
+        <h3 class="concept-name">分解问题</h3>
+        <div class="concept-name-en">Decomposition</div>
+        <p class="concept-desc">把大问题拆成小问题，分别评估概率，再用数学组合。</p>
+        <div class="concept-eg"><strong>例</strong> "奥巴马会连任吗？"→ 拆成经济、支持率、对手实力等子问题。</div>
       </div>
+
       <div class="concept-card">
         <div class="concept-num">No. 06</div>
-        <h3 class="concept-name">停滞的突破</h3>
-        <div class="concept-name-en">Breaking Through Plateaus</div>
-        <p class="concept-desc">遇到平台期不是"练够了"，而是方法不对。需要改变训练方式、挑战不同的方面、寻求新的反馈。</p>
-        <div class="concept-eg"><strong>例</strong> 打字速度停在 80 WPM？换个键盘、改变指法、练习不同文本——打破自动化，重新开始刻意。</div>
+        <h3 class="concept-name">成长心态</h3>
+        <div class="concept-name-en">Growth Mindset</div>
+        <p class="concept-desc">相信预测能力可以通过练习提高。失败不是终点，而是学习机会。</p>
+        <div class="concept-eg"><strong>例</strong> 超级预测者不是天才，而是持续练习、反思、改进的普通人。</div>
       </div>
+
     </div>
   </section>
 
@@ -968,56 +928,48 @@ section {
     <div class="section-label">Book Structure</div>
     <h2 class="section-title">全书章节脉络</h2>
     <div class="section-rule"></div>
-    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
-    </p>
     <div class="chapter-map">
 
       <div class="chapter-part">
         <div class="chapter-roman">Ⅰ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">天才是训练出来的</h3>
-          <div class="chapter-title-en">The Making of an Expert</div>
-          <p class="chapter-desc">打破天赋神话。莫扎特、国际象棋大师、外科专家——都是长期刻意练习的结果。</p>
+          <h3 class="chapter-title">专家预测有多准</h3>
+          <div class="chapter-title-en">How Good Are Expert Forecasts</div>
+          <p class="chapter-desc">20年研究结论：大多数专家的预测不比掷飞镖好。问题出在哪里？</p>
           <div class="chapter-chapters">Ch. 1 — 3</div>
         </div>
       </div>
+
       <div class="chapter-part">
         <div class="chapter-roman">Ⅱ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">大脑的适应能力</h3>
-          <div class="chapter-title-en">Brain Adaptability</div>
-          <p class="chapter-desc">神经可塑性：大脑能根据训练改变物理结构。伦敦出租车司机海马体更大——因为记忆地图的训练。</p>
-          <div class="chapter-chapters">Ch. 4 — 5</div>
+          <h3 class="chapter-title">超级预测者是谁</h3>
+          <div class="chapter-title-en">Who Are Superforecasters</div>
+          <p class="chapter-desc">好预测竞赛的发现：超级预测者的共同特征不是智力，而是思维方式。</p>
+          <div class="chapter-chapters">Ch. 4 — 7</div>
         </div>
       </div>
+
       <div class="chapter-part">
         <div class="chapter-roman">Ⅲ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">刻意练习的方法</h3>
-          <div class="chapter-title-en">How to Practice Deliberately</div>
-          <p class="chapter-desc">刻意练习的要素：目标、专注、反馈、心理表征、走出舒适区。与"天真的练习"的区别。</p>
-          <div class="chapter-chapters">Ch. 6 — 8</div>
+          <h3 class="chapter-title">如何像超级预测者一样思考</h3>
+          <div class="chapter-title-en">Thinking Like a Superforecaster</div>
+          <p class="chapter-desc">概率思维、贝叶斯更新、分解问题——具体的思维工具和方法。</p>
+          <div class="chapter-chapters">Ch. 8 — 10</div>
         </div>
       </div>
+
       <div class="chapter-part">
         <div class="chapter-roman">Ⅳ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">应用与误区</h3>
-          <div class="chapter-title-en">Applications & Misconceptions</div>
-          <p class="chapter-desc">在教育、职场、体育中的应用。"一万小时定律"的误区：重复不等于进步。</p>
-          <div class="chapter-chapters">Ch. 9 — 10</div>
+          <h3 class="chapter-title">组织与制度的改进</h3>
+          <div class="chapter-title-en">Improving Organizations</div>
+          <p class="chapter-desc">如何把超级预测者的方法应用到团队和机构中，提升集体判断力。</p>
+          <div class="chapter-chapters">Ch. 11 — 12 + 结语</div>
         </div>
       </div>
-      <div class="chapter-part">
-        <div class="chapter-roman">Ⅴ</div>
-        <div class="chapter-body">
-          <h3 class="chapter-title">通往卓越的路径</h3>
-          <div class="chapter-title-en">Path to Excellence</div>
-          <p class="chapter-desc">如何在日常生活中应用刻意练习：设定目标、寻找反馈、保持动机、突破平台期。</p>
-          <div class="chapter-chapters">Ch. 11 — 结语</div>
-        </div>
-      </div>
+
     </div>
   </section>
 
@@ -1028,25 +980,25 @@ section {
     <div class="section-rule"></div>
 
     <div class="quote-block">
-      <p class="quote-text">天才是训练出来的。我们创造了自己的潜能。</p>
-      <p class="quote-attr">— — K. Anders Ericsson</p>
+      <p class="quote-text">超级预测者的秘密不是更聪明，而是更谦逊、更灵活、更善于更新。</p>
+      <p class="quote-attr">— Philip Tetlock</p>
     </div>
+
     <div class="quote-block">
-      <p class="quote-text">一万小时定律的问题不在于时间不够，而在于大多数人只是在"天真地练习"。</p>
-      <p class="quote-attr">— — 论一万小时定律</p>
+      <p class="quote-text">不要问"会发生什么"，要问"发生的概率是多少"。</p>
+      <p class="quote-attr">— 论概率思维</p>
     </div>
+
     <div class="quote-block">
-      <p class="quote-text">如果你从不走出舒适区，你就永远不会进步。</p>
-      <p class="quote-attr">— — 论刻意练习</p>
+      <p class="quote-text">知道很多小事的狐狸，比知道一件大事的刺猬预测得更准。</p>
+      <p class="quote-attr">— 论狐狸思维</p>
     </div>
+
     <div class="quote-block">
-      <p class="quote-text">专家与新手的区别，不在于能力，而在于心理表征的质量。</p>
-      <p class="quote-attr">— — 论心理表征</p>
+      <p class="quote-text">预测能力不是天赋，而是刻意练习的结果。</p>
+      <p class="quote-attr">— Philip Tetlock</p>
     </div>
-    <div class="quote-block">
-      <p class="quote-text">遇到平台期不是终点，而是提醒你该换方法的信号。</p>
-      <p class="quote-attr">— — 论突破停滞</p>
-    </div>
+
   </section>
 
   <!-- ACTION INSIGHTS -->
@@ -1059,38 +1011,43 @@ section {
       <li class="insight-item">
         <div class="insight-num">1</div>
         <div class="insight-content">
-          <h4>区分"练习"和"重复"</h4>
-          <p>每天做同样的事 10 年 ≠ 专家。真正的练习需要：设定目标、专注投入、获取反馈、修正改进。没有这些，只是重复。</p>
+          <h4>用概率替代确定性</h4>
+          <p>不说"一定会"或"一定不会"，而是给出具体概率。"70%可能"比"会"更诚实、更有用。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">2</div>
         <div class="insight-content">
-          <h4>为每次练习设定微目标</h4>
-          <p>不要"练 2 小时钢琴"，而是"今天攻克第 3 小节的跨指"。越具体，进步越快。</p>
+          <h4>建立"预测日志"</h4>
+          <p>记录你的每个预测和当时的置信度。定期回顾，找出哪些判断偏差最大。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">3</div>
         <div class="insight-content">
-          <h4>主动寻求反馈</h4>
-          <p>没有反馈的练习是盲目的。录音、录像、找老师、找同行——任何能让你知道"哪里错了"的方式都值得。</p>
+          <h4>练习贝叶斯更新</h4>
+          <p>每次新信息出现时，问自己：这应该让我的判断上调还是下调多少？小步调整。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">4</div>
         <div class="insight-content">
-          <h4>在舒适区边缘训练</h4>
-          <p>太简单会无聊，太难会崩溃。找到"刚好有点吃力但能做到"的难度，这就是进步最快的区域。</p>
+          <h4>做狐狸而非刺猬</h4>
+          <p>不要追求一个宏大理论解释一切。多角度、多模型、多来源，拼出更准确的图景。</p>
         </div>
       </li>
+
       <li class="insight-item">
         <div class="insight-num">5</div>
         <div class="insight-content">
-          <h4>突破平台期的策略</h4>
-          <p>遇到停滞不要加量，要换方法。改变练习内容、换一种工具、从不同角度切入——打破自动化，重新开始刻意。</p>
+          <h4>主动寻找反对证据</h4>
+          <p>对每个判断，问：如果我错了，会是什么样子？什么证据能说服我改变主意？</p>
         </div>
       </li>
+
     </ol>
   </section>
 
@@ -1103,48 +1060,40 @@ section {
 
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>技能学习者</h4>
-        <p>学乐器、运动、编程——任何需要刻意练习的领域</p>
+        <h4>分析师与决策者</h4>
+        <p>提升预测准确率的具体方法论</p>
       </div>
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>教育工作者</h4>
-        <p>理解如何帮助学生有效练习，而非只是"多做题"</p>
+        <h4>投资者</h4>
+        <p>用概率思维替代直觉判断，做出更好的投资决策</p>
       </div>
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>职场人士</h4>
-        <p>10 年经验不等于专家——需要刻意提升而非简单重复</p>
+        <h4>管理者</h4>
+        <p>如何建立团队的集体判断力，避免群体盲思</p>
       </div>
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>家长</h4>
-        <p>理解"天赋"的真相，给孩子正确的训练方法而非压力</p>
+        <h4>所有想提高判断力的人</h4>
+        <p>预测不是天赋，是可以训练的技能</p>
       </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>遇到瓶颈的人</h4>
-        <p>练了很久没有进步？问题不在时间，而在方法</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>所有想成为专家的人</h4>
-        <p>如果你只读一本关于技能习得的书，就是这一本</p>
-      </div>
+
     </div>
   </section>
 
 </main>
 
-<!-- ============ BACK TO INDEX ============ -->
-<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
-
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bookmark"></div>
-  <p>Peak: Secrets from the New Science of Expertise · K. Anders Ericsson / Robert Pool · 2016</p>
-  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 07 月 年 月 08 日</p>
+  <p>Superforecasting · Philip Tetlock · 2015</p>
+  <p class="footer-cn">每日读书笔记 · 2026 年 05 月 07 日</p>
 </footer>
 
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读书笔记 ·《形体艺术表达：从技术到表现》— 王玫</title>
+<title>读书笔记 ·《好战略坏战略》— 理查德·鲁梅尔特</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -757,6 +757,45 @@ section {
   }
 }
 
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -770,10 +809,13 @@ section {
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-label">Reading Notes · 2026-07-15</div>
-    <h1 class="hero-title">形体艺术表达：从技术到表现</h1>
-    <div class="hero-title-en">形体艺术表达：从技术到表现</div>
+    <h1 class="hero-title">好战略坏战略</h1>
+    <div class="hero-title-en">Good Strategy/Bad Strategy</div>
     <div class="hero-divider"></div>
-    <div class="hero-author">王玫<span class="subtitle">形体表达, 现代舞, 身体语言</span></div>
+    <div class="hero-author">
+      理查德·鲁梅尔特 Richard Rumelt
+      <span class="subtitle">战略核心 · 诊断力 · 杠杆突破</span>
+    </div>
   </div>
   <div class="scroll-hint">scroll ↓</div>
 </header>
@@ -789,24 +831,26 @@ section {
     <div class="book-info">
       <div class="info-item">
         <div class="info-label">Author</div>
-        <div class="info-value">王玫<span class="sub">形体表达</span></div>
+        <div class="info-value">理查德·鲁梅尔特
+          <span class="sub">Richard Rumelt</span>
+        </div>
       </div>
       <div class="info-item">
         <div class="info-label">Field</div>
-        <div class="info-value">自我成长 · 心理学
-          <span class="sub">反鸡汤 / 价值哲学</span>
+        <div class="info-value">战略管理
+          <span class="sub">战略核心 · 诊断力 · 杠杆突破</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Published</div>
-        <div class="info-value">2016 年
-          <span class="sub">全球销量超 1500 万册</span>
+        <div class="info-value">2011 年
+          <span class="sub">战略管理领域经典之作，全球商学院广泛采用</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Core Thesis</div>
-        <div class="info-value">人生不是要更积极，而是要更会选
-          <span class="sub">你选择在意什么，决定了你是谁</span>
+        <div class="info-value">好战略有一个清晰的核心结构——诊断、指导方针、连贯行动——而坏战略用空话、目标和愿景伪装成战略
+          <span class="sub">战略核心 · 诊断力 · 杠杆突破</span>
         </div>
       </div>
     </div>
@@ -814,7 +858,9 @@ section {
 
   <!-- ONE-SENTENCE OVERVIEW -->
   <section class="overview">
-    <div class="overview-quote">现代舞编导王玫的教学心得集。全书围绕'身体即语言'的核心理念，探讨如何从技术训练过渡到艺术表达。书中提出'形体表达三层次'理论：第一层是形态规范（动作做对），第二层是动态质感（动作做好），第三层是情感...</div>
+    <div class="overview-quote">
+      大多数组织声称有战略，其实只有目标清单和口号。鲁梅尔特揭示：好战略的核心是诚实面对挑战、找到杠杆点、集中资源行动——而不是把愿望当战略。
+    </div>
   </section>
 
   <!-- CORE IDEAS -->
@@ -823,41 +869,40 @@ section {
     <h2 class="section-title">两大核心思想</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      曼森颠覆了传统成功学的"积极思维"，提出：痛苦不可避免，但我们可以选择为什么而痛苦。关键不是消除问题，而是选择更好的问题。
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
     </p>
     <div class="core-ideas">
-      <div class="idea-card idea1">
+
+      <div class="idea-card idea01">
         <div class="idea-badge">● Idea 01</div>
-        <h3 class="idea-name">反向努力定律</h3>
-        <p class="idea-tagline">越追求积极，越感到消极</p>
+        <h3 class="idea-name">战略的核心内核</h3>
+        <p class="idea-tagline">诊断、指导方针、连贯行动</p>
         <ul class="idea-points">
-          <li>强迫自己"积极思考"反而放大焦虑</li>
-          <li>接受负面情绪是健康的标志</li>
-          <li>问题不是敌人，逃避问题才是</li>
-          <li>真正的成长来自直面痛苦</li>
-          <li>不要问"我想要什么"，要问"我愿意承受什么"</li>
-          <li>幸福不是没有烦恼，而是有值得烦恼的事</li>
+          <li>诊断（Diagnosis）：诚实定义面临的挑战是什么</li>
+          <li>指导方针（Guiding Policy）：选择应对挑战的总体方向</li>
+          <li>连贯行动（Coherent Actions）：围绕指导方针配置资源</li>
+          <li>三者缺一不可：没有诊断是盲动，没有方针是散乱，没有行动是空谈</li>
+          <li>好战略的力量来自三者的协调一致——像楔子一样集中力量</li>
+          <li>坏战略往往跳过诊断，直接宣布目标和愿景</li>
         </ul>
         <div class="idea-example">
-          拼命追求"永远快乐"→ 反而因偶尔的不快乐而自责<br>
-          接受"人生本苦"→ 反而能平静面对起伏
+          乔布斯回归苹果时的战略：<br>诊断：产品线混乱、缺乏焦点<br>方针：做少数精品产品<br>行动：砍掉70%产品线，集中资源做iMac
         </div>
       </div>
-      <div class="idea-card idea2">
+      <div class="idea-card idea02">
         <div class="idea-badge">● Idea 02</div>
-        <h3 class="idea-name">价值排序法则</h3>
-        <p class="idea-tagline">你在意什么，决定了你是谁</p>
+        <h3 class="idea-name">坏战略的四个特征</h3>
+        <p class="idea-tagline">识别伪装的战略</p>
         <ul class="idea-points">
-          <li>人的本质由他选择的价值衡量标准决定</li>
-          <li>坏价值：追求外部认可、物质炫耀、永远正确</li>
-          <li>好价值：可控的、内在的、过程导向的</li>
-          <li>好问题：我能从中学到什么？我能贡献什么？</li>
-          <li>坏问题：别人怎么看我？为什么是我？</li>
-          <li>自由 = 选择自己的束缚</li>
+          <li>空话（Fluff）：用华丽辞藻掩盖逻辑的缺失</li>
+          <li>未能面对挑战（Failure to Face the Challenge）：回避真正的问题</li>
+          <li>把目标当战略（Mistaking Goals for Strategy）："我们要成为第一"不是战略</li>
+          <li>糟糕的战略目标（Bad Strategic Objectives）：目标太杂、互相矛盾、不切实际</li>
+          <li>坏战略的特征：听起来很好，但无法指导行动</li>
+          <li>识别坏战略的方法：问"这告诉我该做什么了吗？"</li>
         </ul>
         <div class="idea-example">
-          问"我够成功吗"→ 永远不够<br>
-          问"我在成长吗"→ 每天都可以是
+          某公司年度战略："成为行业领导者，实现卓越运营，<br>推动创新，服务客户"——这是愿景清单，不是战略
         </div>
       </div>
     </div>
@@ -869,58 +914,52 @@ section {
     <h2 class="section-title">关键概念</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      曼森用一系列反直觉的概念，拆解了现代人的焦虑根源，并给出了重新选择的路径。
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
     </p>
     <div class="concept-grid">
 
       <div class="concept-card">
         <div class="concept-num">No. 01</div>
-        <h3 class="concept-name">反向努力定律</h3>
-        <div class="concept-name-en">The Backwards Law</div>
-        <p class="concept-desc">越是追求某种感受（如快乐、自信），越会因"还没达到"而痛苦。接受现状反而是改变的开始。</p>
-        <div class="concept-eg"><strong>例</strong> 越告诉自己"别紧张"，越紧张。不如承认"我就是紧张"，反而放松了。</div>
+        <h3 class="concept-name">杠杆原理</h3>
+        <div class="concept-name-en">Leverage</div>
+        <p class="concept-desc">战略的本质是杠杆——在关键时刻、关键位置集中资源，以小博大。预期转折点（pivot point），找到能放大力量的支点。</p>
+        <div class="concept-eg"><strong>例</strong> 沃尔玛早期战略：不在大城市竞争，在小城镇建立密集网络——用规模杠杆击败本地零售商。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 02</div>
-        <h3 class="concept-name">选择焦虑</h3>
-        <div class="concept-name-en">Choice Anxiety</div>
-        <p class="concept-desc">现代人的痛苦不是选择太少，而是选择太多。每个选择都意味着放弃其他可能性，这种"机会成本"让人瘫痪。</p>
-        <div class="concept-eg"><strong>例</strong> 刷 2 小时选电影，最后随便点开一个——选择本身成了负担。</div>
+        <h3 class="concept-name"> proximate objectives</h3>
+        <div class="concept-name-en">Proximate Objectives</div>
+        <p class="concept-desc">好的战略目标应该是"近端目标"——够得着、可操作、能指导当前行动。太远的目标只是愿景，不是战略。</p>
+        <div class="concept-eg"><strong>例</strong> 肯尼迪的"十年内登月"是近端目标（有明确路径）；"成为世界一流"不是（没有路径）。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 03</div>
-        <h3 class="concept-name">责任 vs 过错</h3>
-        <div class="concept-name-en">Responsibility vs Fault</div>
-        <p class="concept-desc">事情不是你的错，但如何应对是你的责任。把"谁的错"换成"我能做什么"，瞬间从受害者变成行动者。</p>
-        <div class="concept-eg"><strong>例</strong> 被裁员不是你的错，但接下来是抱怨还是提升技能，是你的责任。</div>
+        <h3 class="concept-name">链式系统</h3>
+        <div class="concept-name-en">Chain-Link Systems</div>
+        <p class="concept-desc">很多系统的表现取决于最弱的一环（链式系统）。战略要找到瓶颈环节，集中力量突破 weakest link。</p>
+        <div class="concept-eg"><strong>例</strong> 医院急诊室的效率不取决于最快的医生，而取决于最慢的环节（如检验科）——战略要解决瓶颈。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 04</div>
-        <h3 class="concept-name">死亡意识</h3>
-        <div class="concept-name-en">Death Awareness</div>
-        <p class="concept-desc">意识到自己会死，不是悲观，而是最强大的优先级过滤器。很多"重要"的事，在死亡面前根本不值一提。</p>
-        <div class="concept-eg"><strong>例</strong> 临终的人不会后悔"没多加班"，只会后悔"没多陪伴"。</div>
+        <h3 class="concept-name">优势深化</h3>
+        <div class="concept-name-en">Deepening Advantage</div>
+        <p class="concept-desc">战略不是一次性找到优势，而是持续深化优势：增加优势的数量、提升优势的质量、让优势之间相互强化。</p>
+        <div class="concept-eg"><strong>例</strong> 丰田的优势链：精益生产→低成本→低价格→高销量→更大规模→更低成本——优势自我强化。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 05</div>
-        <h3 class="concept-name">承诺的自由</h3>
-        <div class="concept-name-en">Freedom of Commitment</div>
-        <p class="concept-desc">真正的自由不是没有束缚，而是主动选择束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
-        <div class="concept-eg"><strong>例</strong> 单身看似自由，但可能因"永远在选"而焦虑；承诺反而带来安定。</div>
+        <h3 class="concept-name">惯性阻力</h3>
+        <div class="concept-name-en">Inertia</div>
+        <p class="concept-desc">组织惯性是战略执行的最大障碍：既有的流程、文化、利益格局会抵制变革。好战略必须设计克服惯性的方案。</p>
+        <div class="concept-eg"><strong>例</strong> IBM从硬件转型服务：郭士纳不是宣布"我们要转型"，而是改变考核、重组团队、亲自示范——克服惯性。</div>
       </div>
-
       <div class="concept-card">
         <div class="concept-num">No. 06</div>
-        <h3 class="concept-name">平庸的勇气</h3>
-        <div class="concept-name-en">Courage of Mediocrity</div>
-        <p class="concept-desc">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
-        <div class="concept-eg"><strong>例</strong> 不是每个老师都要成为名师，认真上好每一堂课就是成功。</div>
+        <h3 class="concept-name">战略协调</h3>
+        <div class="concept-name-en">Coordination</div>
+        <p class="concept-desc">战略的力量来自行动的协调一致。当多个行动相互强化、指向同一方向时，产生的力量远超各部分之和。</p>
+        <div class="concept-eg"><strong>例</strong> 宜家战略：平板包装→降低成本→低价→高销量→更大采购量→更低成本——每个行动都强化其他行动。</div>
       </div>
-
     </div>
   </section>
 
@@ -930,60 +969,46 @@ section {
     <h2 class="section-title">全书章节脉络</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      全书 9 章 + 结语，从"为什么积极思考是陷阱"出发，经价值选择、责任、死亡，最终落脚于"行动"——不是知道更多，而是做到更多。
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
     </p>
     <div class="chapter-map">
 
       <div class="chapter-part">
         <div class="chapter-roman">Ⅰ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">不要尝试</h3>
-          <div class="chapter-title-en">Don't Try</div>
-          <p class="chapter-desc">反向努力定律：越追求快乐越痛苦。查尔斯·布考斯基的故事——接受平凡反而成就非凡。</p>
-          <div class="chapter-chapters">Ch. 1</div>
+          <h3 class="chapter-title">好战略与坏战略</h3>
+          <div class="chapter-title-en">Good vs Bad Strategy</div>
+          <p class="chapter-desc">什么是好战略？什么是坏战略？通过大量案例揭示两者的本质区别：好战略有核心内核，坏战略用空话伪装。</p>
+          <div class="chapter-chapters">Ch. 1 — 5</div>
         </div>
       </div>
-
       <div class="chapter-part">
-        <div class="chapter-roman"></div>
+        <div class="chapter-roman">Ⅱ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">快乐是个问题</h3>
-          <div class="chapter-title-en">Happiness Is a Problem</div>
-          <p class="chapter-desc">痛苦是不可避免的，关键是你选择为什么而痛苦。好问题 vs 坏问题，决定了你的人生质量。</p>
-          <div class="chapter-chapters">Ch. 2</div>
+          <h3 class="chapter-title">战略的来源</h3>
+          <div class="chapter-title-en">Sources of Power</div>
+          <p class="chapter-desc">好战略的力量从何而来？杠杆、近端目标、链式系统、优势深化、战略协调——五种核心力量来源。</p>
+          <div class="chapter-chapters">Ch. 6 — 14</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅲ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">你不是特别的</h3>
-          <div class="chapter-title-en">You Are Not Special</div>
-          <p class="chapter-desc">人人都是普通人的时代。接受平庸不是放弃，而是从"必须非凡"的枷锁中解脱，找到真正的动力。</p>
-          <div class="chapter-chapters">Ch. 3</div>
+          <h3 class="chapter-title">战略的思考方式</h3>
+          <div class="chapter-title-en">Strategic Thinking</div>
+          <p class="chapter-desc">如何像战略家一样思考？从多角度审视问题、创造新优势、驾驭变革与惯性。</p>
+          <div class="chapter-chapters">Ch. 15 — 19</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅳ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">选择的悖论</h3>
-          <div class="chapter-title-en">The Paradox of Choice</div>
-          <p class="chapter-desc">选择越多越焦虑。承诺不是束缚，而是自由——主动选择自己的束缚，免于无尽的可能性。</p>
-          <div class="chapter-chapters">Ch. 4 — 5</div>
+          <h3 class="chapter-title">战略实践</h3>
+          <div class="chapter-title-en">Strategy in Practice</div>
+          <p class="chapter-desc">战略如何在组织中落地？领导者角色、战略制定过程、如何应对复杂性和不确定性。</p>
+          <div class="chapter-chapters">Ch. 20 — 结语</div>
         </div>
       </div>
-
-      <div class="chapter-part">
-        <div class="chapter-roman">Ⅴ</div>
-        <div class="chapter-body">
-          <h3 class="chapter-title">向死而生</h3>
-          <div class="chapter-title-en">You're Going to Die</div>
-          <p class="chapter-desc">死亡是最好的优先级过滤器。意识到生命有限，才能分辨什么是真正重要的，什么只是噪音。</p>
-          <div class="chapter-chapters">Ch. 6 — 9 + 结语</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -994,30 +1019,25 @@ section {
     <div class="section-rule"></div>
 
     <div class="quote-block">
-      <p class="quote-text">你选择在意什么，决定了你是谁。不是你的能力，不是你的处境，而是你选择把精力花在哪里。</p>
-      <p class="quote-attr">— Mark Manson</p>
+      <p class="quote-text">好战略的核心是诚实——诚实地面对挑战，诚实地承认自己的局限。</p>
+      <p class="quote-attr">— — Richard Rumelt</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">真正的自由不是没有束缚，而是选择自己的束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
-      <p class="quote-attr">— 论承诺的自由</p>
+      <p class="quote-text">战略不是"我们要成为什么"，而是"我们如何到达那里"。</p>
+      <p class="quote-attr">— — 论战略的本质</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
-      <p class="quote-attr">— 论平庸的勇气</p>
+      <p class="quote-text">坏战略的特征不是错误，而是空洞——它听起来很好，但不告诉你该做什么。</p>
+      <p class="quote-attr">— — 论坏战略</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">问题永远不会消失，解决了一个，下一个就来了。幸福不是没有问题，而是有值得解决的问题。</p>
-      <p class="quote-attr">— Mark Manson</p>
+      <p class="quote-text">战略的力量来自协调——当多个行动相互强化时，产生的力量远超各部分之和。</p>
+      <p class="quote-attr">— — 论战略协调</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">死亡不是生命的对立面，而是生命的一部分。意识到自己会死，才能开始真正活着。</p>
-      <p class="quote-attr">— 论死亡意识</p>
+      <p class="quote-text">大多数组织的问题不是缺乏战略，而是用愿景清单替代了战略。</p>
+      <p class="quote-attr">— — 论战略实践</p>
     </div>
-
   </section>
 
   <!-- ACTION INSIGHTS -->
@@ -1026,39 +1046,40 @@ section {
     <h2 class="section-title">对工作与生活的行动启发</h2>
     <div class="section-rule"></div>
     <ol class="insights-list">
+
       <li class="insight-item">
         <div class="insight-num">1</div>
         <div class="insight-content">
-          <h4>写下你的"价值清单"</h4>
-          <p>花 10 分钟写下：你真正在意的是什么？然后问自己：这个价值是可控的吗？是内在的吗？是过程导向的吗？如果三个答案都是"否"，考虑换一个价值标准。比如把"被别人认可"换成"我在成长吗"。</p>
+          <h4>先诊断，再行动</h4>
+          <p>制定战略前，先问：我们面临的真正挑战是什么？不要跳过诊断直接宣布目标。写下一句话诊断，确保团队对挑战有一致理解。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">2</div>
         <div class="insight-content">
-          <h4>区分"责任"和"过错"</h4>
-          <p>遇到不顺心的事，先问：这是谁的错？（可能不是你的）再问：我能做什么？（这总是你的）。把"为什么是我"换成"现在怎么办"，瞬间从受害者变成行动者。</p>
+          <h4>识别坏战略的四个信号</h4>
+          <p>空话、回避挑战、把目标当战略、目标互相矛盾——遇到这些信号时，停下来重新思考。问自己：这告诉我该做什么了吗？</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">3</div>
         <div class="insight-content">
-          <h4>主动选择你的"束缚"</h4>
-          <p>选择焦虑的本质是"害怕错过"。解决方案不是保持开放，而是主动承诺：选定一个方向，深耕下去。自由不是无限可能，而是免于选择的安定。</p>
+          <h4>找到杠杆点</h4>
+          <p>不要平均分配资源。找到能放大力量的支点——时间窗口、关键客户、瓶颈环节——集中力量突破。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">4</div>
         <div class="insight-content">
-          <h4>用"死亡测试"过滤优先级</h4>
-          <p>纠结某件事要不要做时，问自己：如果只剩一年生命，我还会在意这个吗？如果答案是否，那就别浪费时间。这个测试能瞬间过滤掉 80% 的"伪重要"事务。</p>
+          <h4>设计协调一致的行动</h4>
+          <p>战略的力量来自行动的协调。检查你的行动计划：各行动是相互强化还是相互矛盾？砍掉那些不协调的行动。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">5</div>
         <div class="insight-content">
-          <h4>接受"足够好"</h4>
-          <p>完美主义是反向努力定律的典型表现——越追求完美，越无法开始。允许自己"足够好"，先完成再完善。记住：一个完成的烂作品，胜过十个完美的计划。</p>
+          <h4>克服组织惯性</h4>
+          <p>战略执行的最大障碍是惯性。不要指望宣布战略就能改变行为——要改变考核、重组团队、调整激励，让行动与战略一致。</p>
         </div>
       </li>
     </ol>
@@ -1070,48 +1091,51 @@ section {
     <h2 class="section-title">适合谁读</h2>
     <div class="section-rule"></div>
     <div class="audience-grid">
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>焦虑的年轻人</h4>
-        <p>被"必须成功"压得喘不过气，需要有人告诉你"普通也没关系"</p>
+        <h4>企业管理者</h4>
+        <p>需要制定和执行战略的CEO、VP、事业部负责人</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>选择困难症患者</h4>
-        <p>在无数可能性中瘫痪，需要学会"主动选择束缚"的智慧</p>
+        <h4>创业者</h4>
+        <p>在资源有限的情况下，找到杠杆点集中突破</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>积极疲劳者</h4>
-        <p>听腻了"你可以的""加油"，需要一剂反鸡汤的清醒剂</p>
+        <h4>产品经理</h4>
+        <p>产品战略也需要诊断、方针、行动的完整结构</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>完美主义者</h4>
-        <p>因害怕做不好而不敢开始，需要"足够好"的勇气</p>
+        <h4>MBA学生</h4>
+        <p>战略管理经典教材，案例丰富、框架清晰</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>教育工作者</h4>
-        <p>帮助学生建立健康的价值标准，而非盲目追求外部认可</p>
+        <h4>咨询顾问</h4>
+        <p>帮助客户区分好战略和坏战略的核心能力</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>所有想活得更真实的人</h4>
-        <p>如果你只读一本"反成功学"的书，就是这一本</p>
+        <h4>所有需要做决策的人</h4>
+        <p>战略思维不仅适用于企业，也适用于职业规划和人生选择</p>
       </div>
     </div>
   </section>
 
 </main>
 
+<!-- ============ BACK TO INDEX ============ -->
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bookmark"></div>
-  <p>The Art of Not Giving a F*ck · Mark Manson · 2016</p>
-  <p class="footer-cn">每日读书笔记 · 2026-07-15</p>
+  <p>Good Strategy/Bad Strategy · Richard Rumelt · 2011</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 07 月 年 月 15 日</p>
 </footer>
 
-<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
 </body>
 </html>
