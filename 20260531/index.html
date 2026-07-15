@@ -1,17 +1,1124 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>读书笔记 ·《如何阅读一本书》</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《筋膜释放》— 罗伯特·施莱普</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}:root{--cream:#f5efe0;--paper:#fdfaf2;--ink:#2c2416;--soft:#5c4f3e;--faded:#8a7c68;--red:#9e2b25;--deep:#7a1f1a;--gold:#b8860b;--gold2:#c9a84c;--border:#d8ccb6;--serif:'Noto Serif SC','Songti SC',serif;--en:'Cormorant Garamond',serif}html{font-size:17px;scroll-behavior:smooth}body{font-family:var(--serif);background:var(--cream);color:var(--ink);line-height:1.85}.ribbon{position:fixed;z-index:20;right:48px;top:0;width:38px;height:85px;background:linear-gradient(var(--red),var(--deep));box-shadow:-2px 0 6px #0003}.ribbon:after{content:'';position:absolute;bottom:-12px;border-left:19px solid var(--deep);border-right:19px solid var(--deep);border-bottom:12px solid transparent}.hero{min-height:92vh;position:relative;display:grid;place-items:center;text-align:center;overflow:hidden}.hero:before{content:'';position:absolute;inset:0;background:linear-gradient(#140f0888,#140f0840 35%,#140f0888 75%,#f5efe0ed),url('https://images.unsplash.com/photo-1455885666463-14a4f0c9a8da?w=1920&q=80') center/cover}.hero-inner{position:relative;color:#f5efe0;max-width:900px;padding:24px}.label{font:italic 1.05rem var(--en);letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:1.2rem}.hero h1{font-size:clamp(2.5rem,7vw,5rem);line-height:1.15;letter-spacing:.06em;margin-bottom:.7rem;text-shadow:0 2px 30px #0006}.en{font:italic clamp(1rem,3vw,1.55rem) var(--en);color:#f5efe0bb;margin-bottom:2rem}.line{width:60px;height:2px;background:var(--gold2);margin:0 auto 1.8rem}.author{letter-spacing:.08em}.author span{display:block;color:var(--gold2);font:italic .9rem var(--en);margin-top:.5rem}.content{max-width:860px;margin:auto;padding:0 28px}section{padding:3.5rem 0;border-bottom:1px solid #e8dfca}.sl{font:italic .85rem var(--en);letter-spacing:.25em;text-transform:uppercase;color:var(--gold)}h2{font-size:clamp(1.6rem,4vw,2.1rem);margin:.3rem 0 1.6rem}.lead{font-size:1.12rem;line-height:2;color:var(--soft)}.info,.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}.cell,.card{background:var(--paper);padding:1.2rem}.cell small{display:block;color:var(--faded);letter-spacing:.1em}.cell strong{font-weight:600}.grid{gap:1.1rem;background:none;border:0}.card{border:1px solid #e8dfca;border-top:3px solid var(--gold);border-radius:8px}.num{font:2.5rem var(--en);color:var(--gold2)}.card h3{margin:.3rem 0}.card p,.item p{color:var(--soft);font-size:.94rem}.levels{list-style:none;counter-reset:n}.levels li{counter-increment:n;position:relative;padding:1.1rem 1rem 1.1rem 4rem;background:#fdfaf2b3;border-bottom:1px solid #e8dfca}.levels li:before{content:counter(n,decimal-leading-zero);position:absolute;left:1.1rem;color:var(--gold);font:1.3rem var(--en)}.levels strong{display:block}.levels span{color:var(--soft);font-size:.92rem}.quote{margin:1.2rem 0;padding:1.5rem 1.8rem;background:var(--paper);border-left:4px solid var(--red);color:var(--soft);font-style:italic}.actions{display:grid;gap:1rem}.item{display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.2rem;background:var(--paper);border-radius:8px}.dot{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:var(--paper);font-family:var(--en)}.tags{display:flex;gap:.7rem;flex-wrap:wrap}.tag{padding:.5rem 1rem;border:1px solid var(--border);border-radius:30px;background:var(--paper);color:var(--soft)}footer{text-align:center;padding:4rem 2rem 5rem;background:var(--paper);color:var(--faded)}.back{position:fixed;z-index:21;left:24px;bottom:24px;padding:.65rem 1rem;border-radius:30px;background:var(--ink);color:var(--paper);text-decoration:none;box-shadow:0 4px 14px #0003}@media(max-width:680px){html{font-size:16px}.content{padding:0 20px}.info,.grid{grid-template-columns:1fr}.ribbon{right:22px}.hero{min-height:86vh}section{padding:2.7rem 0}.back{left:14px;bottom:14px}}
-</style></head><body><div class="ribbon"></div>
-<header class="hero"><div class="hero-inner"><div class="label">Reading Notes · 2026-05-31</div><h1>如何阅读一本书</h1><div class="en">How to Read a Book</div><div class="line"></div><div class="author">莫提默·J. 艾德勒 / 查尔斯·范多伦<span>主动阅读 · 阅读层次 · 主题阅读</span></div></div></header>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-05-31</div>
+    <h1 class="hero-title">筋膜释放</h1>
+    <div class="hero-title-en">Fascia Release</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      罗伯特·施莱普 Robert Schleip
+      <span class="subtitle">体态改善·筋膜学</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
 <main class="content">
-<section><div class="sl">Book Profile</div><h2>书籍信息</h2><div class="info"><div class="cell"><small>书名</small><strong>如何阅读一本书</strong></div><div class="cell"><small>原作</small><strong>How to Read a Book</strong></div><div class="cell"><small>作者</small><strong>莫提默·J. 艾德勒 / 查尔斯·范多伦</strong></div><div class="cell"><small>主题</small><strong>阅读方法 · 思维训练 · 知识整合</strong></div></div></section>
-<section><div class="sl">Overview</div><h2>阅读不是接收，而是一场主动求解</h2><p class="lead">这本书把阅读重新定义为读者与作者之间的智力协作。真正有效的阅读，不只是从头到尾看完文字，而是先判断一本书值得投入多少时间，再抓住结构、理解论证、提出问题，最终把不同作者放进同一场讨论。作为每日读书笔记的序章，它提供了一套此后可以反复使用的阅读操作系统。</p></section>
-<section><div class="sl">Core Ideas</div><h2>两大核心思想</h2><div class="grid"><article class="card"><div class="num">01</div><h3>不同书，要用不同速度读</h3><p>阅读投入应与书的价值和难度匹配。先检视，再决定精读范围，避免把所有文字都用同一种方式处理。</p></article><article class="card"><div class="num">02</div><h3>理解必须经过提问</h3><p>读者要持续追问：全书在谈什么、具体说了什么、说得是否有道理，以及这些内容与我有什么关系。</p></article></div></section>
-<section><div class="sl">Four Levels</div><h2>阅读的四个层次</h2><ol class="levels"><li><strong>基础阅读</strong><span>准确识字、理解句子，解决“这句话说了什么”。</span></li><li><strong>检视阅读</strong><span>通过目录、序言、索引和快速通读，把握全书地图与阅读价值。</span></li><li><strong>分析阅读</strong><span>辨认书的类型、结构、核心术语、主要命题及论证关系。</span></li><li><strong>主题阅读</strong><span>围绕同一问题比较多本书，建立共同术语并形成自己的问题分析。</span></li></ol></section>
-<section><div class="sl">Key Notes</div><h2>核心观点摘记</h2><div class="quote">阅读越主动，效果越好；主动阅读的核心，是在阅读过程中不断提出问题并尝试回答。</div><div class="quote">一本书的骨架藏在目录、章节关系与论证次序中。先看到结构，才不容易迷失在细节里。</div><div class="quote">做笔记不是复制句子，而是留下自己理解、质疑与重组知识的痕迹。</div></section>
-<section><div class="sl">Practice</div><h2>可以立即采用的读书流程</h2><div class="actions"><div class="item"><div class="dot">1</div><div><h3>先用十分钟建立地图</h3><p>查看封面信息、目录、序言和索引，用一句话预测全书要解决的问题。</p></div></div><div class="item"><div class="dot">2</div><div><h3>给每章写一句摘要</h3><p>不用摘抄原文，只记录本章在全书论证中承担什么功能。</p></div></div><div class="item"><div class="dot">3</div><div><h3>区分作者观点与自己的判断</h3><p>先公平复述作者，再标记赞同、疑问和反例，避免过早批评。</p></div></div><div class="item"><div class="dot">4</div><div><h3>读完后重建全书</h3><p>不用翻书，写下核心问题、主要答案、论证路线和一项可行动的启发。</p></div></div></div></section>
-<section><div class="sl">Readers</div><h2>适合谁读</h2><div class="tags"><span class="tag">准备建立阅读习惯的人</span><span class="tag">知识工作者</span><span class="tag">学生与研究者</span><span class="tag">经常读完却记不住的人</span></div></section>
-</main><footer>每日读书笔记 · 2026-05-31</footer><a class="back" href="../index.html">⌂ 返回目录</a></body></html>
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">马克 · 曼森
+          <span class="sub">Mark Manson · 美国作家/博主</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">自我成长 · 心理学
+          <span class="sub">反鸡汤 / 价值哲学</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">2016 年
+          <span class="sub">全球销量超 1500 万册</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">人生不是要更积极，而是要更会选
+          <span class="sub">你选择在意什么，决定了你是谁</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      真正的自由不是不在乎任何事，而是只在乎真正重要的事——把有限的精力，留给值得的人和事，其余的，学会刻意忽视。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      曼森颠覆了传统成功学的"积极思维"，提出：痛苦不可避免，但我们可以选择为什么而痛苦。关键不是消除问题，而是选择更好的问题。
+    </p>
+    <div class="core-ideas">
+      <div class="idea-card idea1">
+        <div class="idea-badge">● Idea 01</div>
+        <h3 class="idea-name">核心概念一</h3>
+        <p class="idea-tagline">越追求积极，越感到消极</p>
+        <ul class="idea-points">
+          <li>强迫自己"积极思考"反而放大焦虑</li>
+          <li>接受负面情绪是健康的标志</li>
+          <li>问题不是敌人，逃避问题才是</li>
+          <li>真正的成长来自直面痛苦</li>
+          <li>不要问"我想要什么"，要问"我愿意承受什么"</li>
+          <li>幸福不是没有烦恼，而是有值得烦恼的事</li>
+        </ul>
+        <div class="idea-example">
+          拼命追求"永远快乐"→ 反而因偶尔的不快乐而自责<br>
+          接受"人生本苦"→ 反而能平静面对起伏
+        </div>
+      </div>
+      <div class="idea-card idea2">
+        <div class="idea-badge">● Idea 02</div>
+        <h3 class="idea-name">核心概念二</h3>
+        <p class="idea-tagline">你在意什么，决定了你是谁</p>
+        <ul class="idea-points">
+          <li>人的本质由他选择的价值衡量标准决定</li>
+          <li>坏价值：追求外部认可、物质炫耀、永远正确</li>
+          <li>好价值：可控的、内在的、过程导向的</li>
+          <li>好问题：我能从中学到什么？我能贡献什么？</li>
+          <li>坏问题：别人怎么看我？为什么是我？</li>
+          <li>自由 = 选择自己的束缚</li>
+        </ul>
+        <div class="idea-example">
+          问"我够成功吗"→ 永远不够<br>
+          问"我在成长吗"→ 每天都可以是
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      曼森用一系列反直觉的概念，拆解了现代人的焦虑根源，并给出了重新选择的路径。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 01</div>
+        <h3 class="concept-name">核心概念一</h3>
+        <div class="concept-name-en">核心概念一</div>
+        <p class="concept-desc">越是追求某种感受（如快乐、自信），越会因"还没达到"而痛苦。接受现状反而是改变的开始。</p>
+        <div class="concept-eg"><strong>例</strong> 越告诉自己"别紧张"，越紧张。不如承认"我就是紧张"，反而放松了。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 02</div>
+        <h3 class="concept-name">选择焦虑</h3>
+        <div class="concept-name-en">Choice Anxiety</div>
+        <p class="concept-desc">现代人的痛苦不是选择太少，而是选择太多。每个选择都意味着放弃其他可能性，这种"机会成本"让人瘫痪。</p>
+        <div class="concept-eg"><strong>例</strong> 刷 2 小时选电影，最后随便点开一个——选择本身成了负担。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 03</div>
+        <h3 class="concept-name">责任 vs 过错</h3>
+        <div class="concept-name-en">Responsibility vs Fault</div>
+        <p class="concept-desc">事情不是你的错，但如何应对是你的责任。把"谁的错"换成"我能做什么"，瞬间从受害者变成行动者。</p>
+        <div class="concept-eg"><strong>例</strong> 被裁员不是你的错，但接下来是抱怨还是提升技能，是你的责任。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 04</div>
+        <h3 class="concept-name">死亡意识</h3>
+        <div class="concept-name-en">Death Awareness</div>
+        <p class="concept-desc">意识到自己会死，不是悲观，而是最强大的优先级过滤器。很多"重要"的事，在死亡面前根本不值一提。</p>
+        <div class="concept-eg"><strong>例</strong> 临终的人不会后悔"没多加班"，只会后悔"没多陪伴"。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 05</div>
+        <h3 class="concept-name">承诺的自由</h3>
+        <div class="concept-name-en">Freedom of Commitment</div>
+        <p class="concept-desc">真正的自由不是没有束缚，而是主动选择束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
+        <div class="concept-eg"><strong>例</strong> 单身看似自由，但可能因"永远在选"而焦虑；承诺反而带来安定。</div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-num">No. 06</div>
+        <h3 class="concept-name">平庸的勇气</h3>
+        <div class="concept-name-en">Courage of Mediocrity</div>
+        <p class="concept-desc">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
+        <div class="concept-eg"><strong>例</strong> 不是每个老师都要成为名师，认真上好每一堂课就是成功。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书 9 章 + 结语，从"为什么积极思考是陷阱"出发，经价值选择、责任、死亡，最终落脚于"行动"——不是知道更多，而是做到更多。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">不要尝试</h3>
+          <div class="chapter-title-en">Don't Try</div>
+          <p class="chapter-desc">核心概念一：越追求快乐越痛苦。查尔斯·布考斯基的故事——接受平凡反而成就非凡。</p>
+          <div class="chapter-chapters">Ch. 1</div>
+        </div>
+      </div>
+
+      <div class="chapter-part">
+        <div class="chapter-roman"></div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">快乐是个问题</h3>
+          <div class="chapter-title-en">Happiness Is a Problem</div>
+          <p class="chapter-desc">痛苦是不可避免的，关键是你选择为什么而痛苦。好问题 vs 坏问题，决定了你的人生质量。</p>
+          <div class="chapter-chapters">Ch. 2</div>
+        </div>
+      </div>
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">你不是特别的</h3>
+          <div class="chapter-title-en">You Are Not Special</div>
+          <p class="chapter-desc">人人都是普通人的时代。接受平庸不是放弃，而是从"必须非凡"的枷锁中解脱，找到真正的动力。</p>
+          <div class="chapter-chapters">Ch. 3</div>
+        </div>
+      </div>
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">选择的悖论</h3>
+          <div class="chapter-title-en">The Paradox of Choice</div>
+          <p class="chapter-desc">选择越多越焦虑。承诺不是束缚，而是自由——主动选择自己的束缚，免于无尽的可能性。</p>
+          <div class="chapter-chapters">Ch. 4 — 5</div>
+        </div>
+      </div>
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">向死而生</h3>
+          <div class="chapter-title-en">You're Going to Die</div>
+          <p class="chapter-desc">死亡是最好的优先级过滤器。意识到生命有限，才能分辨什么是真正重要的，什么只是噪音。</p>
+          <div class="chapter-chapters">Ch. 6 — 9 + 结语</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">你选择在意什么，决定了你是谁。不是你的能力，不是你的处境，而是你选择把精力花在哪里。</p>
+      <p class="quote-attr">— Mark Manson</p>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">真正的自由不是没有束缚，而是选择自己的束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
+      <p class="quote-attr">— 论承诺的自由</p>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
+      <p class="quote-attr">— 论平庸的勇气</p>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">问题永远不会消失，解决了一个，下一个就来了。幸福不是没有问题，而是有值得解决的问题。</p>
+      <p class="quote-attr">— Mark Manson</p>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">死亡不是生命的对立面，而是生命的一部分。意识到自己会死，才能开始真正活着。</p>
+      <p class="quote-attr">— 论死亡意识</p>
+    </div>
+
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>写下你的"价值清单"</h4>
+          <p>花 10 分钟写下：你真正在意的是什么？然后问自己：这个价值是可控的吗？是内在的吗？是过程导向的吗？如果三个答案都是"否"，考虑换一个价值标准。比如把"被别人认可"换成"我在成长吗"。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>区分"责任"和"过错"</h4>
+          <p>遇到不顺心的事，先问：这是谁的错？（可能不是你的）再问：我能做什么？（这总是你的）。把"为什么是我"换成"现在怎么办"，瞬间从受害者变成行动者。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>主动选择你的"束缚"</h4>
+          <p>选择焦虑的本质是"害怕错过"。解决方案不是保持开放，而是主动承诺：选定一个方向，深耕下去。自由不是无限可能，而是免于选择的安定。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>用"死亡测试"过滤优先级</h4>
+          <p>纠结某件事要不要做时，问自己：如果只剩一年生命，我还会在意这个吗？如果答案是否，那就别浪费时间。这个测试能瞬间过滤掉 80% 的"伪重要"事务。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>接受"足够好"</h4>
+          <p>完美主义是核心概念一的典型表现——越追求完美，越无法开始。允许自己"足够好"，先完成再完善。记住：一个完成的烂作品，胜过十个完美的计划。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>焦虑的年轻人</h4>
+        <p>被"必须成功"压得喘不过气，需要有人告诉你"普通也没关系"</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>选择困难症患者</h4>
+        <p>在无数可能性中瘫痪，需要学会"主动选择束缚"的智慧</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>积极疲劳者</h4>
+        <p>听腻了"你可以的""加油"，需要一剂反鸡汤的清醒剂</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>完美主义者</h4>
+        <p>因害怕做不好而不敢开始，需要"足够好"的勇气</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>教育工作者</h4>
+        <p>帮助学生建立健康的价值标准，而非盲目追求外部认可</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>所有想活得更真实的人</h4>
+        <p>如果你只读一本"反成功学"的书，就是这一本</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>Fascia Release · Mark Manson · 2016</p>
+  <p class="footer-cn">每日读书笔记 · 2026 年 5 月 31 日</p>
+</footer>
+
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
+</body>
+</html>
