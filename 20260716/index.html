@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读书笔记 ·《体态评估与治疗》— 菲尔·佩哲 (Phil Page)</title>
+<title>读书笔记 ·《事实》— 汉斯·罗斯林</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -757,6 +757,45 @@ section {
   }
 }
 
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -770,10 +809,13 @@ section {
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-label">Reading Notes · 2026-07-16</div>
-    <h1 class="hero-title">体态评估与治疗</h1>
-    <div class="hero-title-en">体态评估与治疗</div>
+    <h1 class="hero-title">事实</h1>
+    <div class="hero-title-en">Factfulness</div>
     <div class="hero-divider"></div>
-    <div class="hero-author">菲尔·佩哲 (Phil Page)<span class="subtitle">体态矫正, 康复训练, 肌肉平衡</span></div>
+    <div class="hero-author">
+      汉斯·罗斯林 Hans Rosling
+      <span class="subtitle">数据思维 · 世界观</span>
+    </div>
   </div>
   <div class="scroll-hint">scroll ↓</div>
 </header>
@@ -789,24 +831,26 @@ section {
     <div class="book-info">
       <div class="info-item">
         <div class="info-label">Author</div>
-        <div class="info-value">菲尔·佩哲 (Phil Page)<span class="sub">体态矫正</span></div>
+        <div class="info-value">汉斯·罗斯林
+          <span class="sub">Hans Rosling</span>
+        </div>
       </div>
       <div class="info-item">
         <div class="info-label">Field</div>
-        <div class="info-value">自我成长 · 心理学
-          <span class="sub">反鸡汤 / 价值哲学</span>
+        <div class="info-value">
+          <span class="sub">数据思维 · 世界观</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Published</div>
-        <div class="info-value">2016 年
-          <span class="sub">全球销量超 1500 万册</span>
+        <div class="info-value">
+          <span class="sub"></span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Core Thesis</div>
-        <div class="info-value">人生不是要更积极，而是要更会选
-          <span class="sub">你选择在意什么，决定了你是谁</span>
+        <div class="info-value">
+          <span class="sub">数据思维 · 世界观</span>
         </div>
       </div>
     </div>
@@ -814,7 +858,9 @@ section {
 
   <!-- ONE-SENTENCE OVERVIEW -->
   <section class="overview">
-    <div class="overview-quote">国际公认的体态评估权威著作。系统介绍'上下交叉综合征'理论——现代人因久坐导致的典型体态问题（头前伸、圆肩、骨盆前倾等）的成因与解决方案。全书分为评估篇和干预篇：评估篇详解静态体态、动态动作、肌肉长度...</div>
+    <div class="overview-quote">
+      我们对世界的认知比实际情况更糟糕。罗斯林用数据证明：极端贫困在减少，儿童死亡率在下降，教育在普及——但我们被媒体的负面偏见和直觉本能误导，活在一个'过时的世界观'中。
+    </div>
   </section>
 
   <!-- CORE IDEAS -->
@@ -823,41 +869,30 @@ section {
     <h2 class="section-title">两大核心思想</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      曼森颠覆了传统成功学的"积极思维"，提出：痛苦不可避免，但我们可以选择为什么而痛苦。关键不是消除问题，而是选择更好的问题。
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
     </p>
     <div class="core-ideas">
+
       <div class="idea-card idea1">
-        <div class="idea-badge">● Idea 01</div>
-        <h3 class="idea-name">反向努力定律</h3>
-        <p class="idea-tagline">越追求积极，越感到消极</p>
+        <div class="idea-badge">● Idea 1</div>
+        <h3 class="idea-name">负面本能</h3>
+        <p class="idea-tagline">我们倾向于关注坏消息，忽略好消息。'世界越来越糟'是一个广泛传播但错误的信念。</p>
         <ul class="idea-points">
-          <li>强迫自己"积极思考"反而放大焦虑</li>
-          <li>接受负面情绪是健康的标志</li>
-          <li>问题不是敌人，逃避问题才是</li>
-          <li>真正的成长来自直面痛苦</li>
-          <li>不要问"我想要什么"，要问"我愿意承受什么"</li>
-          <li>幸福不是没有烦恼，而是有值得烦恼的事</li>
+          <li>我们倾向于关注坏消息，忽略好消息。'世界越来越糟'是一个广泛传播但错误的信念。</li>
         </ul>
         <div class="idea-example">
-          拼命追求"永远快乐"→ 反而因偶尔的不快乐而自责<br>
-          接受"人生本苦"→ 反而能平静面对起伏
+          全球极端贫困人口从1990年的36%降到2015年的10%——但几乎没人知道这个好消息。
         </div>
       </div>
       <div class="idea-card idea2">
-        <div class="idea-badge">● Idea 02</div>
-        <h3 class="idea-name">价值排序法则</h3>
-        <p class="idea-tagline">你在意什么，决定了你是谁</p>
+        <div class="idea-badge">● Idea 2</div>
+        <h3 class="idea-name">恐惧本能</h3>
+        <p class="idea-tagline">恐惧让我们高估风险。飞机失事、恐怖袭击、核事故——这些罕见事件占据了大部分新闻，但实际风险极低。</p>
         <ul class="idea-points">
-          <li>人的本质由他选择的价值衡量标准决定</li>
-          <li>坏价值：追求外部认可、物质炫耀、永远正确</li>
-          <li>好价值：可控的、内在的、过程导向的</li>
-          <li>好问题：我能从中学到什么？我能贡献什么？</li>
-          <li>坏问题：别人怎么看我？为什么是我？</li>
-          <li>自由 = 选择自己的束缚</li>
+          <li>恐惧让我们高估风险。飞机失事、恐怖袭击、核事故——这些罕见事件占据了大部分新闻，但实际风险极低。</li>
         </ul>
         <div class="idea-example">
-          问"我够成功吗"→ 永远不够<br>
-          问"我在成长吗"→ 每天都可以是
+          你害怕坐飞机，但车祸的概率是空难的100倍——恐惧扭曲了你对风险的判断。
         </div>
       </div>
     </div>
@@ -869,58 +904,45 @@ section {
     <h2 class="section-title">关键概念</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      曼森用一系列反直觉的概念，拆解了现代人的焦虑根源，并给出了重新选择的路径。
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
     </p>
     <div class="concept-grid">
 
       <div class="concept-card">
-        <div class="concept-num">No. 01</div>
-        <h3 class="concept-name">反向努力定律</h3>
-        <div class="concept-name-en">The Backwards Law</div>
-        <p class="concept-desc">越是追求某种感受（如快乐、自信），越会因"还没达到"而痛苦。接受现状反而是改变的开始。</p>
-        <div class="concept-eg"><strong>例</strong> 越告诉自己"别紧张"，越紧张。不如承认"我就是紧张"，反而放松了。</div>
+        <div class="concept-num">No. 1</div>
+        <h3 class="concept-name">差距本能</h3>
+        <div class="concept-name-en">Gap Instinct</div>
+        <p class="concept-desc">我们喜欢把世界分成两极：发达vs落后，富vs穷。但现实是一个连续光谱。</p>
+        <div class="concept-eg"><strong>例</strong> 世界不是'我们'和'他们'，而是一个从1到4级的连续体。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 02</div>
-        <h3 class="concept-name">选择焦虑</h3>
-        <div class="concept-name-en">Choice Anxiety</div>
-        <p class="concept-desc">现代人的痛苦不是选择太少，而是选择太多。每个选择都意味着放弃其他可能性，这种"机会成本"让人瘫痪。</p>
-        <div class="concept-eg"><strong>例</strong> 刷 2 小时选电影，最后随便点开一个——选择本身成了负担。</div>
+        <div class="concept-num">No. 2</div>
+        <h3 class="concept-name">负面本能</h3>
+        <div class="concept-name-en">Negativity Instinct</div>
+        <p class="concept-desc">坏消息比好消息更容易传播。我们记得灾难，忘记进步。</p>
+        <div class="concept-eg"><strong>例</strong> 每天进步1%，一年就是37倍——但没人报道这种缓慢的进步。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 03</div>
-        <h3 class="concept-name">责任 vs 过错</h3>
-        <div class="concept-name-en">Responsibility vs Fault</div>
-        <p class="concept-desc">事情不是你的错，但如何应对是你的责任。把"谁的错"换成"我能做什么"，瞬间从受害者变成行动者。</p>
-        <div class="concept-eg"><strong>例</strong> 被裁员不是你的错，但接下来是抱怨还是提升技能，是你的责任。</div>
+        <div class="concept-num">No. 3</div>
+        <h3 class="concept-name">直线本能</h3>
+        <div class="concept-name-en">Straight Line Instinct</div>
+        <p class="concept-desc">我们假设趋势会直线延续，但现实是S曲线、波动或停滞。</p>
+        <div class="concept-eg"><strong>例</strong> 人口不会无限增长，它会随着发展而稳定。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 04</div>
-        <h3 class="concept-name">死亡意识</h3>
-        <div class="concept-name-en">Death Awareness</div>
-        <p class="concept-desc">意识到自己会死，不是悲观，而是最强大的优先级过滤器。很多"重要"的事，在死亡面前根本不值一提。</p>
-        <div class="concept-eg"><strong>例</strong> 临终的人不会后悔"没多加班"，只会后悔"没多陪伴"。</div>
+        <div class="concept-num">No. 4</div>
+        <h3 class="concept-name">恐惧本能</h3>
+        <div class="concept-name-en">Fear Instinct</div>
+        <p class="concept-desc">可怕的事情更容易被记住，但不等于常见。风险=危险×暴露程度。</p>
+        <div class="concept-eg"><strong>例</strong> 鲨鱼袭击很可怕，但每年只有10人——椰子掉落杀死150人。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 05</div>
-        <h3 class="concept-name">承诺的自由</h3>
-        <div class="concept-name-en">Freedom of Commitment</div>
-        <p class="concept-desc">真正的自由不是没有束缚，而是主动选择束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
-        <div class="concept-eg"><strong>例</strong> 单身看似自由，但可能因"永远在选"而焦虑；承诺反而带来安定。</div>
+        <div class="concept-num">No. 5</div>
+        <h3 class="concept-name">规模本能</h3>
+        <div class="concept-name-en">Size Instinct</div>
+        <p class="concept-desc">单个数字没有意义，需要比较。一个数字要放在背景中才能理解。</p>
+        <div class="concept-eg"><strong>例</strong> 每年死亡100万人是多还是少？要看总人口和对比对象。</div>
       </div>
-
-      <div class="concept-card">
-        <div class="concept-num">No. 06</div>
-        <h3 class="concept-name">平庸的勇气</h3>
-        <div class="concept-name-en">Courage of Mediocrity</div>
-        <p class="concept-desc">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
-        <div class="concept-eg"><strong>例</strong> 不是每个老师都要成为名师，认真上好每一堂课就是成功。</div>
-      </div>
-
     </div>
   </section>
 
@@ -930,60 +952,46 @@ section {
     <h2 class="section-title">全书章节脉络</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      全书 9 章 + 结语，从"为什么积极思考是陷阱"出发，经价值选择、责任、死亡，最终落脚于"行动"——不是知道更多，而是做到更多。
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
     </p>
     <div class="chapter-map">
 
       <div class="chapter-part">
         <div class="chapter-roman">Ⅰ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">不要尝试</h3>
-          <div class="chapter-title-en">Don't Try</div>
-          <p class="chapter-desc">反向努力定律：越追求快乐越痛苦。查尔斯·布考斯基的故事——接受平凡反而成就非凡。</p>
-          <div class="chapter-chapters">Ch. 1</div>
+          <h3 class="chapter-title">本能陷阱</h3>
+          <div class="chapter-title-en">Instinct Traps</div>
+          <p class="chapter-desc">识别10种扭曲我们世界观的本能：负面、恐惧、差距、直线等。</p>
+          <div class="chapter-chapters">Ch. 1-3</div>
         </div>
       </div>
-
       <div class="chapter-part">
-        <div class="chapter-roman"></div>
+        <div class="chapter-roman">Ⅱ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">快乐是个问题</h3>
-          <div class="chapter-title-en">Happiness Is a Problem</div>
-          <p class="chapter-desc">痛苦是不可避免的，关键是你选择为什么而痛苦。好问题 vs 坏问题，决定了你的人生质量。</p>
-          <div class="chapter-chapters">Ch. 2</div>
+          <h3 class="chapter-title">事实思维</h3>
+          <div class="chapter-title-en">Factful Thinking</div>
+          <p class="chapter-desc">用数据和背景替代直觉，建立更准确的世界观。</p>
+          <div class="chapter-chapters">Ch. 4-7</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅲ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">你不是特别的</h3>
-          <div class="chapter-title-en">You Are Not Special</div>
-          <p class="chapter-desc">人人都是普通人的时代。接受平庸不是放弃，而是从"必须非凡"的枷锁中解脱，找到真正的动力。</p>
-          <div class="chapter-chapters">Ch. 3</div>
+          <h3 class="chapter-title">世界的真相</h3>
+          <div class="chapter-title-en">The World as It Is</div>
+          <p class="chapter-desc">用数据展示真实的进步：贫困、健康、教育、能源。</p>
+          <div class="chapter-chapters">Ch. 8-12</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅳ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">选择的悖论</h3>
-          <div class="chapter-title-en">The Paradox of Choice</div>
-          <p class="chapter-desc">选择越多越焦虑。承诺不是束缚，而是自由——主动选择自己的束缚，免于无尽的可能性。</p>
-          <div class="chapter-chapters">Ch. 4 — 5</div>
+          <h3 class="chapter-title">实践指南</h3>
+          <div class="chapter-title-en">Practical Guide</div>
+          <p class="chapter-desc">如何在日常生活中保持事实思维：媒体素养、数据素养、批判性思考。</p>
+          <div class="chapter-chapters">Ch. 13-15</div>
         </div>
       </div>
-
-      <div class="chapter-part">
-        <div class="chapter-roman">Ⅴ</div>
-        <div class="chapter-body">
-          <h3 class="chapter-title">向死而生</h3>
-          <div class="chapter-title-en">You're Going to Die</div>
-          <p class="chapter-desc">死亡是最好的优先级过滤器。意识到生命有限，才能分辨什么是真正重要的，什么只是噪音。</p>
-          <div class="chapter-chapters">Ch. 6 — 9 + 结语</div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -994,30 +1002,25 @@ section {
     <div class="section-rule"></div>
 
     <div class="quote-block">
-      <p class="quote-text">你选择在意什么，决定了你是谁。不是你的能力，不是你的处境，而是你选择把精力花在哪里。</p>
-      <p class="quote-attr">— Mark Manson</p>
+      <p class="quote-text">世界比你想的更好，也比你想的更糟——但总体上在变好。</p>
+      <p class="quote-attr">— — 汉斯·罗斯林</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">真正的自由不是没有束缚，而是选择自己的束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
-      <p class="quote-attr">— 论承诺的自由</p>
+      <p class="quote-text">我们不是被无知困扰，而是被过时的知识困扰。</p>
+      <p class="quote-attr">— — 论世界观</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
-      <p class="quote-attr">— 论平庸的勇气</p>
+      <p class="quote-text">恐惧让我们看到的世界比实际更危险。</p>
+      <p class="quote-attr">— — 论恐惧本能</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">问题永远不会消失，解决了一个，下一个就来了。幸福不是没有问题，而是有值得解决的问题。</p>
-      <p class="quote-attr">— Mark Manson</p>
+      <p class="quote-text">进步是缓慢的、不均衡的，但它是真实的。</p>
+      <p class="quote-attr">— — 论全球进步</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">死亡不是生命的对立面，而是生命的一部分。意识到自己会死，才能开始真正活着。</p>
-      <p class="quote-attr">— 论死亡意识</p>
+      <p class="quote-text">事实思维不是乐观主义，而是基于证据的现实主义。</p>
+      <p class="quote-attr">— — 论事实思维</p>
     </div>
-
   </section>
 
   <!-- ACTION INSIGHTS -->
@@ -1026,39 +1029,40 @@ section {
     <h2 class="section-title">对工作与生活的行动启发</h2>
     <div class="section-rule"></div>
     <ol class="insights-list">
+
       <li class="insight-item">
         <div class="insight-num">1</div>
         <div class="insight-content">
-          <h4>写下你的"价值清单"</h4>
-          <p>花 10 分钟写下：你真正在意的是什么？然后问自己：这个价值是可控的吗？是内在的吗？是过程导向的吗？如果三个答案都是"否"，考虑换一个价值标准。比如把"被别人认可"换成"我在成长吗"。</p>
+          <h4>质疑你的直觉</h4>
+          <p>当你对世界有强烈感受时，先问：数据支持这个判断吗？</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">2</div>
         <div class="insight-content">
-          <h4>区分"责任"和"过错"</h4>
-          <p>遇到不顺心的事，先问：这是谁的错？（可能不是你的）再问：我能做什么？（这总是你的）。把"为什么是我"换成"现在怎么办"，瞬间从受害者变成行动者。</p>
+          <h4>寻找好消息</h4>
+          <p>主动搜索进步的数据，平衡媒体的负面偏见。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">3</div>
         <div class="insight-content">
-          <h4>主动选择你的"束缚"</h4>
-          <p>选择焦虑的本质是"害怕错过"。解决方案不是保持开放，而是主动承诺：选定一个方向，深耕下去。自由不是无限可能，而是免于选择的安定。</p>
+          <h4>用比例替代绝对数</h4>
+          <p>100万人死亡是多还是少？要看占总人口的比例。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">4</div>
         <div class="insight-content">
-          <h4>用"死亡测试"过滤优先级</h4>
-          <p>纠结某件事要不要做时，问自己：如果只剩一年生命，我还会在意这个吗？如果答案是否，那就别浪费时间。这个测试能瞬间过滤掉 80% 的"伪重要"事务。</p>
+          <h4>区分'水平'和'趋势'</h4>
+          <p>一个国家可能仍然贫穷（水平），但在快速进步（趋势）。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">5</div>
         <div class="insight-content">
-          <h4>接受"足够好"</h4>
-          <p>完美主义是反向努力定律的典型表现——越追求完美，越无法开始。允许自己"足够好"，先完成再完善。记住：一个完成的烂作品，胜过十个完美的计划。</p>
+          <h4>保持谦逊</h4>
+          <p>承认你不知道的比你知道的多，持续更新你的世界观。</p>
         </div>
       </li>
     </ol>
@@ -1070,48 +1074,46 @@ section {
     <h2 class="section-title">适合谁读</h2>
     <div class="section-rule"></div>
     <div class="audience-grid">
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>焦虑的年轻人</h4>
-        <p>被"必须成功"压得喘不过气，需要有人告诉你"普通也没关系"</p>
+        <h4>媒体消费者</h4>
+        <p>识别媒体的负面偏见，建立更平衡的世界观</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>选择困难症患者</h4>
-        <p>在无数可能性中瘫痪，需要学会"主动选择束缚"的智慧</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>积极疲劳者</h4>
-        <p>听腻了"你可以的""加油"，需要一剂反鸡汤的清醒剂</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>完美主义者</h4>
-        <p>因害怕做不好而不敢开始，需要"足够好"的勇气</p>
+        <h4>决策者</h4>
+        <p>用数据而非直觉做决策</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
         <h4>教育工作者</h4>
-        <p>帮助学生建立健康的价值标准，而非盲目追求外部认可</p>
+        <p>教学生用事实思维理解世界</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>所有想活得更真实的人</h4>
-        <p>如果你只读一本"反成功学"的书，就是这一本</p>
+        <h4>悲观主义者</h4>
+        <p>数据会告诉你，世界比你想象的更好</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>所有关心世界的人</h4>
+        <p>了解真实的全球进步，而不是被恐惧驱动</p>
       </div>
     </div>
   </section>
 
 </main>
 
+<!-- ============ BACK TO INDEX ============ -->
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bookmark"></div>
-  <p>The Art of Not Giving a F*ck · Mark Manson · 2016</p>
-  <p class="footer-cn">每日读书笔记 · 2026-07-16</p>
+  <p>Factfulness · Hans Rosling · </p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 07 月 年 月 16 日</p>
 </footer>
 
-<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
 </body>
 </html>
