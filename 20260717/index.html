@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读书笔记 ·《脊柱健康全书》— 斯图尔特·麦吉尔 (Stuart McGill)</title>
+<title>读书笔记 ·《鸟与蜜蜂》— 达尔文</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -757,6 +757,45 @@ section {
   }
 }
 
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -770,10 +809,13 @@ section {
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-label">Reading Notes · 2026-07-17</div>
-    <h1 class="hero-title">脊柱健康全书</h1>
-    <div class="hero-title-en">脊柱健康全书</div>
+    <h1 class="hero-title">鸟与蜜蜂</h1>
+    <div class="hero-title-en">The Birds and the Bees</div>
     <div class="hero-divider"></div>
-    <div class="hero-author">斯图尔特·麦吉尔 (Stuart McGill)<span class="subtitle">脊柱保护, 核心稳定, 运动医学</span></div>
+    <div class="hero-author">
+      达尔文 Charles Darwin
+      <span class="subtitle">生物学 · 进化论 · 自然选择</span>
+    </div>
   </div>
   <div class="scroll-hint">scroll ↓</div>
 </header>
@@ -789,24 +831,26 @@ section {
     <div class="book-info">
       <div class="info-item">
         <div class="info-label">Author</div>
-        <div class="info-value">斯图尔特·麦吉尔 (Stuart McGill)<span class="sub">脊柱保护</span></div>
+        <div class="info-value">达尔文
+          <span class="sub">Charles Darwin</span>
+        </div>
       </div>
       <div class="info-item">
         <div class="info-label">Field</div>
-        <div class="info-value">自我成长 · 心理学
-          <span class="sub">反鸡汤 / 价值哲学</span>
+        <div class="info-value">
+          <span class="sub">生物学 · 进化论 · 自然选择</span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Published</div>
-        <div class="info-value">2016 年
-          <span class="sub">全球销量超 1500 万册</span>
+        <div class="info-value">
+          <span class="sub"></span>
         </div>
       </div>
       <div class="info-item">
         <div class="info-label">Core Thesis</div>
-        <div class="info-value">人生不是要更积极，而是要更会选
-          <span class="sub">你选择在意什么，决定了你是谁</span>
+        <div class="info-value">
+          <span class="sub">生物学 · 进化论 · 自然选择</span>
         </div>
       </div>
     </div>
@@ -814,7 +858,9 @@ section {
 
   <!-- ONE-SENTENCE OVERVIEW -->
   <section class="overview">
-    <div class="overview-quote">脊柱生物力学领域权威麦吉尔教授的代表作。基于30年临床研究，提出'脊柱耐受度'概念——每个人的脊柱每天能承受的负荷总量是有限的，超限就会受伤。全书详解脊柱三大运动模式（屈曲、伸展、旋转）的安全边界，以...</div>
+    <div class="overview-quote">
+      达尔文以五年环球考察和二十年深入研究为基础，提出了改变人类世界观的进化论：所有物种都通过自然选择从共同祖先进化而来。适者生存不是残酷的丛林法则，而是生命在漫长岁月中与环境不断对话的结果。
+    </div>
   </section>
 
   <!-- CORE IDEAS -->
@@ -823,41 +869,30 @@ section {
     <h2 class="section-title">两大核心思想</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      曼森颠覆了传统成功学的"积极思维"，提出：痛苦不可避免，但我们可以选择为什么而痛苦。关键不是消除问题，而是选择更好的问题。
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
     </p>
     <div class="core-ideas">
+
       <div class="idea-card idea1">
-        <div class="idea-badge">● Idea 01</div>
-        <h3 class="idea-name">反向努力定律</h3>
-        <p class="idea-tagline">越追求积极，越感到消极</p>
+        <div class="idea-badge">● Idea 1</div>
+        <h3 class="idea-name">自然选择</h3>
+        <p class="idea-tagline">在资源有限的世界中，具有有利变异的个体更可能生存和繁殖，这些变异逐代积累，最终导致新物种的形成。这不</p>
         <ul class="idea-points">
-          <li>强迫自己"积极思考"反而放大焦虑</li>
-          <li>接受负面情绪是健康的标志</li>
-          <li>问题不是敌人，逃避问题才是</li>
-          <li>真正的成长来自直面痛苦</li>
-          <li>不要问"我想要什么"，要问"我愿意承受什么"</li>
-          <li>幸福不是没有烦恼，而是有值得烦恼的事</li>
+          <li>在资源有限的世界中，具有有利变异的个体更可能生存和繁殖，这些变异逐代积累，最终导致新物种的形成。这不是有意识的设计，而是无目的的自然过程。</li>
         </ul>
         <div class="idea-example">
-          拼命追求"永远快乐"→ 反而因偶尔的不快乐而自责<br>
-          接受"人生本苦"→ 反而能平静面对起伏
+          加拉帕戈斯群岛上的雀鸟，不同岛屿上的雀喙形状各异，完美适应各自岛屿上的食物来源——这是自然选择在短短数千年内塑造的杰作。
         </div>
       </div>
       <div class="idea-card idea2">
-        <div class="idea-badge">● Idea 02</div>
-        <h3 class="idea-name">价值排序法则</h3>
-        <p class="idea-tagline">你在意什么，决定了你是谁</p>
+        <div class="idea-badge">● Idea 2</div>
+        <h3 class="idea-name">共同祖先</h3>
+        <p class="idea-tagline">所有生物都源自同一个或少数几个原始祖先。生命之树从根部不断分叉，形成了今天地球上令人惊叹的生物多样性</p>
         <ul class="idea-points">
-          <li>人的本质由他选择的价值衡量标准决定</li>
-          <li>坏价值：追求外部认可、物质炫耀、永远正确</li>
-          <li>好价值：可控的、内在的、过程导向的</li>
-          <li>好问题：我能从中学到什么？我能贡献什么？</li>
-          <li>坏问题：别人怎么看我？为什么是我？</li>
-          <li>自由 = 选择自己的束缚</li>
+          <li>所有生物都源自同一个或少数几个原始祖先。生命之树从根部不断分叉，形成了今天地球上令人惊叹的生物多样性。人类与其他灵长类共享最近的共同祖先。</li>
         </ul>
         <div class="idea-example">
-          问"我够成功吗"→ 永远不够<br>
-          问"我在成长吗"→ 每天都可以是
+          人类的手臂、蝙蝠的翅膀、鲸鱼的鳍——骨骼结构惊人相似，因为它们都来自同一个远古祖先的前肢，只是在不同环境中被自然选择塑造成不同形态。
         </div>
       </div>
     </div>
@@ -869,58 +904,52 @@ section {
     <h2 class="section-title">关键概念</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      曼森用一系列反直觉的概念，拆解了现代人的焦虑根源，并给出了重新选择的路径。
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
     </p>
     <div class="concept-grid">
 
       <div class="concept-card">
-        <div class="concept-num">No. 01</div>
-        <h3 class="concept-name">反向努力定律</h3>
-        <div class="concept-name-en">The Backwards Law</div>
-        <p class="concept-desc">越是追求某种感受（如快乐、自信），越会因"还没达到"而痛苦。接受现状反而是改变的开始。</p>
-        <div class="concept-eg"><strong>例</strong> 越告诉自己"别紧张"，越紧张。不如承认"我就是紧张"，反而放松了。</div>
+        <div class="concept-num">No. 1</div>
+        <h3 class="concept-name">物竞天择</h3>
+        <div class="concept-name-en">Natural Selection</div>
+        <p class="concept-desc">自然界没有目的，但环境会筛选出最适应当前条件的个体。适应不是'最强'，而是'最适合'。</p>
+        <div class="concept-eg"><strong>例</strong> 工业革命后，英国桦尺蛾从浅色变为深色——因为树干被煤烟熏黑，深色蛾子更不容易被鸟类发现。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 02</div>
-        <h3 class="concept-name">选择焦虑</h3>
-        <div class="concept-name-en">Choice Anxiety</div>
-        <p class="concept-desc">现代人的痛苦不是选择太少，而是选择太多。每个选择都意味着放弃其他可能性，这种"机会成本"让人瘫痪。</p>
-        <div class="concept-eg"><strong>例</strong> 刷 2 小时选电影，最后随便点开一个——选择本身成了负担。</div>
+        <div class="concept-num">No. 2</div>
+        <h3 class="concept-name">性选择</h3>
+        <div class="concept-name-en">Sexual Selection</div>
+        <p class="concept-desc">不仅生存能力决定进化，繁殖成功率同样重要。孔雀的尾巴、鹿的角都是性选择的产物——它们对生存不利，但对求偶有利。</p>
+        <div class="concept-eg"><strong>例</strong> 雄孔雀华丽却笨重的尾羽，实际上是在向雌孔雀发出信号：'我这么累赘还能活下来，说明我基因很好。'</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 03</div>
-        <h3 class="concept-name">责任 vs 过错</h3>
-        <div class="concept-name-en">Responsibility vs Fault</div>
-        <p class="concept-desc">事情不是你的错，但如何应对是你的责任。把"谁的错"换成"我能做什么"，瞬间从受害者变成行动者。</p>
-        <div class="concept-eg"><strong>例</strong> 被裁员不是你的错，但接下来是抱怨还是提升技能，是你的责任。</div>
+        <div class="concept-num">No. 3</div>
+        <h3 class="concept-name">渐变论</h3>
+        <div class="concept-name-en">Gradualism</div>
+        <p class="concept-desc">进化不是一蹴而就的，而是通过无数微小的变化在漫长时间内逐渐积累。'自然不做飞跃'。</p>
+        <div class="concept-eg"><strong>例</strong> 马的进化经历了5000万年，从狐狸大小的始祖马逐步演变为今天的高头大马，每一步变化都微乎其微。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 04</div>
-        <h3 class="concept-name">死亡意识</h3>
-        <div class="concept-name-en">Death Awareness</div>
-        <p class="concept-desc">意识到自己会死，不是悲观，而是最强大的优先级过滤器。很多"重要"的事，在死亡面前根本不值一提。</p>
-        <div class="concept-eg"><strong>例</strong> 临终的人不会后悔"没多加班"，只会后悔"没多陪伴"。</div>
+        <div class="concept-num">No. 4</div>
+        <h3 class="concept-name">生存斗争</h3>
+        <div class="concept-name-en">Struggle for Existence</div>
+        <p class="concept-desc">生物繁殖的数量远超环境承载力，因此每个个体都在为生存而竞争——不仅与其他物种，也与同种的其他个体。</p>
+        <div class="concept-eg"><strong>例</strong> 一条鱼产下百万颗卵，但只有极少数能活到成年并繁殖——这就是生存斗争的残酷数学。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 05</div>
-        <h3 class="concept-name">承诺的自由</h3>
-        <div class="concept-name-en">Freedom of Commitment</div>
-        <p class="concept-desc">真正的自由不是没有束缚，而是主动选择束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
-        <div class="concept-eg"><strong>例</strong> 单身看似自由，但可能因"永远在选"而焦虑；承诺反而带来安定。</div>
+        <div class="concept-num">No. 5</div>
+        <h3 class="concept-name">地理分布</h3>
+        <div class="concept-name-en">Geographical Distribution</div>
+        <p class="concept-desc">物种的分布不是随机的，而是与地理隔离和进化历史密切相关。岛屿上的物种往往与最近大陆的物种相似但有独特差异。</p>
+        <div class="concept-eg"><strong>例</strong> 澳大利亚的有袋类动物（袋鼠、考拉）与其他大陆的胎盘类动物截然不同——因为大陆分离后各自独立进化。</div>
       </div>
-
       <div class="concept-card">
-        <div class="concept-num">No. 06</div>
-        <h3 class="concept-name">平庸的勇气</h3>
-        <div class="concept-name-en">Courage of Mediocrity</div>
-        <p class="concept-desc">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
-        <div class="concept-eg"><strong>例</strong> 不是每个老师都要成为名师，认真上好每一堂课就是成功。</div>
+        <div class="concept-num">No. 6</div>
+        <h3 class="concept-name">人工选择</h3>
+        <div class="concept-name-en">Artificial Selection</div>
+        <p class="concept-desc">人类通过选择性繁殖，在短短几百年内创造出差异巨大的品种——这证明了选择力量可以在相对短的时间内产生巨大变化。</p>
+        <div class="concept-eg"><strong>例</strong> 所有家犬品种——从吉娃娃到大丹犬——都源自同一个狼祖先，人类用几千年通过人工选择创造了如此惊人的多样性。</div>
       </div>
-
     </div>
   </section>
 
@@ -930,60 +959,55 @@ section {
     <h2 class="section-title">全书章节脉络</h2>
     <div class="section-rule"></div>
     <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
-      全书 9 章 + 结语，从"为什么积极思考是陷阱"出发，经价值选择、责任、死亡，最终落脚于"行动"——不是知道更多，而是做到更多。
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
     </p>
     <div class="chapter-map">
 
       <div class="chapter-part">
         <div class="chapter-roman">Ⅰ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">不要尝试</h3>
-          <div class="chapter-title-en">Don't Try</div>
-          <p class="chapter-desc">反向努力定律：越追求快乐越痛苦。查尔斯·布考斯基的故事——接受平凡反而成就非凡。</p>
-          <div class="chapter-chapters">Ch. 1</div>
+          <h3 class="chapter-title">家养下的变异</h3>
+          <div class="chapter-title-en">Variation Under Domestication</div>
+          <p class="chapter-desc">从人工选择入手，展示人类如何在短时间内通过选择培育出差异巨大的动植物品种，为自然选择理论提供类比基础。</p>
+          <div class="chapter-chapters">Ch. 1-2</div>
         </div>
       </div>
-
       <div class="chapter-part">
-        <div class="chapter-roman"></div>
+        <div class="chapter-roman">Ⅱ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">快乐是个问题</h3>
-          <div class="chapter-title-en">Happiness Is a Problem</div>
-          <p class="chapter-desc">痛苦是不可避免的，关键是你选择为什么而痛苦。好问题 vs 坏问题，决定了你的人生质量。</p>
-          <div class="chapter-chapters">Ch. 2</div>
+          <h3 class="chapter-title">自然界的斗争</h3>
+          <div class="chapter-title-en">Struggle for Existence</div>
+          <p class="chapter-desc">阐述生存斗争的普遍性：生物繁殖力远超资源承载力，每个个体都在为生存而竞争。引入马尔萨斯人口论的影响。</p>
+          <div class="chapter-chapters">Ch. 3-5</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅲ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">你不是特别的</h3>
-          <div class="chapter-title-en">You Are Not Special</div>
-          <p class="chapter-desc">人人都是普通人的时代。接受平庸不是放弃，而是从"必须非凡"的枷锁中解脱，找到真正的动力。</p>
-          <div class="chapter-chapters">Ch. 3</div>
+          <h3 class="chapter-title">自然选择的力量</h3>
+          <div class="chapter-title-en">Natural Selection</div>
+          <p class="chapter-desc">全书核心章节：阐述自然选择如何作用于微小变异，通过漫长岁月塑造出复杂的适应性结构和全新物种。</p>
+          <div class="chapter-chapters">Ch. 6-9</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅳ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">选择的悖论</h3>
-          <div class="chapter-title-en">The Paradox of Choice</div>
-          <p class="chapter-desc">选择越多越焦虑。承诺不是束缚，而是自由——主动选择自己的束缚，免于无尽的可能性。</p>
-          <div class="chapter-chapters">Ch. 4 — 5</div>
+          <h3 class="chapter-title">进化论的难题</h3>
+          <div class="chapter-title-en">Difficulties of the Theory</div>
+          <p class="chapter-desc">诚实面对理论的困难：过渡化石的缺失、复杂器官（如眼睛）如何渐进演化、本能行为的起源。</p>
+          <div class="chapter-chapters">Ch. 10-13</div>
         </div>
       </div>
-
       <div class="chapter-part">
         <div class="chapter-roman">Ⅴ</div>
         <div class="chapter-body">
-          <h3 class="chapter-title">向死而生</h3>
-          <div class="chapter-title-en">You're Going to Die</div>
-          <p class="chapter-desc">死亡是最好的优先级过滤器。意识到生命有限，才能分辨什么是真正重要的，什么只是噪音。</p>
-          <div class="chapter-chapters">Ch. 6 — 9 + 结语</div>
+          <h3 class="chapter-title">生命之树</h3>
+          <div class="chapter-title-en">The Tree of Life</div>
+          <p class="chapter-desc">用'生命之树'的隐喻总结全书：所有生物共享共同祖先，地质记录展示了生命从简单到复杂的壮丽历程。</p>
+          <div class="chapter-chapters">Ch. 14-15</div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -994,30 +1018,25 @@ section {
     <div class="section-rule"></div>
 
     <div class="quote-block">
-      <p class="quote-text">你选择在意什么，决定了你是谁。不是你的能力，不是你的处境，而是你选择把精力花在哪里。</p>
-      <p class="quote-attr">— Mark Manson</p>
+      <p class="quote-text">能够生存下来的并不是最强的物种，也不是最聪明的，而是最能适应变化的。</p>
+      <p class="quote-attr">— — 查尔斯·达尔文</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">真正的自由不是没有束缚，而是选择自己的束缚。承诺一段关系、一份事业，反而让人免于无尽的选择焦虑。</p>
-      <p class="quote-attr">— 论承诺的自由</p>
+      <p class="quote-text">从这个观点来看，生命及其若干能力，最初被赋予少数几种或一种生物之中，这是何等壮丽的图景。</p>
+      <p class="quote-attr">— — 《物种起源》结尾</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">接受自己是个普通人，不是放弃，而是解脱。不是每个人都要改变世界，做好手头的事同样有价值。</p>
-      <p class="quote-attr">— 论平庸的勇气</p>
+      <p class="quote-text">自然界没有飞跃。</p>
+      <p class="quote-attr">— — 查尔斯·达尔文（Natura non facit saltum）</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">问题永远不会消失，解决了一个，下一个就来了。幸福不是没有问题，而是有值得解决的问题。</p>
-      <p class="quote-attr">— Mark Manson</p>
+      <p class="quote-text">无数美丽而奇妙的类型已经进化并正在进化，从最简单的开端，不断趋向越来越高的发展——这绝非不可能。</p>
+      <p class="quote-attr">— — 查尔斯·达尔文</p>
     </div>
-
     <div class="quote-block">
-      <p class="quote-text">死亡不是生命的对立面，而是生命的一部分。意识到自己会死，才能开始真正活着。</p>
-      <p class="quote-attr">— 论死亡意识</p>
+      <p class="quote-text">能够存活下来的物种，不是那些最强壮的，也不是那些最聪明的，而是那些最能适应变化的。</p>
+      <p class="quote-attr">— — 论适应与进化</p>
     </div>
-
   </section>
 
   <!-- ACTION INSIGHTS -->
@@ -1026,39 +1045,40 @@ section {
     <h2 class="section-title">对工作与生活的行动启发</h2>
     <div class="section-rule"></div>
     <ol class="insights-list">
+
       <li class="insight-item">
         <div class="insight-num">1</div>
         <div class="insight-content">
-          <h4>写下你的"价值清单"</h4>
-          <p>花 10 分钟写下：你真正在意的是什么？然后问自己：这个价值是可控的吗？是内在的吗？是过程导向的吗？如果三个答案都是"否"，考虑换一个价值标准。比如把"被别人认可"换成"我在成长吗"。</p>
+          <h4>用演化思维理解复杂系统</h4>
+          <p>任何复杂的系统——无论是产品、组织还是技能——都不是一步到位的，而是在环境反馈中不断迭代优化的结果。接受'足够好'的起点，持续微调。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">2</div>
         <div class="insight-content">
-          <h4>区分"责任"和"过错"</h4>
-          <p>遇到不顺心的事，先问：这是谁的错？（可能不是你的）再问：我能做什么？（这总是你的）。把"为什么是我"换成"现在怎么办"，瞬间从受害者变成行动者。</p>
+          <h4>适应比强大更重要</h4>
+          <p>在快速变化的环境中，'最适合'比'最强'更有生存优势。保持灵活性和学习能力，比积累单一优势更关键。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">3</div>
         <div class="insight-content">
-          <h4>主动选择你的"束缚"</h4>
-          <p>选择焦虑的本质是"害怕错过"。解决方案不是保持开放，而是主动承诺：选定一个方向，深耕下去。自由不是无限可能，而是免于选择的安定。</p>
+          <h4>微小变化的累积力量</h4>
+          <p>不要低估每天1%的进步。进化论告诉我们：微小的有利变异，经过足够长时间的积累，可以产生惊人的差异。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">4</div>
         <div class="insight-content">
-          <h4>用"死亡测试"过滤优先级</h4>
-          <p>纠结某件事要不要做时，问自己：如果只剩一年生命，我还会在意这个吗？如果答案是否，那就别浪费时间。这个测试能瞬间过滤掉 80% 的"伪重要"事务。</p>
+          <h4>多样性是韧性的来源</h4>
+          <p>生态系统中物种越多样，越能抵抗冲击。同样，团队中思维越多元，越能应对不确定性。避免同质化。</p>
         </div>
       </li>
       <li class="insight-item">
         <div class="insight-num">5</div>
         <div class="insight-content">
-          <h4>接受"足够好"</h4>
-          <p>完美主义是反向努力定律的典型表现——越追求完美，越无法开始。允许自己"足够好"，先完成再完善。记住：一个完成的烂作品，胜过十个完美的计划。</p>
+          <h4>环境塑造行为</h4>
+          <p>个体的表现很大程度上取决于所处的环境。与其试图改变'人性'，不如设计更好的环境和激励机制。</p>
         </div>
       </li>
     </ol>
@@ -1070,48 +1090,46 @@ section {
     <h2 class="section-title">适合谁读</h2>
     <div class="section-rule"></div>
     <div class="audience-grid">
+
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>焦虑的年轻人</h4>
-        <p>被"必须成功"压得喘不过气，需要有人告诉你"普通也没关系"</p>
+        <h4>科学爱好者</h4>
+        <p>理解进化论是理解现代生物学的基石，这本书是源头</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>选择困难症患者</h4>
-        <p>在无数可能性中瘫痪，需要学会"主动选择束缚"的智慧</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>积极疲劳者</h4>
-        <p>听腻了"你可以的""加油"，需要一剂反鸡汤的清醒剂</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon">◆</div>
-        <h4>完美主义者</h4>
-        <p>因害怕做不好而不敢开始，需要"足够好"的勇气</p>
+        <h4>创业者与产品经理</h4>
+        <p>演化思维对理解市场竞争、产品迭代和用户适应极有启发</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
         <h4>教育工作者</h4>
-        <p>帮助学生建立健康的价值标准，而非盲目追求外部认可</p>
+        <p>进化论是科学素养的核心组成部分，理解它有助于培养批判性思维</p>
       </div>
       <div class="audience-card">
         <div class="audience-icon">◆</div>
-        <h4>所有想活得更真实的人</h4>
-        <p>如果你只读一本"反成功学"的书，就是这一本</p>
+        <h4>哲学思考者</h4>
+        <p>进化论深刻改变了人类对自身在自然界中位置的理解</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>所有好奇的人</h4>
+        <p>如果你想知道'我从哪里来'以及'为什么世界是这样的'，这是必读之作</p>
       </div>
     </div>
   </section>
 
 </main>
 
+<!-- ============ BACK TO INDEX ============ -->
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="footer-bookmark"></div>
-  <p>The Art of Not Giving a F*ck · Mark Manson · 2016</p>
-  <p class="footer-cn">每日读书笔记 · 2026-07-17</p>
+  <p>The Birds and the Bees · Charles Darwin · </p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 07 月 年 月 17 日</p>
 </footer>
 
-<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
 </body>
 </html>
