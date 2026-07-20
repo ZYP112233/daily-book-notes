@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《筋膜释放》— 罗伯特·施莱普</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-07-20</div>
+    <h1 class="hero-title">筋膜释放</h1>
+    <div class="hero-title-en">Fascia Release</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      罗伯特·施莱普 Robert Schleip
+      <span class="subtitle">筋膜健康 · 弹性组织 · 疼痛缓解</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">罗伯特·施莱普
+          <span class="sub">Robert Schleip</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">体态改善·筋膜学
+          <span class="sub">筋膜健康 · 弹性组织 · 疼痛缓解</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">2012 年
+          <span class="sub">筋膜研究先驱，首次国际筋膜研究大会发起人</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">筋膜不是包裹肌肉的惰性包装纸，而是人体最大的感觉器官——它储存弹性势能、感知全身张力、并在慢性疼痛中扮演关键角色
+          <span class="sub">筋膜健康 · 弹性组织 · 疼痛缓解</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      筋膜不是简单的'包装纸'，而是人体最大的感觉器官。施莱普通过数十年研究揭示：筋膜富含本体感受器，能储存弹性势能，并在慢性疼痛中扮演关键角色。本书系统介绍了筋膜训练四大原则——弹跳回弹、长程拉伸、水合润滑、感知精化，为体态改善和疼痛管理提供科学路径。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
+    </p>
+    <div class="core-ideas">
+
+      <div class="idea-card idea1">
+        <div class="idea-badge">● Idea 1</div>
+        <h3 class="idea-name">筋膜是感觉器官</h3>
+        <p class="idea-tagline">传统解剖学将筋膜视为惰性的包裹组织，但施莱普的研究表明，筋膜中密布着鲁菲尼小体、帕西尼小体、高尔基腱</p>
+        <ul class="idea-points">
+          <li>传统解剖学将筋膜视为惰性的包裹组织，但施莱普的研究表明，筋膜中密布着鲁菲尼小体、帕西尼小体、高尔基腱器官和游离神经末梢。它不仅是支撑结构，更是人体最大的感知网络——比皮肤更丰富地感知压力、张力和运动。</li>
+        </ul>
+        <div class="idea-example">
+          当你闭眼也能感知手臂位置时，不只是肌肉在'告诉'大脑——筋膜中的本体感受器同样在持续发送信号。慢性疼痛患者的筋膜中，感受器密度异常升高，形成'过度警觉'。
+        </div>
+      </div>
+      <div class="idea-card idea2">
+        <div class="idea-badge">● Idea 2</div>
+        <h3 class="idea-name">弹道效应与弹性回弹</h3>
+        <p class="idea-tagline">筋膜具有类似弹弓的弹性储能能力。跟腱、足底筋膜等结构在运动中可以储存并释放弹性势能——就像袋鼠的肌腱</p>
+        <ul class="idea-points">
+          <li>筋膜具有类似弹弓的弹性储能能力。跟腱、足底筋膜等结构在运动中可以储存并释放弹性势能——就像袋鼠的肌腱一样。这种'弹道效应'让运动更高效，但长期缺乏弹跳运动会使筋膜失去弹性，变得僵硬粘连。</li>
+        </ul>
+        <div class="idea-example">
+          光脚在硬地上轻轻弹跳（而非刻意跳跃），让跟腱和足底筋膜像弹簧一样工作。这就是为什么非洲某些部落的长跑者效率极高——他们的筋膜系统保持了出色的弹性回弹能力。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 1</div>
+        <h3 class="concept-name">筋膜水合</h3>
+        <div class="concept-name-en">Fascial Hydration</div>
+        <p class="concept-desc">筋膜层之间需要透明质酸作为润滑剂。脱水或久坐会使层间粘连，产生僵硬和疼痛。泡沫轴滚压可以挤压旧液、吸入新液，恢复层间滑动。</p>
+        <div class="concept-eg"><strong>例</strong> 久坐办公后站起来觉得浑身僵硬，不是肌肉'缩短了'，而是筋膜层间'胶水'变稠了。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 2</div>
+        <h3 class="concept-name">张力完整性</h3>
+        <div class="concept-name-en">Tensegrity</div>
+        <p class="concept-desc">人体不是砖墙结构（骨头叠骨头），而是张拉整体结构——骨骼像刚性杆，筋膜像弹性绳索，全身张力互相连通。拉一处会影响远处。</p>
+        <div class="concept-eg"><strong>例</strong> 足底筋膜炎的根源可能在臀部——因为筋膜链从脚底一路连通到骨盆，牵一发而动全身。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 3</div>
+        <h3 class="concept-name">慢速重塑</h3>
+        <div class="concept-name-en">Slow Remodeling</div>
+        <p class="concept-desc">筋膜组织的胶原蛋白更新周期约为6-24个月。缓慢、持续的拉伸（每次超过90秒）能刺激成纤维细胞重新排列胶原纤维，从根本上改变筋膜结构。</p>
+        <div class="concept-eg"><strong>例</strong> 瑜伽中的长时间保持（如阴瑜伽）之所以有效，不是因为'拉长肌肉'，而是在给筋膜重塑的时间。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 4</div>
+        <h3 class="concept-name">感知精化</h3>
+        <div class="concept-name-en">Sensory Refinement</div>
+        <p class="concept-desc">筋膜训练不只是机械刺激，还需要神经系统的参与。缓慢、有意识、多样化的运动能丰富筋膜中的神经映射，改善协调性和本体感觉。</p>
+        <div class="concept-eg"><strong>例</strong> 太极拳的缓慢动作看似'没在锻炼'，实际上在精细地重塑筋膜的神经网络——所以练太极的人平衡能力远超同龄人。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 5</div>
+        <h3 class="concept-name">触变性与粘弹性</h3>
+        <div class="concept-name-en">Thixotropy & Viscoelasticity</div>
+        <p class="concept-desc">筋膜具有触变性：静止时变稠变硬，运动时变稀变软。同时具有粘弹性：快速拉伸时抵抗强烈，缓慢拉伸时逐渐放松。理解这两个特性是有效释放的关键。</p>
+        <div class="concept-eg"><strong>例</strong> 为什么泡沫轴要慢滚而非快压？因为筋膜需要时间'流动'——快速按压只会触发保护性收缩。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 6</div>
+        <h3 class="concept-name">筋膜链</h3>
+        <div class="concept-name-en">Fascial Chains</div>
+        <p class="concept-desc">筋膜不是孤立的片层，而是连续的力学网络。从头顶到脚底，从手指到肩胛，筋膜形成多条'力线'，将全身连为一个整体。</p>
+        <div class="concept-eg"><strong>例</strong> 托马斯·迈尔斯的'解剖列车'概念：前表线、后表线、侧线、螺旋线——每条线跨越多个关节，解释为什么远端问题会影响近端。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">筋膜的重新发现</h3>
+          <div class="chapter-title-en">The Rediscovery of Fascia</div>
+          <p class="chapter-desc">回顾筋膜研究的历史：从被忽视的'包装纸'到被认可为人体最大感觉器官。介绍第一次国际筋膜研究大会（2007年）的突破性发现。</p>
+          <div class="chapter-chapters">Ch. 1-3</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">筋膜与疼痛</h3>
+          <div class="chapter-title-en">Fascia & Pain</div>
+          <p class="chapter-desc">揭示慢性疼痛的筋膜机制：筋膜炎性反应、感受器敏化、层间粘连。为什么很多'肌肉疼痛'实际上是筋膜疼痛。</p>
+          <div class="chapter-chapters">Ch. 4-6</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">筋膜训练四大原则</h3>
+          <div class="chapter-title-en">Four Principles of Fascial Fitness</div>
+          <p class="chapter-desc">系统阐述弹跳回弹、长程拉伸、水合润滑、感知精化四大训练原则，以及如何在日常练习中整合运用。</p>
+          <div class="chapter-chapters">Ch. 7-10</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">释放技术与实践</h3>
+          <div class="chapter-title-en">Release Techniques & Practice</div>
+          <p class="chapter-desc">泡沫轴滚压、手法治疗、缓慢拉伸的具体操作指南。如何针对不同部位（足底、小腿、背部、颈部）设计释放方案。</p>
+          <div class="chapter-chapters">Ch. 11-14</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅴ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">整体整合</h3>
+          <div class="chapter-title-en">Holistic Integration</div>
+          <p class="chapter-desc">将筋膜科学融入整体健康观：运动、营养、水分、睡眠、情绪管理对筋膜的综合影响。建立长期的筋膜健康习惯。</p>
+          <div class="chapter-chapters">Ch. 15-17</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">筋膜不是包裹肌肉的包装纸——它是我们身体里最大的感觉器官。</p>
+      <p class="quote-attr">— — 罗伯特·施莱普</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">你的筋膜记录着你所有的运动习惯、情绪状态和生活经历。它是一部身体的自传。</p>
+      <p class="quote-attr">— — 罗伯特·施莱普</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">疼痛很少发生在'受损'的地方，而常常发生在'代偿'的地方。理解筋膜链，才能找到疼痛的真正源头。</p>
+      <p class="quote-attr">— — 论筋膜与疼痛</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">筋膜的改变是缓慢的——它以月为单位重塑，而非以分钟计。耐心是筋膜训练最重要的品质。</p>
+      <p class="quote-attr">— — 论慢速重塑</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">最好的筋膜训练不是最剧烈的，而是最多样化的。你的身体需要惊喜，而非重复。</p>
+      <p class="quote-attr">— — 论感知精化</p>
+    </div>
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>每天弹跳5分钟</h4>
+          <p>光脚在硬地面上轻轻弹跳（膝盖微屈），让筋膜系统保持弹性回弹能力。这是最简单也最被忽视的筋膜训练。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>泡沫轴慢滚而非快压</h4>
+          <p>每个部位缓慢滚压60-90秒，让筋膜有时间'流动'。快速按压只会触发保护性收缩，适得其反。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>长程拉伸每周3次</h4>
+          <p>每次拉伸保持90-120秒，强度在中等偏下（4/10）。目的不是'拉断粘连'，而是给成纤维细胞发出重塑信号。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>多样化你的运动</h4>
+          <p>筋膜需要'惊喜'而非重复。每周尝试一种新运动模式：攀爬、翻滚、舞蹈、武术——让筋膜在不同方向受力。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>充足饮水是筋膜健康的基础</h4>
+          <p>筋膜层间的透明质酸需要水分才能保持润滑。每天至少2升水，运动时更多。脱水是筋膜僵硬的首要原因。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>慢性疼痛患者</h4>
+        <p>很多'不明原因'的疼痛源于筋膜粘连和敏化，理解筋膜机制是缓解的第一步。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>运动爱好者与运动员</h4>
+        <p>筋膜弹性直接影响运动表现和伤病预防，筋膜训练是力量训练之外的重要补充。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>瑜伽与普拉提练习者</h4>
+        <p>理解筋膜原理能让你的练习更精准——为什么保持时间要长、为什么要多样化。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>物理治疗师与手法治疗师</h4>
+        <p>筋膜科学正在重塑手法治疗的理论基础，本书是必读的参考。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>久坐办公族</h4>
+        <p>久坐是筋膜健康的头号敌人——层间粘连、弹性丧失、感知退化。了解原理才能有效对抗。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ BACK TO INDEX ============ -->
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>Fascia Release · Robert Schleip · 2012</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 07 月 年 月 20 日</p>
+</footer>
+
+</body>
+</html>
