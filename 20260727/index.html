@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书笔记 ·《创新者的窘境》— 克莱顿·克里斯坦森</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #f5efe0;
+  --cream-light: #faf6ec;
+  --paper: #fdfaf2;
+  --ink: #2c2416;
+  --ink-soft: #5c4f3e;
+  --ink-faded: #8a7c68;
+  --bookmark: #9e2b25;
+  --bookmark-deep: #7a1f1a;
+  --gold: #b8860b;
+  --gold-soft: #c9a84c;
+  --border: #d8ccb6;
+  --border-soft: #e8dfca;
+  --accent-blue: #3a5a7a;
+  --accent-teal: #4a7c74;
+  --serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --serif-en: 'Cormorant Garamond', 'Playfair Display', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
+body {
+  font-family: var(--serif-cn);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(184,134,11,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(154,123,79,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ BOOKMARK RIBBON ============ */
+.bookmark-ribbon {
+  position: fixed;
+  top: 0;
+  right: 48px;
+  width: 38px;
+  height: 85px;
+  background: linear-gradient(180deg, var(--bookmark) 0%, var(--bookmark-deep) 100%);
+  z-index: 100;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+}
+.bookmark-ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid var(--bookmark-deep);
+  border-right: 19px solid var(--bookmark-deep);
+  border-bottom: 12px solid transparent;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.48) saturate(0.7);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(20,15,8,0.55) 0%, 
+      rgba(20,15,8,0.3) 30%, 
+      rgba(20,15,8,0.55) 70%, 
+      rgba(245,239,224,0.92) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #f5efe0;
+  padding: 0 24px;
+  max-width: 860px;
+}
+.hero-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: rgba(245,239,224,0.7);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-author {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: rgba(245,239,224,0.85);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-author .subtitle {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold-soft);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(245,239,224,0.5);
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  animation: bounce 2s infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ MAIN CONTENT WRAPPER ============ */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ============ SECTION STYLES ============ */
+section {
+  padding: 3.5rem 0;
+}
+.section-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+.section-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--bookmark);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+/* ============ BOOK INFO ============ */
+.book-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(92,79,62,0.08);
+}
+.info-item {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+}
+.info-item:nth-child(2n) { border-right: none; }
+.info-item:nth-last-child(-n+2) { border-bottom: none; }
+.info-label {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.info-value {
+  font-family: var(--serif-cn);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.info-value .sub {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* ============ OVERVIEW ============ */
+.overview {
+  text-align: center;
+  padding: 4rem 0;
+}
+.overview-quote {
+  font-family: var(--serif-cn);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.5vw, 1.85rem);
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+.overview-quote::before {
+  content: '\201C';
+  font-family: var(--serif-en);
+  font-size: 4rem;
+  color: var(--bookmark);
+  opacity: 0.25;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.overview-quote::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--border);
+  margin: 2rem auto 0;
+}
+
+/* ============ CORE IDEAS ============ */
+.core-ideas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.idea-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(92,79,62,0.12);
+}
+.idea-card.idea1 { border-top: 4px solid var(--accent-blue); }
+.idea-card.idea2 { border-top: 4px solid var(--bookmark); }
+.idea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.idea-card.idea1 .idea-badge { color: var(--accent-blue); }
+.idea-card.idea2 .idea-badge { color: var(--bookmark); }
+.idea-name {
+  font-family: var(--serif-cn);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+.idea-tagline {
+  font-family: var(--serif-cn);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.idea-points {
+  list-style: none;
+  padding: 0;
+}
+.idea-points li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-soft);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.idea-points li:last-child { border-bottom: none; }
+.idea-points li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.idea-card.idea1 .idea-points li::before { background: var(--accent-blue); }
+.idea-card.idea2 .idea-points li::before { background: var(--bookmark); }
+.idea-example {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(58,90,122,0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.idea-card.idea2 .idea-example { background: rgba(158,43,37,0.05); }
+
+/* ============ KEY CONCEPTS ============ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.concept-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(92,79,62,0.1);
+}
+.concept-card:nth-child(4n+1)::before { background: var(--bookmark); }
+.concept-card:nth-child(4n+2)::before { background: var(--accent-blue); }
+.concept-card:nth-child(4n+3)::before { background: var(--accent-teal); }
+.concept-card:nth-child(4n+4)::before { background: var(--gold); }
+.concept-num {
+  font-family: var(--serif-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.concept-name {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+.concept-name-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+}
+.concept-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.concept-eg {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.concept-eg strong { color: var(--ink-soft); font-weight: 600; }
+
+/* ============ CHAPTER MAP ============ */
+.chapter-map {
+  margin-top: 1rem;
+  position: relative;
+}
+.chapter-part {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  align-items: stretch;
+}
+.chapter-roman {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f5efe0;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+}
+.chapter-part:nth-child(1) .chapter-roman { background: var(--accent-blue); }
+.chapter-part:nth-child(2) .chapter-roman { background: var(--accent-teal); }
+.chapter-part:nth-child(3) .chapter-roman { background: var(--gold); }
+.chapter-part:nth-child(4) .chapter-roman { background: var(--bookmark); }
+.chapter-part:nth-child(5) .chapter-roman { background: #5c4f3e; }
+.chapter-body {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 0 4px 4px 0;
+  padding: 1.2rem 1.4rem;
+}
+.chapter-title {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+.chapter-title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.chapter-desc {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.chapter-chapters {
+  margin-top: 0.5rem;
+  font-family: var(--serif-en);
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ============ QUOTES ============ */
+.quotes-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(184,134,11,0.04) 50%, transparent 100%);
+}
+.quote-block {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.8rem 2rem 1.8rem 3.5rem;
+  background: var(--paper);
+  border-left: 4px solid var(--bookmark);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 12px rgba(92,79,62,0.06);
+}
+.quote-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-family: var(--serif-en);
+  font-size: 3.5rem;
+  color: var(--bookmark);
+  opacity: 0.2;
+  line-height: 1;
+}
+.quote-text {
+  font-family: var(--serif-cn);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink);
+  font-weight: 500;
+}
+.quote-attr {
+  margin-top: 0.8rem;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  text-align: right;
+}
+
+/* ============ ACTION INSIGHTS ============ */
+.insights-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: insight;
+}
+.insight-item {
+  counter-increment: insight;
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.insight-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--bookmark);
+  border: 2px solid var(--bookmark);
+  border-radius: 50%;
+  background: var(--cream-light);
+}
+.insight-content h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.insight-content p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ============ AUDIENCE ============ */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.audience-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+.audience-icon {
+  font-family: var(--serif-en);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.audience-card h4 {
+  font-family: var(--serif-cn);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+.audience-card p {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer-bookmark {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 28px;
+  background: var(--bookmark);
+}
+.footer p {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.8;
+}
+.footer .footer-cn {
+  font-family: var(--serif-cn);
+  font-style: normal;
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .bookmark-ribbon { right: 20px; width: 30px; height: 65px; }
+  .bookmark-ribbon::after {
+    border-left-width: 15px;
+    border-right-width: 15px;
+  }
+  .hero { min-height: 80vh; }
+  .hero-bg {
+    background-position: center center;
+  }
+  .content { padding: 0 20px; }
+  section { padding: 2.5rem 0; }
+  .book-info { grid-template-columns: 1fr; }
+  .info-item { border-right: none; }
+  .info-item:nth-last-child(2) { border-bottom: 1px solid var(--border-soft); }
+  .core-ideas { grid-template-columns: 1fr; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .chapter-part { flex-direction: column; gap: 0; }
+  .chapter-roman {
+    width: 100%;
+    height: 44px;
+    font-size: 1.3rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .chapter-body { border-radius: 0 0 4px 4px; }
+  .quote-block { padding: 1.5rem 1.2rem 1.5rem 2.8rem; }
+  .overview-quote { padding: 1.5rem 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2rem; }
+  .hero-title-en { font-size: 0.9rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .insight-item { flex-direction: column; gap: 0.5rem; }
+}
+
+/* ============ PRINT ============ */
+@media print {
+  .hero { min-height: auto; }
+  .hero-bg, .bookmark-ribbon, .scroll-hint { display: none; }
+  body { background: white; }
+  body::before { display: none; }
+}
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+
+/* ============ BACK TO INDEX BUTTON ============ */
+.back-to-index {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ink, #2c2416);
+  color: var(--paper, #fdfaf2);
+  font-family: var(--serif-cn, 'Noto Serif SC', serif);
+  font-size: 0.85rem;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(44,36,22,0.25);
+  transition: all 0.3s ease;
+  opacity: 0.85;
+}
+.back-to-index:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(44,36,22,0.35);
+}
+.back-to-index svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+@media (max-width: 768px) {
+  .back-to-index {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Bookmark Ribbon -->
+<div class="bookmark-ribbon"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Reading Notes · 2026-07-27</div>
+    <h1 class="hero-title">创新者的窘境</h1>
+    <div class="hero-title-en">The Innovator's Dilemma</div>
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      克莱顿·克里斯坦森 Clayton Christensen
+      <span class="subtitle">颠覆性创新 · 价值网络 · 低端切入</span>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll ↓</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="content">
+
+  <!-- BOOK INFO -->
+  <section>
+    <div class="section-label">Bibliographic Info</div>
+    <h2 class="section-title">书籍信息</h2>
+    <div class="section-rule"></div>
+    <div class="book-info">
+      <div class="info-item">
+        <div class="info-label">Author</div>
+        <div class="info-value">克莱顿·克里斯坦森
+          <span class="sub">Clayton Christensen</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Field</div>
+        <div class="info-value">💼商业 · 创新
+          <span class="sub">颠覆性创新 · 价值网络 · 低端切入</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Published</div>
+        <div class="info-value">1997
+          <span class="sub">哈佛商学院出版社</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Core Thesis</div>
+        <div class="info-value">优秀的企业之所以失败，恰恰是因为它们把一切做对了——倾听客户、投资高利润产品、仔细研究市场，却因此错过了看似低端、利润微薄但最终颠覆市场的新技术。
+          <span class="sub">颠覆性创新 · 价值网络 · 低端切入</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE-SENTENCE OVERVIEW -->
+  <section class="overview">
+    <div class="overview-quote">
+      克里斯坦森通过对硬盘驱动器、挖掘机、钢铁和计算机等行业的深入研究，揭示了一个令人不安的商业悖论：管理良好的企业并非因为'管理不善'而失败，而是因为'管理太好'而失败。它们专注于现有客户的需求，追求高利润率，却忽视了那些性能较差、利润更低、但最终重新定义市场的颠覆性技术。
+    </div>
+  </section>
+
+  <!-- CORE IDEAS -->
+  <section>
+    <div class="section-label">The Core Framework</div>
+    <h2 class="section-title">两大核心思想</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      本书的核心框架围绕两大思想展开，从认知底层到实践方法，构建完整的理解体系。
+    </p>
+    <div class="core-ideas">
+
+      <div class="idea-card idea1">
+        <div class="idea-badge">● Idea 1</div>
+        <h3 class="idea-name">颠覆性创新 vs 延续性创新</h3>
+        <p class="idea-tagline">好企业做延续性创新，颠覆者从低端切入</p>
+        <ul class="idea-points">
+          <li>延续性创新是沿着现有客户看重的性能维度改进产品——更快、更大、更便宜</li>
+          <li>颠覆性创新在主流客户看重的维度上最初表现更差，但在其他维度（更便宜、更简单、更小、更方便）上有新优势</li>
+          <li>在位企业几乎总是赢得延续性创新之战，因为它们拥有客户、技术和渠道优势</li>
+          <li>颠覆性技术最初只服务于边缘市场或非消费者，利润低、市场小，理性决策下不值得投入</li>
+          <li>当颠覆性技术沿性能S曲线向上攀升，最终满足主流市场需求时，在位企业已无力追赶</li>
+          <li>硬盘行业：8英寸硬盘颠覆14英寸、5.25英寸颠覆8英寸、3.5英寸颠覆5.25英寸——每次颠覆者都是新进入者</li>
+        </ul>
+        <div class="idea-example">
+          小型钢铁厂最初只能生产低质量的钢筋，大型钢厂不屑一顾。但当小型钢厂学会生产更高质量的钢材后，大型钢厂已被逼到无路可退。
+        </div>
+      </div>
+      <div class="idea-card idea2">
+        <div class="idea-badge">● Idea 2</div>
+        <h3 class="idea-name">价值网络与企业能力边界</h3>
+        <p class="idea-tagline">企业不是自由的，它被困在自己的价值网络中</p>
+        <ul class="idea-points">
+          <li>价值网络是企业所处的商业环境——客户是谁、成本结构如何、利润率多少、竞争对手是谁</li>
+          <li>企业在特定价值网络中形成的能力，同时定义了它在其他价值网络中的无能</li>
+          <li>大型硬盘厂商的成本结构要求每个订单利润数千万美元，它们无法服务于利润只有几百万的新兴市场</li>
+          <li>不是管理者短视，而是组织的成本结构、流程和价值观理性地阻止了它们进入小市场</li>
+          <li>价值网络的力量如此强大，以至于即使CEO看到了颠覆性技术的潜力，也无法调动组织资源去追逐它</li>
+          <li>成功的在位企业被'锁定'在原有价值网络中，就像被引力束缚——不是不想飞，而是飞不起来</li>
+        </ul>
+        <div class="idea-example">
+          机械挖掘机的制造商无法适应液压挖掘机，因为它们的客户（大型矿业公司）不需要小挖掘机，而液压挖掘机最初只能用于房屋地基和管道——完全不同的价值网络。
+        </div>
+      </div>
+      <div class="idea-card idea3">
+        <div class="idea-badge">● Idea 3</div>
+        <h3 class="idea-name">RPV框架：资源、流程与价值观</h3>
+        <p class="idea-tagline">组织能力既是资产，也是负债</p>
+        <ul class="idea-points">
+          <li>资源（Resources）：人员、技术、资金、品牌——最灵活，可以买卖和转移</li>
+          <li>流程（Processes）：将资源转化为产品的方式——研发流程、决策流程、生产流程</li>
+          <li>价值观（Values）：企业做决策的优先级标准——什么利润率可接受、多大的市场值得进入</li>
+          <li>当市场变化需要新流程和新价值观时，资源可以重新配置，但流程和价值观极难改变</li>
+          <li>颠覆性创新需要的流程（快速迭代、容忍失败）和价值观（接受低利润率、小市场）与在位企业完全相反</li>
+          <li>解决方案：创建独立的小型组织，拥有自己的成本结构、流程和价值观，去追逐颠覆性机会</li>
+        </ul>
+        <div class="idea-example">
+          IBM的PC部门之所以能成功起步，是因为被设在远离总部的佛罗里达，拥有独立的采购流程、成本结构和价值观——它像一个创业公司一样运作。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONCEPTS -->
+  <section>
+    <div class="section-label">Key Concepts</div>
+    <h2 class="section-title">关键概念</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      以下六个关键概念构成了本书的理论骨架，每个概念都配有具体案例帮助理解。
+    </p>
+    <div class="concept-grid">
+
+      <div class="concept-card">
+        <div class="concept-num">No. 1</div>
+        <h3 class="concept-name">颠覆性创新</h3>
+        <div class="concept-name-en">Disruptive Innovation</div>
+        <p class="concept-desc">一种最初在主流市场看重的性能维度上表现较差，但在其他维度（价格、便利性、简单性）上有新优势的创新。它从低端或新市场切入，逐步向上攀升，最终取代现有技术。</p>
+        <div class="concept-eg"><strong>例</strong> 个人电脑最初被大型计算机厂商视为'玩具'——性能差、无法运行专业软件。但它更便宜、更简单，最终颠覆了整个大型计算机市场。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 2</div>
+        <h3 class="concept-name">价值网络</h3>
+        <div class="concept-name-en">Value Network</div>
+        <p class="concept-desc">企业所处的商业生态系统，包括客户、供应商、竞争者和互补者。价值网络决定了企业的成本结构、利润率和能力边界，使企业难以跨网络迁移。</p>
+        <div class="concept-eg"><strong>例</strong> 一家为大型矿业公司生产挖掘机的企业，其整个价值网络（销售团队、售后服务、定价模式）都不适用于房屋建筑商——即使技术上可以生产小型挖掘机。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 3</div>
+        <h3 class="concept-name">技术S曲线</h3>
+        <div class="concept-name-en">Technology S-Curve</div>
+        <p class="concept-desc">技术性能随时间或投入的增长曲线：初期缓慢、中期快速提升、后期趋于平缓。当一项技术接近S曲线顶端时，延续性创新的回报递减，而颠覆性技术可能开启新的S曲线。</p>
+        <div class="concept-eg"><strong>例</strong> 硬盘存储密度沿S曲线增长：从磁芯到薄膜到磁阻——每次技术跃迁都开启新的S曲线，而固守旧技术的企业被淘汰。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 4</div>
+        <h3 class="concept-name">RPV框架</h3>
+        <div class="concept-name-en">RPV Framework (Resources, Processes, Values)</div>
+        <p class="concept-desc">分析组织能力的三维度框架。资源最灵活可换，流程次之，价值观最难改变。企业的困境往往不在于缺资源，而在于流程和价值观无法适应新市场。</p>
+        <div class="concept-eg"><strong>例</strong> 柯达不缺资源（有人才、有技术、有品牌），但其流程（胶片生产线）和价值观（高毛利胶片业务）让它无法全力转向数码摄影。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 5</div>
+        <h3 class="concept-name">破坏性技术的特征</h3>
+        <div class="concept-name-en">Characteristics of Disruptive Technology</div>
+        <p class="concept-desc">颠覆性技术通常更简单、更便宜、更小、更方便；最初利润更低、市场更小；服务于非消费者或过度满足的客户；在主流客户看重的维度上最初表现较差。</p>
+        <div class="concept-eg"><strong>例</strong> 晶体管收音机最初音质远不如真空管收音机，但它便携、便宜——年轻人不在乎音质，他们在乎能随身带着听。</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-num">No. 6</div>
+        <h3 class="concept-name">组织能力的不自由</h3>
+        <div class="concept-name-en">Organizational Incapability</div>
+        <p class="concept-desc">企业在某一价值网络中形成的能力，同时定义了它在其他价值网络中的无能。能力不是通用的，而是情境依赖的——这是创新者窘境的根本原因。</p>
+        <div class="concept-eg"><strong>例</strong> 丰田的精益生产流程在小型车市场是核心竞争力，但最初无法用于豪华车——直到创建雷克萨斯品牌，建立新的流程和价值观。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER MAP -->
+  <section>
+    <div class="section-label">Book Structure</div>
+    <h2 class="section-title">全书章节脉络</h2>
+    <div class="section-rule"></div>
+    <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-size: 0.95rem;">
+      全书结构清晰，从问题出发，经分析论证，最终落脚于实践与反思。
+    </p>
+    <div class="chapter-map">
+
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅰ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">为什么好企业会失败</h3>
+          <div class="chapter-title-en">Why Great Companies Fail</div>
+          <p class="chapter-desc">通过硬盘驱动器行业的详细案例，揭示一个悖论：管理良好、积极倾听客户、大力投资新技术的企业，恰恰是那些最终被颠覆的企业。</p>
+          <div class="chapter-chapters">Ch. 1-3</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅱ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">颠覆性技术的力量</h3>
+          <div class="chapter-title-en">The Power of Disruptive Technologies</div>
+          <p class="chapter-desc">区分延续性创新和颠覆性创新。技术S曲线、价值网络、以及为什么在位企业总是输掉颠覆性创新之战。</p>
+          <div class="chapter-chapters">Ch. 4-6</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅲ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">价值网络与组织困境</h3>
+          <div class="chapter-title-en">Value Networks & Organizational Dilemma</div>
+          <p class="chapter-desc">深入分析价值网络如何限制企业行为：成本结构、市场规模、客户需求的'引力场'让企业无法理性地追逐颠覆性机会。</p>
+          <div class="chapter-chapters">Ch. 7-9</div>
+        </div>
+      </div>
+      <div class="chapter-part">
+        <div class="chapter-roman">Ⅳ</div>
+        <div class="chapter-body">
+          <h3 class="chapter-title">管理颠覆性创新</h3>
+          <div class="chapter-title-en">Managing Disruptive Innovation</div>
+          <p class="chapter-desc">提出解决方案：创建独立组织、发现而非分析市场、保持小规模、以学习能力而非利润为目标。RPV框架的实际应用。</p>
+          <div class="chapter-chapters">Ch. 10-12</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes-section">
+    <div class="section-label">Notable Quotes</div>
+    <h2 class="section-title">金句摘录</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <p class="quote-text">优秀的企业之所以失败，恰恰是因为它们把一切做对了。</p>
+      <p class="quote-attr">— — 克莱顿·克里斯坦森</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">颠覆性技术最初总是被在位企业忽视，因为它们的客户不需要它，它的利润太低，它的市场太小。</p>
+      <p class="quote-attr">— — 论颠覆性创新</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">企业的能力不仅定义了它能做什么，也定义了它不能做什么。</p>
+      <p class="quote-attr">— — 论组织能力</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">倾听客户是延续性创新的良药，却是颠覆性创新的毒药。</p>
+      <p class="quote-attr">— — 论客户导向的陷阱</p>
+    </div>
+    <div class="quote-block">
+      <p class="quote-text">市场不存在于报告中，只存在于实践中。颠覆性技术的市场必须通过尝试去发现，而非通过研究去预测。</p>
+      <p class="quote-attr">— — 论市场发现</p>
+    </div>
+  </section>
+
+  <!-- ACTION INSIGHTS -->
+  <section>
+    <div class="section-label">Practical Takeaways</div>
+    <h2 class="section-title">对工作与生活的行动启发</h2>
+    <div class="section-rule"></div>
+    <ol class="insights-list">
+
+      <li class="insight-item">
+        <div class="insight-num">1</div>
+        <div class="insight-content">
+          <h4>设立独立团队追逐颠覆性机会</h4>
+          <p>颠覆性创新需要不同的成本结构、流程和价值观。不要试图在母体组织内孵化，而是创建独立的小团队，给它自由和耐心。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">2</div>
+        <div class="insight-content">
+          <h4>用'发现'而非'分析'对待新市场</h4>
+          <p>颠覆性技术的市场事先无法预测。不要写商业计划书，而是快速迭代、小步试错、从实践中学习。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">3</div>
+        <div class="insight-content">
+          <h4>警惕'我们的客户不需要这个'</h4>
+          <p>当你听到这句话时，可能恰恰是颠覆正在发生的信号。颠覆性技术最初服务的不是你的客户，而是非消费者。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">4</div>
+        <div class="insight-content">
+          <h4>关注'过度满足'的客户</h4>
+          <p>当产品性能超过客户需求时，竞争基础会从性能转向价格、便利性。这正是颠覆性技术切入的时机。</p>
+        </div>
+      </li>
+      <li class="insight-item">
+        <div class="insight-num">5</div>
+        <div class="insight-content">
+          <h4>定期审视你的价值网络</h4>
+          <p>问自己：我的成本结构、流程、价值观是否让我无法进入某些新兴市场？如果是，可能需要创建独立组织来突破。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section>
+    <div class="section-label">Who Should Read</div>
+    <h2 class="section-title">适合谁读</h2>
+    <div class="section-rule"></div>
+    <div class="audience-grid">
+
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>企业管理者</h4>
+        <p>理解为什么'做好本职工作'可能恰恰是失败的根源，学会识别颠覆性威胁。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>创业者</h4>
+        <p>找到从低端或边缘市场切入的路径，理解颠覆性创新的规律，避免与巨头正面竞争。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>投资者</h4>
+        <p>识别哪些行业正在经历颠覆性变革，避免投资那些被'价值网络'锁定的在位企业。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>产品经理</h4>
+        <p>理解用户需求的变化轨迹：当性能'足够好'时，竞争基础会转向便利性和价格。</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">◆</div>
+        <h4>对商业战略感兴趣的人</h4>
+        <p>这是过去30年最具影响力的商业理论之一，颠覆性创新已成为商业语言的基础词汇。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ BACK TO INDEX ============ -->
+<a href="../index.html" class="back-to-index" title="返回目录"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> 返回目录</a>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-bookmark"></div>
+  <p>The Innovator's Dilemma · Clayton Christensen · 1997</p>
+  <p class="footer-cn">每日读书笔记 · 2026 月 年 月 07 月 年 月 27 日</p>
+</footer>
+
+</body>
+</html>
